@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekConf.Mobile.Core", "TekConf.Mobile.Core\TekConf.Mobile.Core.csproj", "{5B575A23-D0C5-4594-BBFC-1A36311F442E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekConf.Mobile.Droid", "TekConf.Mobile.Droid\TekConf.Mobile.Droid.csproj", "{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = TekConf.Mobile.Core\TekConf.Mobile.Core.csproj
+	EndGlobalSection
+EndGlobal
