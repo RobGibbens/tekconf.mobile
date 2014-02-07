@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekConf.Mobile.Core", "TekConf.Mobile.Core\TekConf.Mobile.Core.csproj", "{5B575A23-D0C5-4594-BBFC-1A36311F442E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekConf.Mobile.Droid", "TekConf.Mobile.Droid\TekConf.Mobile.Droid.csproj", "{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekConf.Mobile.Core.Tests", "..\tests\TekConf.Mobile.Core.Tests\TekConf.Mobile.Core.Tests.csproj", "{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{293C47D0-F4B6-4D03-A072-55102685D6F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +17,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456} = {293C47D0-F4B6-4D03-A072-55102685D6F5}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TekConf.Mobile.Core\TekConf.Mobile.Core.csproj
