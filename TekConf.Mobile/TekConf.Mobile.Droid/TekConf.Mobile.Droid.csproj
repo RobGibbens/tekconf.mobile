@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
+    <Compile Include="Code\TekConfTextView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ConferencesView.cs" />
@@ -121,6 +122,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-Bold.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-BoldItalic.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-ExtraBold.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-ExtraBoldItalic.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-Italic.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-Light.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-LightItalic.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-Regular.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-Semibold.ttf" />
+    <AndroidAsset Include="Assets\fonts\OpenSans-SemiboldItalic.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
