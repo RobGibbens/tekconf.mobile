@@ -23,18 +23,21 @@ namespace TekConf.Mobile.Droid.Views
 	[Activity (Label = "Conferences")]
 	public class ConferencesView : MvxActivity
 	{
+		private BindableProgress _bindableProgress;
 		private MvxSubscriptionToken _conferencesLoadedToken;
 		private IMvxMessenger _messenger;
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
+			_bindableProgress = new BindableProgress(this);
 			_messenger = Mvx.Resolve<IMvxMessenger> ();
 			_conferencesLoadedToken = _messenger.SubscribeOnMainThread<ConferencesLoaded> (OnConferencesLoaded);
 
 			SetContentView (Resource.Layout.ConferencesView);
 
 			var set = this.CreateBindingSet<ConferencesView, ConferencesViewModel> ();
+			set.Bind(_bindableProgress).For(b => b.Visible).To(vm => vm.AreConferencesLoading);
 			set.Apply ();
 		}
 

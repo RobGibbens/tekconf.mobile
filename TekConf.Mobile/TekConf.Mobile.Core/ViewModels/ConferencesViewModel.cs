@@ -36,13 +36,37 @@ namespace TekConf.Mobile.Core.ViewModels
             await LoadConferences();
 
         }
+
+		private bool _areConferencesLoading;
+		public bool AreConferencesLoading
+		{
+			get
+			{
+				return _areConferencesLoading;
+			}
+			set
+			{
+				if (_areConferencesLoading != value)
+				{
+					_areConferencesLoading = value;
+					RaisePropertyChanged(() => AreConferencesLoading);
+					if (!_areConferencesLoading)
+					{
+						InvokeOnMainThread (() => _messenger.Publish<ConferencesLoaded> (new ConferencesLoaded (this)));
+					}
+				}
+			}
+		}
+
+
         public async Task LoadConferences()
         {
             const string url = TekConfApi.BaseUrl + "/conferences";
 
-			InvokeOnMainThread (() => {
-				_messenger.Publish<ConferencesLoading> (new ConferencesLoading (this));
-			});
+			this.AreConferencesLoading = true;
+//			InvokeOnMainThread (() => {
+//				_messenger.Publish<ConferencesLoading> (new ConferencesLoading (this));
+//			});
 
             var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
 
@@ -51,9 +75,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
             this.Conferences = conferences;
 
-			InvokeOnMainThread (() => {
-				_messenger.Publish<ConferencesLoaded> (new ConferencesLoaded (this));
-			});
+			this.AreConferencesLoading = false;
         }
 
         private Task<List<Conference>> DeserializeConferenceList(Stream result)

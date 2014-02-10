@@ -112,6 +112,9 @@
     <Reference Include="UrlImageViewHelper">
       <HintPath>lib\UrlImageViewHelper.dll</HintPath>
     </Reference>
+    <Reference Include="AndHUD">
+      <HintPath>..\Components\AndHUD-1.2\lib\android\AndHUD.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -130,6 +133,7 @@
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="Views\ConferenceListAdapter.cs" />
     <Compile Include="Views\SquareImage.cs" />
+    <Compile Include="BindableProgress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -173,5 +177,11 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamarinComponentReference Include="AndHUD">
+      <Version>1.2</Version>
+      <Visible>False</Visible>
+    </XamarinComponentReference>
   </ItemGroup>
 </Project>
