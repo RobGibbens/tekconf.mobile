@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Plugins.Json;
 using Should;
+using SQLite.Net.Async;
 using TekConf.Mobile.Core.Tests.Extensions;
 using TekConf.Mobile.Core.ViewModels;
 using Xunit;
@@ -32,7 +33,7 @@ namespace TekConf.Mobile.Core.Tests
         [Fact]
         public async Task GetConferences()
         {
-			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter);
+			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter, null);
             viewModel.Conferences.ShouldBeNull();
             await viewModel.LoadConferences();
             viewModel.Conferences.ShouldNotBeNull();
@@ -41,7 +42,7 @@ namespace TekConf.Mobile.Core.Tests
         [Fact]
         public async Task LoadingConferencesNotifies()
         {
-			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter);
+            var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter, null);
             var propertyChanged = false;
             
             viewModel.PropertyChanged += delegate(object sender, PropertyChangedEventArgs args)

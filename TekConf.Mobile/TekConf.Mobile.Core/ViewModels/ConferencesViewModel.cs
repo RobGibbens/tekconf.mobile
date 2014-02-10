@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using Cirrious.CrossCore.Platform;
 using System.Collections.Generic;
 using Cirrious.MvvmCross.Plugins.Messenger;
+using SQLite.Net.Async;
 using TekConf.Mobile.Core.Messages;
 using System.Threading;
+using SQLite;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -17,19 +19,20 @@ namespace TekConf.Mobile.Core.ViewModels
     {
         private readonly HttpClient _httpClient;
         private readonly IMvxJsonConverter _jsonConverter;
+        private readonly SQLiteAsyncConnection _sqLiteConnection;
 
-		public ConferencesViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter)
+        public ConferencesViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter, SQLiteAsyncConnection sqLiteConnection)
         {
             _httpClient = httpClient;
             _jsonConverter = jsonConverter;
+		    _sqLiteConnection = sqLiteConnection;
         }
 
         public async void Init()
 		{
 			this.Conferences = Enumerable.Empty<Conference> ();
-
+            CreateDatabase();
             await LoadConferences();
-
         }
 
         public bool AreConferencesLoading
@@ -45,21 +48,47 @@ namespace TekConf.Mobile.Core.ViewModels
             }
         }
 
+        public void CreateDatabase()
+        {
+            var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();
+            Task.WaitAll(conferenceTask);
+        }
         public async Task LoadConferences()
         {
-            const string url = TekConfApi.BaseUrl + "/conferences";
-
 			this.AreConferencesLoading = true;
+            
+            List<Conference> conferences = await LoadConferencesFromLocal();
+            if (!conferences.Any())
+            {
+                conferences = await LoadConferencesFromRemote();
+            }
+
+            this.Conferences = conferences;
+            
+			this.AreConferencesLoading = false;
+        }
+
+        private async Task<List<Conference>> LoadConferencesFromLocal()
+        {
+            var conferences = await _sqLiteConnection.Table<Conference>().OrderBy(x => x.Start).ToListAsync();
+
+            return conferences;
+        }
+        private async Task<List<Conference>> LoadConferencesFromRemote()
+        {
+            const string url = TekConfApi.BaseUrl + "/conferences";
 
             var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
 
             var result = await response.Content.ReadAsStreamAsync();
             var conferences = await DeserializeConferenceList(result);
 
-            this.Conferences = conferences;
+            await _sqLiteConnection.InsertAllAsync(conferences);
 
-			this.AreConferencesLoading = false;
+            return conferences;
         }
+
+
 
         private Task<List<Conference>> DeserializeConferenceList(Stream result)
         {
