@@ -2,13 +2,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res/com.tekconf.droid"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ffffff">
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textColor="@android:color/white"
-        android:background="#55000000">
+        android:background="#ffffff">
         <TekConf.Mobile.Droid.SquareImage
             android:id="@+id/conferenceImage"
             android:layout_width="match_parent"
@@ -19,22 +20,23 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textColor="@android:color/white"
-            android:background="#55000000"
-            android:layout_marginTop="-55dp"
+            android:background="#FF81994D"
             android:layout_below="@+id/conferenceImage">
-            <TextView
+            <TekConf.Mobile.Droid.TekConfTextView
                 android:id="@+id/conferenceName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="15dp"
                 android:layout_gravity="bottom"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
                 android:layout_marginLeft="5dp" />
-            <TextView
+            <TekConf.Mobile.Droid.TekConfTextView
                 android:id="@+id/conferenceDateRange"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="15dp"
                 android:layout_gravity="bottom"
+                android:textColor="@android:color/white"
                 android:layout_below="@+id/conferenceName"
                 android:layout_marginLeft="5dp" />
         </RelativeLayout>

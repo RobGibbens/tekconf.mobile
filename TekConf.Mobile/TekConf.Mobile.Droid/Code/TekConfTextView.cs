@@ -25,7 +25,6 @@ namespace TekConf.Mobile.Droid
         {
             Typeface tf = Typeface.CreateFromAsset(_context.Assets, "fonts/OpenSans-Light.ttf");
             this.Typeface = tf;
-            this.SetTextColor(Color.Black);
         }
     }
 }

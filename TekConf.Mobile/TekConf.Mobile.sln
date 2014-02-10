@@ -30,6 +30,7 @@ Global
 		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
