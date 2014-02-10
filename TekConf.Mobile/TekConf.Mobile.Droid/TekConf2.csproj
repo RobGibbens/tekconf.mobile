@@ -170,11 +170,10 @@
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\TekConf.Mobile.Core\TekConf.Mobile.Core.csproj">
-      <Project>{5B575A23-D0C5-4594-BBFC-1A36311F442E}</Project>
+      <Project>{5b575a23-d0c5-4594-bbfc-1a36311f442e}</Project>
       <Name>TekConf.Mobile.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
   </ItemGroup>

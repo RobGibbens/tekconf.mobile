@@ -59,11 +59,11 @@ namespace TekConf.Mobile.Droid.Views
 			if (conferenceNameTextView != null)
 				conferenceNameTextView.Text = conference.Name;
 
-//			TextView conferenceDateRangeTextView = view.FindViewById<TextView> (Resource.Id.conferenceDateRange);
-//			if (conferenceDateRangeTextView != null)
-//				conferenceDateRangeTextView.Text = conference.DateRange ();
+            TextView conferenceDateRangeTextView = view.FindViewById<TextView>(Resource.Id.conferenceDateRange);
+            if (conferenceDateRangeTextView != null)
+                conferenceDateRangeTextView.Text = conference.DateRange();
 
-			ImageView imageView = view.FindViewById<SquareImage> (Resource.Id.conferenceImage);
+            ImageView imageView = view.FindViewById<SquareImage>(Resource.Id.conferenceImage);
 			if (imageView != null) {
 				imageView.SetUrlDrawable (conference.ImageUrl, Resource.Drawable.DefaultConference);
 			}

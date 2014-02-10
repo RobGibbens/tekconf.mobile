@@ -29,7 +29,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
         public async void Init()
 		{
-			_messenger.Publish<ConferencesLoading> (new ConferencesLoading (this));
+			//_messenger.Publish<ConferencesLoading> (new ConferencesLoading (this));
 
 			this.Conferences = Enumerable.Empty<Conference> ();
 
@@ -64,9 +64,6 @@ namespace TekConf.Mobile.Core.ViewModels
             const string url = TekConfApi.BaseUrl + "/conferences";
 
 			this.AreConferencesLoading = true;
-//			InvokeOnMainThread (() => {
-//				_messenger.Publish<ConferencesLoading> (new ConferencesLoading (this));
-//			});
 
             var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
 

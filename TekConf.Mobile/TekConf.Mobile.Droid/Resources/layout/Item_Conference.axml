@@ -2,21 +2,41 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res/com.tekconf.droid"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
-    <ImageView
-        android:id="@+id/conferenceImage"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
-    <TextView
-        android:id="@+id/conferenceName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="15dp"
-        android:layout_gravity="bottom"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:textColor="@android:color/white"
-        android:background="#55000000" />
+        android:background="#55000000">
+        <TekConf.Mobile.Droid.SquareImage
+            android:id="@+id/conferenceImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop" />
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:textColor="@android:color/white"
+            android:background="#55000000"
+            android:layout_marginTop="-55dp"
+            android:layout_below="@+id/conferenceImage">
+            <TextView
+                android:id="@+id/conferenceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="15dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp" />
+            <TextView
+                android:id="@+id/conferenceDateRange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
+                android:layout_gravity="bottom"
+                android:layout_below="@+id/conferenceName"
+                android:layout_marginLeft="5dp" />
+        </RelativeLayout>
+    </RelativeLayout>
 </FrameLayout>
