@@ -14,14 +14,16 @@
             android:id="@+id/conferenceImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            local:MvxBind="ImageUrl ImageUrl" />
         <RelativeLayout
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:textColor="@android:color/white"
             android:background="#FF81994D"
-            android:layout_below="@+id/conferenceImage">
+            android:layout_below="@+id/conferenceImage"
+            android:layout_centerHorizontal="true">
             <TekConf.Mobile.Droid.TekConfTextView
                 android:id="@+id/conferenceName"
                 android:layout_width="match_parent"
@@ -30,7 +32,10 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:textColor="@android:color/white"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:paddingTop="5dp"
+                local:MvxBind="Text Name"
+                android:layout_centerHorizontal="true" />
             <TekConf.Mobile.Droid.TekConfTextView
                 android:id="@+id/conferenceDateRange"
                 android:layout_width="match_parent"
@@ -38,7 +43,10 @@
                 android:layout_gravity="bottom"
                 android:textColor="@android:color/white"
                 android:layout_below="@+id/conferenceName"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:paddingBottom="5dp"
+                local:MvxBind="Text DateRange"
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </RelativeLayout>
 </FrameLayout>

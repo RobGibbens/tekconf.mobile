@@ -32,7 +32,7 @@ namespace TekConf.Mobile.Core.Tests
         [Fact]
         public async Task GetConferences()
         {
-			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter, _messenger);
+			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter);
             viewModel.Conferences.ShouldBeNull();
             await viewModel.LoadConferences();
             viewModel.Conferences.ShouldNotBeNull();
@@ -41,7 +41,7 @@ namespace TekConf.Mobile.Core.Tests
         [Fact]
         public async Task LoadingConferencesNotifies()
         {
-			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter, _messenger);
+			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter);
             var propertyChanged = false;
             
             viewModel.PropertyChanged += delegate(object sender, PropertyChangedEventArgs args)

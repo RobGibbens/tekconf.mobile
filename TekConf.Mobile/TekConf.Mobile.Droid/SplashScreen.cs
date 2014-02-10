@@ -5,7 +5,7 @@ using Cirrious.MvvmCross.Droid.Views;
 namespace TekConf.Mobile.Droid
 {
     [Activity(
-		Label = "TekConf.Mobile.Droid"
+		Label = "TekConf"
 		, MainLauncher = true
 		, Icon = "@drawable/icon"
 		, Theme = "@style/Theme.Splash"

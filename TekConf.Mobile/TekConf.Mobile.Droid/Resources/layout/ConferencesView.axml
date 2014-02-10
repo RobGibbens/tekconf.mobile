@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <GridView
+    <Mvx.MvxGridView
         android:id="@+id/gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,5 +12,7 @@
         android:horizontalSpacing="1dp"
         android:stretchMode="columnWidth"
         android:numColumns="2"
-        android:background="#000000" />
+        android:background="#000000"
+        local:MvxBind="ItemsSource Conferences"
+        local:MvxItemTemplate="@layout/item_conference" />
 </LinearLayout>
