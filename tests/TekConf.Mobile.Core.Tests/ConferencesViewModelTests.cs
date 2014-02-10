@@ -12,6 +12,7 @@ using Should;
 using TekConf.Mobile.Core.Tests.Extensions;
 using TekConf.Mobile.Core.ViewModels;
 using Xunit;
+using Cirrious.MvvmCross.Plugins.Messenger;
 
 namespace TekConf.Mobile.Core.Tests
 {
@@ -19,16 +20,19 @@ namespace TekConf.Mobile.Core.Tests
     {
         readonly HttpClient _httpClient;
         private readonly IMvxJsonConverter _jsonConverter;
+		private readonly IMvxMessenger _messenger;
         public ConferencesViewModelTests()
         {
             _httpClient = new HttpClient();
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             _jsonConverter = new MvxJsonConverter();
+			_messenger = new MvxMessengerHub ();
         }
+
         [Fact]
         public async Task GetConferences()
         {
-            var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter);
+			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter, _messenger);
             viewModel.Conferences.ShouldBeNull();
             await viewModel.LoadConferences();
             viewModel.Conferences.ShouldNotBeNull();
@@ -37,7 +41,7 @@ namespace TekConf.Mobile.Core.Tests
         [Fact]
         public async Task LoadingConferencesNotifies()
         {
-            var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter);
+			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter, _messenger);
             var propertyChanged = false;
             
             viewModel.PropertyChanged += delegate(object sender, PropertyChangedEventArgs args)

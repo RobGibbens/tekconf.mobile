@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:p1="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res/com.tekconf.droid"
-    p1:minWidth="25px"
-    p1:minHeight="25px"
-    p1:layout_width="match_parent"
-    p1:layout_height="match_parent"
-    p1:id="@+id/relativeLayout1"
-    p1:gravity="center_horizontal">
-    <Mvx.MvxImageView
-        p1:src="@android:drawable/ic_menu_gallery"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:id="@+id/conferenceImage"
-        local:MvxBind="ImageUrl ImageUrl" />
-    <TekConfTextView
-        p1:text="ConferenceName"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/conferenceImage"
-        p1:id="@+id/conferenceName"
-        p1:textSize="14dp"
-        local:MvxBind="Text Name" />
-    <TekConfTextView
-        p1:text="Date Range"
-        p1:layout_width="wrap_content"
-        p1:layout_height="wrap_content"
-        p1:layout_below="@id/conferenceName"
-        p1:id="@+id/conferenceDateRange" />
-</RelativeLayout>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/conferenceImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+    <TextView
+        android:id="@+id/conferenceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:layout_gravity="bottom"
+        android:textColor="@android:color/white"
+        android:background="#55000000" />
+</FrameLayout>
