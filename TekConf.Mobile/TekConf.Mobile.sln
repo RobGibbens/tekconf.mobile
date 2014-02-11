@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B575A23-D0C5-4594-BBFC-1A36311F442E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,14 +25,20 @@ Global
 		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02C648E8-E550-48F4-8BB6-5EE5B0C64DA8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EF0D1B0C-7D7E-46F1-8512-1CCAE77F8456} = {293C47D0-F4B6-4D03-A072-55102685D6F5}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = TekConf.Mobile.Droid\TekConf.Mobile.Droid.csproj
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

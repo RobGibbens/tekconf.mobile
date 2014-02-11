@@ -54,6 +54,7 @@ namespace TekConf.Mobile.Core
 
 	    public string Description { get; set; }
         public string ImageUrl { get; set; }
+        public string ImageUrlSquare { get; set; }
 
 	    public string DateRange
 	    {

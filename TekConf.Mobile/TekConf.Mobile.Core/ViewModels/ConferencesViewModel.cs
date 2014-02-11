@@ -5,11 +5,7 @@ using Cirrious.MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using Cirrious.CrossCore.Platform;
 using System.Collections.Generic;
-using Cirrious.MvvmCross.Plugins.Messenger;
 using SQLite.Net.Async;
-using TekConf.Mobile.Core.Messages;
-using System.Threading;
-using SQLite;
 using System;
 
 namespace TekConf.Mobile.Core.ViewModels
@@ -95,13 +91,23 @@ namespace TekConf.Mobile.Core.ViewModels
         private async Task<List<Conference>> LoadConferencesFromRemote()
         {
             const string url = TekConfApi.BaseUrl + "/conferences";
-			await _sqLiteConnection.DeleteAllAsync<Conference>();
+         
+            var deleteTask = _sqLiteConnection.DeleteAllAsync<Conference>();
+            var httpCallTask = _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
 
-            var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
+            Task.WaitAll(deleteTask, httpCallTask);
+            
+            var response = httpCallTask.Result;
 
             var result = await response.Content.ReadAsStreamAsync();
             var conferences = await DeserializeConferenceList(result);
-
+            foreach (var conference in conferences)
+            {
+                if (string.IsNullOrWhiteSpace(conference.ImageUrlSquare))
+                {
+                    conference.ImageUrlSquare = conference.ImageUrl;
+                }
+            }
             await _sqLiteConnection.InsertAllAsync(conferences);
 
             return conferences;

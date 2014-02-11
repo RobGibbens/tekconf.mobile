@@ -5,15 +5,9 @@ using Android.OS;
 using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Droid.Views;
 using TekConf.Mobile.Core.ViewModels;
-using Cirrious.CrossCore;
-using Cirrious.MvvmCross.Plugins.Messenger;
 using Android.Views;
 using Android.Widget;
 using Android.Animation;
-using Cirrious.MvvmCross.Binding.Droid.Views;
-using System;
-using Android.Content;
-using Android.Util;
 using System.Threading.Tasks;
 
 namespace TekConf.Mobile.Droid.Views
@@ -22,13 +16,13 @@ namespace TekConf.Mobile.Droid.Views
 	public class ConferencesView : MvxActivity
 	{
 		private BindableProgress _bindableProgress;
-		LinearLayout loadingBars;
-		ProgressBar bar1;
-		ProgressBar bar2;
-		TextView swipeText;
-		bool setup = false;
-		int accumulatedDeltaY = 0;
-		ObjectAnimator bar1Fade, bar2Fade;
+		LinearLayout _loadingBars;
+		ProgressBar _bar1;
+		ProgressBar _bar2;
+		TextView _swipeText;
+		bool _setup = false;
+		int _accumulatedDeltaY = 0;
+		ObjectAnimator _bar1Fade, _bar2Fade;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -46,13 +40,13 @@ namespace TekConf.Mobile.Droid.Views
 
 			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
 			var list = FindViewById<TekConfGridView> (Resource.Id.gridview);
-			loadingBars = FindViewById<LinearLayout> (Resource.Id.loadingBars);
-			bar1 = FindViewById<ProgressBar> (Resource.Id.loadingBar1);
-			bar2 = FindViewById<ProgressBar> (Resource.Id.loadingBar2);
-			swipeText = FindViewById<TextView> (Resource.Id.swipeToRefreshText);
+			_loadingBars = FindViewById<LinearLayout> (Resource.Id.loadingBars);
+			_bar1 = FindViewById<ProgressBar> (Resource.Id.loadingBar1);
+			_bar2 = FindViewById<ProgressBar> (Resource.Id.loadingBar2);
+			_swipeText = FindViewById<TextView> (Resource.Id.swipeToRefreshText);
 
 			// Remove progress bar background
-			foreach (var p in new[] { bar1, bar2 }) {
+			foreach (var p in new[] { _bar1, _bar2 }) {
 				var layer = p.ProgressDrawable as LayerDrawable;
 				if (layer != null)
 					layer.SetDrawableByLayerId (Android.Resource.Id.Background,
@@ -64,9 +58,7 @@ namespace TekConf.Mobile.Droid.Views
 
 				var vm = DataContext as ConferencesViewModel;
 				if (vm != null) {
-					Task.Factory.StartNew (() => { 
-						vm.Refresh ();
-					}); 
+					Task.Factory.StartNew (() => vm.Refresh ().Wait()); 
 				}
 
 				HideSwipeDown ();
@@ -117,37 +109,37 @@ namespace TekConf.Mobile.Droid.Views
 
 		private void ShowSwipeDown ()
 		{
-			if (!setup) {
+			if (!_setup) {
 				ActionBar.Hide ();
-				if (bar1Fade != null) {
-					bar1Fade.Cancel ();
-					bar1Fade = null;
+				if (_bar1Fade != null) {
+					_bar1Fade.Cancel ();
+					_bar1Fade = null;
 				}
-				if (bar2Fade != null) {
-					bar2Fade.Cancel ();
-					bar2Fade = null;
+				if (_bar2Fade != null) {
+					_bar2Fade.Cancel ();
+					_bar2Fade = null;
 				}
-				loadingBars.Visibility = ViewStates.Visible;
-				swipeText.TranslationY = -(ActionBar.Height + swipeText.Height + 4);
-				swipeText.Visibility = ViewStates.Visible;
-				swipeText.Animate ().TranslationY (0).SetStartDelay (50).Start ();
-				accumulatedDeltaY = 0;
-				setup = true;
+				_loadingBars.Visibility = ViewStates.Visible;
+				_swipeText.TranslationY = -(ActionBar.Height + _swipeText.Height + 4);
+				_swipeText.Visibility = ViewStates.Visible;
+				_swipeText.Animate ().TranslationY (0).SetStartDelay (50).Start ();
+				_accumulatedDeltaY = 0;
+				_setup = true;
 			}
 		}
 
 		private void HideSwipeDown ()
 		{
 			ActionBar.Show ();
-			swipeText.Visibility = ViewStates.Invisible;
-			bar1Fade = ObjectAnimator.OfInt (bar1, "progress", bar1.Progress, 0);
-			bar1Fade.SetDuration (250);
-			bar1Fade.Start ();
-			bar2Fade = ObjectAnimator.OfInt (bar2, "progress", bar2.Progress, 0);
-			bar2Fade.SetDuration (250);
-			bar2Fade.Start ();
-			bar2Fade.AnimationEnd += (sender, e) => loadingBars.Visibility = ViewStates.Gone;
-			setup = false;
+			_swipeText.Visibility = ViewStates.Invisible;
+			_bar1Fade = ObjectAnimator.OfInt (_bar1, "progress", _bar1.Progress, 0);
+			_bar1Fade.SetDuration (250);
+			_bar1Fade.Start ();
+			_bar2Fade = ObjectAnimator.OfInt (_bar2, "progress", _bar2.Progress, 0);
+			_bar2Fade.SetDuration (250);
+			_bar2Fade.Start ();
+			_bar2Fade.AnimationEnd += (sender, e) => _loadingBars.Visibility = ViewStates.Gone;
+			_setup = false;
 		}
 	}
 }
