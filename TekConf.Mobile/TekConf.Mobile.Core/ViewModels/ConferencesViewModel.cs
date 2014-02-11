@@ -10,16 +10,18 @@ using SQLite.Net.Async;
 using TekConf.Mobile.Core.Messages;
 using System.Threading;
 using SQLite;
+using System;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
+	public delegate void ChangedEventHandler(object sender, EventArgs e);
 
-    public class ConferencesViewModel
-        : MvxViewModel
+    public class ConferencesViewModel : MvxViewModel
     {
         private readonly HttpClient _httpClient;
         private readonly IMvxJsonConverter _jsonConverter;
         private readonly SQLiteAsyncConnection _sqLiteConnection;
+		public event ChangedEventHandler Changed;
 
         public ConferencesViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter, SQLiteAsyncConnection sqLiteConnection)
         {
@@ -28,12 +30,25 @@ namespace TekConf.Mobile.Core.ViewModels
 		    _sqLiteConnection = sqLiteConnection;
         }
 
+		protected virtual void OnChanged(EventArgs e) 
+		{
+			if (Changed != null)
+				Changed(this, e);
+		}
+
         public async void Init()
 		{
 			this.Conferences = Enumerable.Empty<Conference> ();
             CreateDatabase();
-            await LoadConferences();
+			await LoadConferences(LoadRequest.Load);
         }
+
+		public async Task Refresh()
+		{
+			this.Conferences = Enumerable.Empty<Conference> ();
+			CreateDatabase();
+			await LoadConferences(LoadRequest.Refresh);
+		}
 
         public bool AreConferencesLoading
         {
@@ -53,12 +68,13 @@ namespace TekConf.Mobile.Core.ViewModels
             var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();
             Task.WaitAll(conferenceTask);
         }
-        public async Task LoadConferences()
+
+		public async Task LoadConferences(LoadRequest loadRequest)
         {
 			this.AreConferencesLoading = true;
             
             List<Conference> conferences = await LoadConferencesFromLocal();
-            if (!conferences.Any())
+			if (!conferences.Any() || loadRequest == LoadRequest.Refresh)
             {
                 conferences = await LoadConferencesFromRemote();
             }
@@ -66,6 +82,7 @@ namespace TekConf.Mobile.Core.ViewModels
             this.Conferences = conferences;
             
 			this.AreConferencesLoading = false;
+			OnChanged(EventArgs.Empty);
         }
 
         private async Task<List<Conference>> LoadConferencesFromLocal()
@@ -74,9 +91,11 @@ namespace TekConf.Mobile.Core.ViewModels
 
             return conferences;
         }
+
         private async Task<List<Conference>> LoadConferencesFromRemote()
         {
             const string url = TekConfApi.BaseUrl + "/conferences";
+			await _sqLiteConnection.DeleteAllAsync<Conference>();
 
             var response = await _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
 
@@ -87,8 +106,6 @@ namespace TekConf.Mobile.Core.ViewModels
 
             return conferences;
         }
-
-
 
         private Task<List<Conference>> DeserializeConferenceList(Stream result)
         {

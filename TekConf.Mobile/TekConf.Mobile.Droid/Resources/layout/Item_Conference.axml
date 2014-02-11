@@ -47,6 +47,17 @@
                 android:paddingBottom="5dp"
                 local:MvxBind="Text DateRange"
                 android:layout_centerHorizontal="true" />
+        <!--            <TextView
+                android:id="@+id/mytextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textColor="@android:color/white"
+                android:layout_below="@+id/conferenceDateRange"
+                android:layout_marginLeft="5dp"
+                android:paddingBottom="5dp"
+                android:layout_centerHorizontal="true"
+                android:text="@string/fa_refresh" />-->
         </RelativeLayout>
     </RelativeLayout>
 </FrameLayout>

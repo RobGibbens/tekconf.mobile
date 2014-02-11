@@ -2,4 +2,5 @@
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">TekConf.Mobile.Droid</string>
+	<string name="fa_refresh">&#xf021;M</string>
 </resources>

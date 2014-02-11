@@ -35,7 +35,7 @@ namespace TekConf.Mobile.Core.Tests
         {
 			var viewModel = new ConferencesViewModel(_httpClient, _jsonConverter, null);
             viewModel.Conferences.ShouldBeNull();
-            await viewModel.LoadConferences();
+			await viewModel.LoadConferences(LoadRequest.Load);
             viewModel.Conferences.ShouldNotBeNull();
         }
 
@@ -50,7 +50,7 @@ namespace TekConf.Mobile.Core.Tests
                 propertyChanged = true;
             };
             
-            await viewModel.LoadConferences();
+			await viewModel.LoadConferences(LoadRequest.Load);
 
             propertyChanged.ShouldBeTrue();
         }
