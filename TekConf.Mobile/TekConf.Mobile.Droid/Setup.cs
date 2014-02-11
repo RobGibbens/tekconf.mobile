@@ -29,7 +29,7 @@ namespace TekConf.Mobile.Droid
 		{
             MvxBindingTrace.TraceBindingLevel = MvxTraceLevel.Diagnostic;
 
-			var httpClient = new HttpClient();
+			var httpClient = new HttpClient(new OkHttpNetworkHandler());
 			httpClient.DefaultRequestHeaders.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
 			Mvx.RegisterSingleton<HttpClient>(httpClient);
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
