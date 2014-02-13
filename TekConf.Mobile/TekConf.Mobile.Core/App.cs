@@ -1,8 +1,9 @@
 using Cirrious.CrossCore.IoC;
+using Cirrious.MvvmCross.ViewModels;
 
 namespace TekConf.Mobile.Core
 {
-	public class App : Cirrious.MvvmCross.ViewModels.MvxApplication
+	public class App : MvxApplication
 	{
 		public override void Initialize()
 		{
@@ -11,7 +12,7 @@ namespace TekConf.Mobile.Core
 				.AsInterfaces()
 				.RegisterAsLazySingleton();
 				
-			RegisterAppStart<ViewModels.ConferencesViewModel>();
+			RegisterAppStart<ViewModels.TabViewModel>();
 		}
 	}
 }

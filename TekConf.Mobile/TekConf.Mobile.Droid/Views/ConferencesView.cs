@@ -58,7 +58,7 @@ namespace TekConf.Mobile.Droid.Views
 
 				var vm = DataContext as ConferencesViewModel;
 				if (vm != null) {
-					Task.Factory.StartNew (() => vm.Refresh ().Wait()); 
+					//Task.Factory.StartNew (() => vm.Refresh ().Wait()); 
 				}
 
 				HideSwipeDown ();
@@ -94,9 +94,9 @@ namespace TekConf.Mobile.Droid.Views
 					break;
 
 				case "Refresh":
-					Task.Factory.StartNew (() => {
-						vm.Refresh ();
-					});
+					//Task.Factory.StartNew (() => {
+						//vm.Refresh ();
+					//});
 					break;
 				case "Settings":
 					//vm.ShowSettingsCommand.Execute (null);
