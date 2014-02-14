@@ -24,7 +24,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			_httpClient = httpClient;
 			_jsonConverter = jsonConverter;
 			_sqLiteConnection = sqLiteConnection;
-			this.Conferences = Enumerable.Empty<Conference>();
+			this.Conferences = Enumerable.Empty<ScheduledConference>();
 		}
 
 		protected virtual void OnChanged(EventArgs e)
@@ -35,16 +35,16 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public async void Init()
 		{
-			this.Conferences = Enumerable.Empty<Conference>();
+			this.Conferences = Enumerable.Empty<ScheduledConference>();
 			CreateDatabase();
-			await LoadConferences(LoadRequest.Load);
+			await LoadConferencesAsync(LoadRequest.Load);
 		}
 
-		public async Task Refresh()
+		public async Task RefreshAsync()
 		{
-			this.Conferences = Enumerable.Empty<Conference>();
+			this.Conferences = Enumerable.Empty<ScheduledConference>();
 			CreateDatabase();
-			await LoadConferences(LoadRequest.Refresh);
+			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
 		private bool _areConferencesLoading;
@@ -63,18 +63,18 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public void CreateDatabase()
 		{
-			var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();
+			var conferenceTask = _sqLiteConnection.CreateTableAsync<ScheduledConference>();
 			Task.WaitAll(conferenceTask);
 		}
 
-		public async Task LoadConferences(LoadRequest loadRequest)
+		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
 			this.AreConferencesLoading = true;
 
-			List<Conference> conferences = await LoadConferencesFromLocal();
+			List<ScheduledConference> conferences = await LoadConferencesFromLocalAsync();
 			if (!conferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
-				conferences = await LoadConferencesFromRemote();
+				conferences = await LoadConferencesFromRemoteAsync();
 			}
 
 			this.Conferences = conferences;
@@ -83,18 +83,18 @@ namespace TekConf.Mobile.Core.ViewModels
 			OnChanged(EventArgs.Empty);
 		}
 
-		private async Task<List<Conference>> LoadConferencesFromLocal()
+		private async Task<List<ScheduledConference>> LoadConferencesFromLocalAsync()
 		{
-			var conferences = await _sqLiteConnection.Table<Conference>().OrderBy(x => x.Start).ToListAsync();
+			var conferences = await _sqLiteConnection.Table<ScheduledConference>().OrderBy(x => x.Start).ToListAsync();
 
 			return conferences;
 		}
 
-		private async Task<List<Conference>> LoadConferencesFromRemote()
+		private async Task<List<ScheduledConference>> LoadConferencesFromRemoteAsync()
 		{
-			const string url = TekConfApi.BaseUrl + "/conferences";
+			string url = string.Format(TekConfApi.BaseUrl + "/conferences/schedules?userName={0}", "robgibbens");
 
-			var deleteTask = _sqLiteConnection.DeleteAllAsync<Conference>();
+			var deleteTask = _sqLiteConnection.DeleteAllAsync<ScheduledConference>();
 			var httpCallTask = _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
 
 			Task.WaitAll(deleteTask, httpCallTask);
@@ -102,7 +102,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			var response = httpCallTask.Result;
 
 			var result = await response.Content.ReadAsStreamAsync();
-			var conferences = await DeserializeConferenceList(result);
+			var conferences = await DeserializeConferenceListAsync(result);
 			foreach (var conference in conferences)
 			{
 				if (string.IsNullOrWhiteSpace(conference.ImageUrlSquare))
@@ -110,26 +110,28 @@ namespace TekConf.Mobile.Core.ViewModels
 					conference.ImageUrlSquare = conference.ImageUrl;
 				}
 			}
+
+
 			await _sqLiteConnection.InsertAllAsync(conferences);
 
 			return conferences;
 		}
 
-		private Task<List<Conference>> DeserializeConferenceList(Stream result)
+		private Task<List<ScheduledConference>> DeserializeConferenceListAsync(Stream result)
 		{
 			return Task.Factory.StartNew(() =>
 				{
 					var reader = new StreamReader(result);
 					string json = reader.ReadToEnd();
-					var conferences = _jsonConverter.DeserializeObject<List<Conference>>(json);
+					var conferences = _jsonConverter.DeserializeObject<List<ScheduledConference>>(json);
 
-					return conferences.OrderBy(c => c.Name).ToList();
+					return conferences.OrderByDescending(c => c.Start).ToList();
 				});
 		}
 
 
-		private IList<Conference> _conferences;
-		public IEnumerable<Conference> Conferences
+		private IList<ScheduledConference> _conferences;
+		public IEnumerable<ScheduledConference> Conferences
 		{
 			get
 			{

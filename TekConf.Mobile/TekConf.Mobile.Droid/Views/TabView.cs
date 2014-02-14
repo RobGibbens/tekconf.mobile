@@ -5,6 +5,7 @@ using Cirrious.MvvmCross.Droid.Fragging;
 using TekConf.Mobile.Core.ViewModels;
 using Android.Graphics.Drawables;
 using Android.Graphics;
+using System.Threading.Tasks;
 
 namespace TekConf.Mobile.Droid.Views
 {
@@ -24,8 +25,8 @@ namespace TekConf.Mobile.Droid.Views
 		{
 			base.OnCreate (bundle);
 
-			RequestWindowFeature (WindowFeatures.ActionBarOverlay);
-			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
+			//RequestWindowFeature (WindowFeatures.ActionBarOverlay);
+			//ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
 		}
 
 		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -44,9 +45,9 @@ namespace TekConf.Mobile.Droid.Views
 					break;
 
 				case "Refresh":
-					//Task.Factory.StartNew (() => {
-					//vm.Refresh ();
-					//});
+					Task.Factory.StartNew (() => {
+						vm.Refresh ().Wait();
+					});
 					break;
 				case "Settings":
 					//vm.ShowSettingsCommand.Execute (null);
@@ -59,9 +60,9 @@ namespace TekConf.Mobile.Droid.Views
 
 		protected override void AddTabs(Bundle args)
 		{
-			AddTab<Tab1Fragment>("Tab1", "Conferences", args, TabViewModel.Vm1);
+			AddTab<ConferencesListFragment>("Tab1", "Conferences", args, TabViewModel.Vm1);
 			
-			AddTab<Tab2Fragment>("Tab2", "Schedule", args, TabViewModel.Vm2);
+			AddTab<ConferencesScheduleFragment>("Tab2", "Schedule", args, TabViewModel.Vm2);
 		}
 	}
 }

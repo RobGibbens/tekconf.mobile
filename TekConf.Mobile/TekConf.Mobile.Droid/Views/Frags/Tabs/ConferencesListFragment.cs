@@ -14,7 +14,7 @@ using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 
 namespace TekConf.Mobile.Droid.Views
 {
-	public class Tab1Fragment : MvxFragment
+	public class ConferencesListFragment : MvxFragment
 	{
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container,
 																			Bundle savedInstanceState)

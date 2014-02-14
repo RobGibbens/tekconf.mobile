@@ -37,14 +37,14 @@ namespace TekConf.Mobile.Core.ViewModels
 		{
 			this.Conferences = Enumerable.Empty<Conference>();
 			CreateDatabase();
-			await LoadConferences(LoadRequest.Load);
+			await LoadConferencesAsync(LoadRequest.Load);
 		}
 
-		public async Task Refresh()
+		public async Task RefreshAsync()
 		{
 			this.Conferences = Enumerable.Empty<Conference>();
 			CreateDatabase();
-			await LoadConferences(LoadRequest.Refresh);
+			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
 		private bool _areConferencesLoading;
@@ -67,14 +67,14 @@ namespace TekConf.Mobile.Core.ViewModels
 			Task.WaitAll(conferenceTask);
 		}
 
-		public async Task LoadConferences(LoadRequest loadRequest)
+		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
 			this.AreConferencesLoading = true;
 
-			List<Conference> conferences = await LoadConferencesFromLocal();
+			List<Conference> conferences = await LoadConferencesFromLocalAsync();
 			if (!conferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
-				conferences = await LoadConferencesFromRemote();
+				conferences = await LoadConferencesFromRemoteAsync();
 			}
 
 			this.Conferences = conferences;
@@ -83,14 +83,14 @@ namespace TekConf.Mobile.Core.ViewModels
 			OnChanged(EventArgs.Empty);
 		}
 
-		private async Task<List<Conference>> LoadConferencesFromLocal()
+		private async Task<List<Conference>> LoadConferencesFromLocalAsync()
 		{
 			var conferences = await _sqLiteConnection.Table<Conference>().OrderBy(x => x.Start).ToListAsync();
 
 			return conferences;
 		}
 
-		private async Task<List<Conference>> LoadConferencesFromRemote()
+		private async Task<List<Conference>> LoadConferencesFromRemoteAsync()
 		{
 			const string url = TekConfApi.BaseUrl + "/conferences";
 
@@ -102,7 +102,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			var response = httpCallTask.Result;
 
 			var result = await response.Content.ReadAsStreamAsync();
-			var conferences = await DeserializeConferenceList(result);
+			var conferences = await DeserializeConferenceListAsync(result);
 			foreach (var conference in conferences)
 			{
 				if (string.IsNullOrWhiteSpace(conference.ImageUrlSquare))
@@ -115,7 +115,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			return conferences;
 		}
 
-		private Task<List<Conference>> DeserializeConferenceList(Stream result)
+		private Task<List<Conference>> DeserializeConferenceListAsync(Stream result)
 		{
 			return Task.Factory.StartNew(() =>
 			{

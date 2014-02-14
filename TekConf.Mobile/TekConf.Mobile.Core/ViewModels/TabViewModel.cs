@@ -28,6 +28,15 @@ namespace TekConf.Mobile.Core.ViewModels
 			((ConferencesScheduleViewModel)Vm2).Init();
 		}
 
+		public async Task Refresh()
+		{
+
+			var conferencesTask = ((ConferencesViewModel)Vm1).RefreshAsync();
+			var scheduleTask = ((ConferencesScheduleViewModel)Vm2).RefreshAsync();
+
+			Task.WaitAll (conferencesTask, scheduleTask);
+		}
+
 
 		public BaseViewModel Vm1 { get; set; }
 		public BaseViewModel Vm2 { get; set; }
