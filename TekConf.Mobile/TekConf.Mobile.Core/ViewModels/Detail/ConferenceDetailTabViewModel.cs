@@ -14,6 +14,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			ConferenceDetail = Mvx.IocConstruct<ConferenceDetailViewModel>();
 			ConferenceDetailSessions = Mvx.IocConstruct<ConferenceDetailSessionsViewModel>();
 			ConferenceDetailSchedule = Mvx.IocConstruct<ConferenceDetailScheduleViewModel>();
+			ConferenceDetailLocation = Mvx.IocConstruct<ConferenceDetailLocationViewModel>();
 		}
 
 		public async void Init(int id)
@@ -21,6 +22,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			((ConferenceDetailViewModel)ConferenceDetail).Init(id);
 			((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).Init();
 			((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).Init();
+			((ConferenceDetailLocationViewModel)ConferenceDetailLocation).Init();
 		}
 
 		//public async Task Refresh()
@@ -54,6 +56,7 @@ namespace TekConf.Mobile.Core.ViewModels
 		public BaseViewModel ConferenceDetail { get; set; }
 		public BaseViewModel ConferenceDetailSessions { get; set; }
 		public BaseViewModel ConferenceDetailSchedule { get; set; }
+		public BaseViewModel ConferenceDetailLocation { get; set; }
 
 	}
 }
