@@ -157,7 +157,9 @@
     <Compile Include="Code\TekConfGridView.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <AndroidAsset Include="Assets\fonts\OpenSans-Bold.ttf" />
     <AndroidAsset Include="Assets\fonts\OpenSans-BoldItalic.ttf" />
     <AndroidAsset Include="Assets\fonts\OpenSans-ExtraBold.ttf" />
@@ -178,7 +180,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\DefaultConference.png" />
-    <AndroidResource Include="Resources\menu\ConferencesListActionItems.xml" />
+    <AndroidResource Include="Resources\menu\ConferencesListActionItems.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
     <AndroidAsset Include="Assets\fonts\fontawesome.ttf" />
     <AndroidResource Include="Resources\drawable\cog.png" />
     <AndroidResource Include="Resources\drawable\refresh.png" />
@@ -190,10 +194,6 @@
     <AndroidResource Include="Resources\layout\ConferencesScheduleView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\cog.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\refresh.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\search.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -212,6 +212,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\drawable\sortAlphaAsc.png" />
+    <AndroidResource Include="Resources\drawable\sortAlphaDesc.png" />
+    <AndroidResource Include="Resources\drawable\sortAsc.png" />
+    <AndroidResource Include="Resources\drawable\calendar.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="AndHUD">
@@ -229,7 +233,6 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

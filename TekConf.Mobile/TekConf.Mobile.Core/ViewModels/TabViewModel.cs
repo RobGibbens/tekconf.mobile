@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Cirrious.CrossCore;
-using Cirrious.CrossCore.Platform;
-using SQLite.Net.Async;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -15,11 +9,10 @@ namespace TekConf.Mobile.Core.ViewModels
 
 	public class TabViewModel : BaseViewModel
 	{
-		public TabViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter, SQLiteAsyncConnection sqLiteConnection)
+		public TabViewModel()
 		{
 			Vm1 = Mvx.IocConstruct<ConferencesViewModel>();
 			Vm2 = Mvx.IocConstruct<ConferencesScheduleViewModel>();
-			//Vm3 = Mvx.IocConstruct<ThirdTabViewModel>();
 		}
 
 		public async void Init()
@@ -35,6 +28,24 @@ namespace TekConf.Mobile.Core.ViewModels
 			var scheduleTask = ((ConferencesScheduleViewModel)Vm2).RefreshAsync();
 
 			Task.WaitAll (conferencesTask, scheduleTask);
+		}
+
+		public async Task SortByDate()
+		{
+
+			var conferencesTask = ((ConferencesViewModel)Vm1).SortByDateAsync();
+			var scheduleTask = ((ConferencesScheduleViewModel)Vm2).SortByDateAsync();
+
+			Task.WaitAll(conferencesTask, scheduleTask);
+		}
+
+		public async Task SortByName()
+		{
+
+			var conferencesTask = ((ConferencesViewModel)Vm1).SortByNameAsync();
+			var scheduleTask = ((ConferencesScheduleViewModel)Vm2).SortByNameAsync();
+
+			Task.WaitAll(conferencesTask, scheduleTask);
 		}
 
 

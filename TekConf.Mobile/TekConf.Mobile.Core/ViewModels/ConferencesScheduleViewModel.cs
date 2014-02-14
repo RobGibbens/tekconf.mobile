@@ -47,6 +47,18 @@ namespace TekConf.Mobile.Core.ViewModels
 			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
+		public async Task SortByDateAsync()
+		{
+			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Start); });
+		}
+
+		public async Task SortByNameAsync()
+		{
+			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Name); });
+		}
+
+
+
 		private bool _areConferencesLoading;
 		public bool AreConferencesLoading
 		{

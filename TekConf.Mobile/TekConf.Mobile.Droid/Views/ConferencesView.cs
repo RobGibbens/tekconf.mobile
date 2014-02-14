@@ -6,10 +6,6 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Droid.Views;
 using TekConf.Mobile.Core.ViewModels;
 using Android.Views;
-using Android.Widget;
-using Android.Animation;
-using System.Threading.Tasks;
-using System;
 
 namespace TekConf.Mobile.Droid.Views
 {
@@ -40,6 +36,7 @@ namespace TekConf.Mobile.Droid.Views
 			var set = this.CreateBindingSet<ConferencesView, ConferencesViewModel> ();
 			set.Bind (_bindableProgress).For (b => b.Visible).To (vm => vm.AreConferencesLoading);
 			set.Apply ();
+
 		}
 
 //		public override bool OnCreateOptionsMenu (IMenu menu)

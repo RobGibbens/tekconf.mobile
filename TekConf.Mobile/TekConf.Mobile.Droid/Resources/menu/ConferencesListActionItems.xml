@@ -3,6 +3,6 @@
   <item android:id="@+id/menu_sessions" android:icon="@drawable/search" android:title="Search" android:showAsAction="ifRoom"/>
   <item android:id="@+id/menu_settings" android:icon="@drawable/refresh" android:title="Refresh" android:showAsAction="ifRoom"/>
   <item android:id="@+id/menu_refresh" android:icon="@drawable/cog" android:title="Settings" android:showAsAction="ifRoom"/>
-  <item android:id="@+id/menu_refresh3" android:icon="@drawable/cog" android:title="Settings" android:showAsAction="ifRoom"/>
-  <item android:id="@+id/menu_refresh4" android:icon="@drawable/cog" android:title="Settings" android:showAsAction="ifRoom"/>
+	<item android:id="@+id/menu_sortByDate" android:icon="@drawable/calendar" android:title="Sort By Date" android:showAsAction="ifRoom"/>
+	<item android:id="@+id/menu_sortByName" android:icon="@drawable/sortAlphaAsc" android:title="Sort By Name" android:showAsAction="ifRoom"/>
 </menu>
