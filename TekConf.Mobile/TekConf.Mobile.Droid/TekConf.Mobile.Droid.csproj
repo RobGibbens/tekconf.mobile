@@ -142,10 +142,8 @@
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Plugins\MvxFastFileDownloadRequest.cs" />
     <Compile Include="Plugins\MvxFastHttpFileDownloader.cs" />
-    <Compile Include="Views\SquareImage.cs" />
     <Compile Include="BindableProgress.cs" />
     <Compile Include="Views\TabView.cs" />
-    <Compile Include="Views\TekConfGridView.cs" />
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
@@ -155,6 +153,8 @@
     <Compile Include="Views\ConferencesScheduleView.cs" />
     <Compile Include="Views\Frags\Tabs\ConferencesListFragment.cs" />
     <Compile Include="Views\Frags\Tabs\ConferencesScheduleFragment.cs" />
+    <Compile Include="Code\SquareImage.cs" />
+    <Compile Include="Code\TekConfGridView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -190,6 +190,10 @@
     <AndroidResource Include="Resources\layout\ConferencesScheduleView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\cog.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -225,6 +229,7 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
+    <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

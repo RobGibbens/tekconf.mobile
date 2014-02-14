@@ -99,6 +99,22 @@ namespace TekConf.Mobile.Droid
 			}
 		}
 		
+		public partial class Array
+		{
+			
+			// aapt resource value: 0x7f0c0000
+			public const int sorts_array = 2131492864;
+			
+			static Array()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Array()
+			{
+			}
+		}
+		
 		public partial class Attribute
 		{
 			
@@ -1040,6 +1056,12 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f05004e
 			public const int menu_refresh = 2131034190;
 			
+			// aapt resource value: 0x7f05004f
+			public const int menu_refresh3 = 2131034191;
+			
+			// aapt resource value: 0x7f050050
+			public const int menu_refresh4 = 2131034192;
+			
 			// aapt resource value: 0x7f05004c
 			public const int menu_sessions = 2131034188;
 			
@@ -1289,8 +1311,8 @@ namespace TekConf.Mobile.Droid
 		public partial class Menu
 		{
 			
-			// aapt resource value: 0x7f0c0000
-			public const int ConferencesListActionItems = 2131492864;
+			// aapt resource value: 0x7f0d0000
+			public const int ConferencesListActionItems = 2131558400;
 			
 			static Menu()
 			{
@@ -1361,6 +1383,9 @@ namespace TekConf.Mobile.Droid
 			
 			// aapt resource value: 0x7f0a000f
 			public const int library_name = 2131361807;
+			
+			// aapt resource value: 0x7f0a0013
+			public const int sort_prompt = 2131361811;
 			
 			static String()
 			{

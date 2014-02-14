@@ -28,11 +28,18 @@ namespace TekConf.Mobile.Droid.Views
 			_bindableProgress = new BindableProgress (this);
 
 			SetContentView (Resource.Layout.ConferencesView);
+
+//			Spinner spinner = FindViewById<Spinner> (Resource.Id.spinner1);
+//
+//			spinner.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs> (spinner_ItemSelected);
+//			var adapter = ArrayAdapter.CreateFromResource (this, Resource.Array.sorts_array, Android.Resource.Layout.SimpleSpinnerItem);
+//
+//			adapter.SetDropDownViewResource (Android.Resource.Layout.SimpleSpinnerDropDownItem);
+//			spinner.Adapter = adapter;
+
 			var set = this.CreateBindingSet<ConferencesView, ConferencesViewModel> ();
 			set.Bind (_bindableProgress).For (b => b.Visible).To (vm => vm.AreConferencesLoading);
 			set.Apply ();
-
-
 		}
 
 //		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -63,7 +70,6 @@ namespace TekConf.Mobile.Droid.Views
 //
 //			return false;
 //		}
-
 
 
 	}

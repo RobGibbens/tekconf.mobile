@@ -3,4 +3,16 @@
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">TekConf.Mobile.Droid</string>
 	<string name="fa_refresh">&#xf021;M</string>
+
+	<string name="sort_prompt">Sort By</string>
+    <string-array name="sorts_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
 </resources>
