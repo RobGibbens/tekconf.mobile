@@ -140,6 +140,8 @@
     <Compile Include="Views\Detail\ConferenceDetailTabView.cs" />
     <Compile Include="Views\Detail\ConferenceDetailView.cs" />
     <Compile Include="Views\Detail\Fragments\ConferenceDetailFragment.cs" />
+    <Compile Include="Views\Detail\Fragments\ConferenceDetailScheduleFragment.cs" />
+    <Compile Include="Views\Detail\Fragments\ConferenceDetailSessionsFragment.cs" />
     <Compile Include="Views\List\ConferencesView.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
@@ -194,6 +196,12 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\ConferenceDetailView.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ConferenceDetailSessionsView.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ConferenceDetailScheduleView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />

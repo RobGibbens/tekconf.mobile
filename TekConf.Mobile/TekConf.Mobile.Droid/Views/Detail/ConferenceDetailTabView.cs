@@ -70,7 +70,10 @@ namespace TekConf.Mobile.Droid.Views
 		{
 			AddTab<ConferenceDetailFragment>("ConferencesDetailTab", "Conference", args, ConferenceDetailTabViewModel.ConferenceDetail);
 
-			//AddTab<ConferencesScheduleFragment>("ConferencesScheduleTab", "Schedule", args, ConferencesTabViewModel.Vm2);
+			AddTab<ConferenceDetailSessionsFragment>("ConferenceDetailSessionsTab", "Sessions", args, ConferenceDetailTabViewModel.ConferenceDetailSessions);
+
+			AddTab<ConferenceDetailScheduleFragment>("ConferenceDetailScheduleTab", "Schedule", args, ConferenceDetailTabViewModel.ConferenceDetailSessions);
+
 		}
 	}
 }

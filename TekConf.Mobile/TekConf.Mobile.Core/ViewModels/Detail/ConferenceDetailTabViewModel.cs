@@ -12,21 +12,22 @@ namespace TekConf.Mobile.Core.ViewModels
 		public ConferenceDetailTabViewModel()
 		{
 			ConferenceDetail = Mvx.IocConstruct<ConferenceDetailViewModel>();
-			//Vm2 = Mvx.IocConstruct<ConferenceDetailSessionsViewModel>();
-			//Vm3 = Mvx.IocConstruct<ConferenceDetailScheduleViewModel>();
+			ConferenceDetailSessions = Mvx.IocConstruct<ConferenceDetailSessionsViewModel>();
+			ConferenceDetailSchedule = Mvx.IocConstruct<ConferenceDetailScheduleViewModel>();
 		}
 
 		public async void Init(int id)
 		{
 			((ConferenceDetailViewModel)ConferenceDetail).Init(id);
-			//((ConferencesScheduleViewModel)Vm2).Init();
+			((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).Init();
+			((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).Init();
 		}
 
 		//public async Task Refresh()
 		//{
 
 		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetail).RefreshAsync();
-		//	var scheduleTask = ((ConferencesScheduleViewModel)Vm2).RefreshAsync();
+		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessions).RefreshAsync();
 
 		//	Task.WaitAll(conferencesTask, scheduleTask);
 		//}
@@ -35,7 +36,7 @@ namespace TekConf.Mobile.Core.ViewModels
 		//{
 
 		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetail).SortByDateAsync();
-		//	var scheduleTask = ((ConferencesScheduleViewModel)Vm2).SortByDateAsync();
+		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessions).SortByDateAsync();
 
 		//	Task.WaitAll(conferencesTask, scheduleTask);
 		//}
@@ -44,15 +45,15 @@ namespace TekConf.Mobile.Core.ViewModels
 		//{
 
 		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetail).SortByNameAsync();
-		//	var scheduleTask = ((ConferencesScheduleViewModel)Vm2).SortByNameAsync();
+		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessions).SortByNameAsync();
 
 		//	Task.WaitAll(conferencesTask, scheduleTask);
 		//}
 
 
 		public BaseViewModel ConferenceDetail { get; set; }
-		public BaseViewModel Vm2 { get; set; }
-		public BaseViewModel Vm3 { get; set; }
+		public BaseViewModel ConferenceDetailSessions { get; set; }
+		public BaseViewModel ConferenceDetailSchedule { get; set; }
 
 	}
 }
