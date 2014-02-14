@@ -137,22 +137,25 @@
     <Compile Include="Code\TekConfTextView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\ConferencesView.cs" />
+    <Compile Include="Views\Detail\ConferenceDetailTabView.cs" />
+    <Compile Include="Views\Detail\ConferenceDetailView.cs" />
+    <Compile Include="Views\Detail\Fragments\ConferenceDetailFragment.cs" />
+    <Compile Include="Views\List\ConferencesView.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Plugins\MvxFastFileDownloadRequest.cs" />
     <Compile Include="Plugins\MvxFastHttpFileDownloader.cs" />
     <Compile Include="BindableProgress.cs" />
-    <Compile Include="Views\TabView.cs" />
+    <Compile Include="Views\List\ConferencesTabView.cs" />
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
-    <Compile Include="Views\ConferencesScheduleView.cs" />
-    <Compile Include="Views\Frags\Tabs\ConferencesListFragment.cs" />
-    <Compile Include="Views\Frags\Tabs\ConferencesScheduleFragment.cs" />
+    <Compile Include="Views\List\ConferencesScheduleView.cs" />
+    <Compile Include="Views\List\Fragments\ConferencesListFragment.cs" />
+    <Compile Include="Views\List\Fragments\ConferencesScheduleFragment.cs" />
     <Compile Include="Code\SquareImage.cs" />
     <Compile Include="Code\TekConfGridView.cs" />
   </ItemGroup>
@@ -190,6 +193,9 @@
     <AndroidResource Include="Resources\layout\Page_TabView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\ConferenceDetailView.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <AndroidResource Include="Resources\layout\ConferencesScheduleView.axml">
       <SubType>Designer</SubType>
@@ -216,6 +222,9 @@
     <AndroidResource Include="Resources\drawable\sortAlphaDesc.png" />
     <AndroidResource Include="Resources\drawable\sortAsc.png" />
     <AndroidResource Include="Resources\drawable\calendar.png" />
+    <AndroidResource Include="Resources\xml\searchable.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="AndHUD">

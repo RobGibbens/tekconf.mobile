@@ -12,7 +12,7 @@ namespace TekConf.Mobile.Core
 				.AsInterfaces()
 				.RegisterAsLazySingleton();
 				
-			RegisterAppStart<ViewModels.TabViewModel>();
+			RegisterAppStart<ViewModels.ConferencesTabViewModel>();
 		}
 	}
 }

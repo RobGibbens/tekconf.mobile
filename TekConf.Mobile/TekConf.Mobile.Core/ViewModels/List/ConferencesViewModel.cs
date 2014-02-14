@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using Cirrious.CrossCore.Platform;
@@ -11,7 +12,6 @@ using System;
 namespace TekConf.Mobile.Core.ViewModels
 {
 	//public delegate void ChangedEventHandler(object sender, EventArgs e);
-
 	public class ConferencesViewModel : BaseSubTabViewModel
 	{
 		private readonly HttpClient _httpClient;
@@ -55,6 +55,16 @@ namespace TekConf.Mobile.Core.ViewModels
 		public async Task SortByNameAsync()
 		{
 			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Name); });
+		}
+
+		public ICommand ShowDetailCommand
+		{
+			get
+			{
+				return new MvxCommand<Conference>(conference => 
+					ShowViewModel<ConferenceDetailTabViewModel>(new { id = conference.Id })
+				);
+			}
 		}
 
 		private bool _areConferencesLoading;
@@ -121,7 +131,7 @@ namespace TekConf.Mobile.Core.ViewModels
 				}
 			}
 			await _sqLiteConnection.InsertAllAsync(conferences);
-
+			conferences = await _sqLiteConnection.Table<Conference>().ToListAsync();
 			return conferences;
 		}
 

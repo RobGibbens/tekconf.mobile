@@ -7,9 +7,9 @@ namespace TekConf.Mobile.Core.ViewModels
 
 	public delegate void ChangedEventHandler(object sender, EventArgs e);
 
-	public class TabViewModel : BaseViewModel
+	public class ConferencesTabViewModel : BaseViewModel
 	{
-		public TabViewModel()
+		public ConferencesTabViewModel()
 		{
 			Vm1 = Mvx.IocConstruct<ConferencesViewModel>();
 			Vm2 = Mvx.IocConstruct<ConferencesScheduleViewModel>();

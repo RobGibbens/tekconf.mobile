@@ -34,16 +34,18 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.cs" />
-    <Compile Include="ViewModels\BaseSubTabViewModel.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\ConferencesViewModel.cs" />
+    <Compile Include="ViewModels\Base\BaseSubTabViewModel.cs" />
+    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
+    <Compile Include="ViewModels\Detail\ConferenceDetailTabViewModel.cs" />
+    <Compile Include="ViewModels\Detail\ConferenceDetailViewModel.cs" />
+    <Compile Include="ViewModels\List\ConferencesViewModel.cs" />
     <Compile Include="Models\Conference.cs" />
     <Compile Include="TekConfApi.cs" />
     <Compile Include="Messages\ConferencesLoadingMessage.cs" />
     <Compile Include="Messages\ConferencesLoaded.cs" />
-    <Compile Include="ViewModels\LoadRequest.cs" />
-    <Compile Include="ViewModels\TabViewModel.cs" />
-    <Compile Include="ViewModels\ConferencesScheduleViewModel.cs" />
+    <Compile Include="Code\LoadRequest.cs" />
+    <Compile Include="ViewModels\List\ConferencesTabViewModel.cs" />
+    <Compile Include="ViewModels\List\ConferencesScheduleViewModel.cs" />
     <Compile Include="Models\ScheduledConference.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

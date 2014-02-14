@@ -3,7 +3,9 @@
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">TekConf.Mobile.Droid</string>
 	<string name="fa_refresh">&#xf021;M</string>
-
+	<string name="search_label">Dictionary</string>
+	<string name="search_hint">Search the dictionary</string>
+	<string name="settings_description">Definitions of words</string>
 	<string name="sort_prompt">Sort By</string>
     <string-array name="sorts_array">
         <item>Mercury</item>

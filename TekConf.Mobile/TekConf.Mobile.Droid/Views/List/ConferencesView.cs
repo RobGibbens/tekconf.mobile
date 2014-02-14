@@ -10,6 +10,8 @@ using Android.Views;
 namespace TekConf.Mobile.Droid.Views
 {
 	[Activity (Label = "Conferences", Icon = "@drawable/Icon")]
+	[IntentFilter(new string[] { "android.intent.action.SEARCH" })]
+	[MetaData(("android.app.searchable"), Resource = "@xml/searchable")]
 	public class ConferencesView : MvxActivity
 	{
 		private BindableProgress _bindableProgress;

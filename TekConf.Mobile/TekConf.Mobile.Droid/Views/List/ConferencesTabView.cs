@@ -1,6 +1,9 @@
+using System;
 using Android.App;
 using Android.OS;
+
 using Android.Views;
+using Android.Widget;
 using Cirrious.MvvmCross.Droid.Fragging;
 using TekConf.Mobile.Core.ViewModels;
 using System.Threading.Tasks;
@@ -8,26 +11,35 @@ using System.Threading.Tasks;
 namespace TekConf.Mobile.Droid.Views
 {
 	[Activity]
-	public class TabView : MvxTabsFragmentActivity
+	public class ConferencesTabView : MvxTabsFragmentActivity
 	{
-		public TabViewModel TabViewModel
+		public ConferencesTabViewModel ConferencesTabViewModel
 		{
-			get { return (TabViewModel)base.ViewModel; }
+			get { return (ConferencesTabViewModel)base.ViewModel; }
 		}
 
-		public TabView() : base(Resource.Layout.Page_TabView, Resource.Id.actualtabcontent)
+		public ConferencesTabView() : base(Resource.Layout.Page_TabView, Resource.Id.actualtabcontent)
 		{
 		}
 
 		public override bool OnCreateOptionsMenu(IMenu menu)
 		{
 			MenuInflater.Inflate(Resource.Menu.ConferencesListActionItems, menu);
+
+			var searchView = (SearchView)menu.FindItem(Resource.Id.menu_search).ActionView;
+			searchView.SearchClick += OnSearchClicked;
+			
 			return true;
+		}
+
+		private void OnSearchClicked(object sender, EventArgs e)
+		{
+			var x = "";
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
-			var vm = this.DataContext as TabViewModel;
+			var vm = this.DataContext as ConferencesTabViewModel;
 			if (vm != null)
 			{
 				switch (item.ToString())
@@ -56,9 +68,9 @@ namespace TekConf.Mobile.Droid.Views
 
 		protected override void AddTabs(Bundle args)
 		{
-			AddTab<ConferencesListFragment>("ConferencesTab", "Conferences", args, TabViewModel.Vm1);
+			AddTab<ConferencesListFragment>("ConferencesTab", "Conferences", args, ConferencesTabViewModel.Vm1);
 
-			AddTab<ConferencesScheduleFragment>("ConferencesScheduleTab", "Schedule", args, TabViewModel.Vm2);
+			AddTab<ConferencesScheduleFragment>("ConferencesScheduleTab", "Schedule", args, ConferencesTabViewModel.Vm2);
 		}
 	}
 }
