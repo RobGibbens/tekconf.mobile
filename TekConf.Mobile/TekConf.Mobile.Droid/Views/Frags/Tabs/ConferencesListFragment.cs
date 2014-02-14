@@ -23,4 +23,5 @@ namespace TekConf.Mobile.Droid.Views
 			return this.BindingInflate(Resource.Layout.ConferencesView, null);
 		}
 	}
+
 }

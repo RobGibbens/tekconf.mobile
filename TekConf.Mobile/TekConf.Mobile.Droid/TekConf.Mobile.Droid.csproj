@@ -19,8 +19,6 @@
     <MandroidI18n />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <AndroidUseLatestPlatformSdk>
-    </AndroidUseLatestPlatformSdk>
     <AndroidStoreUncompressedFileExtensions />
     <JavaMaximumHeapSize />
     <JavaOptions />
@@ -46,12 +44,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidStoreUncompressedFileExtensions>
-    </AndroidStoreUncompressedFileExtensions>
-    <JavaMaximumHeapSize>
-    </JavaMaximumHeapSize>
-    <JavaOptions>
-    </JavaOptions>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cirrious.MvvmCross.Droid.Fragging">
@@ -150,7 +142,6 @@
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Plugins\MvxFastFileDownloadRequest.cs" />
     <Compile Include="Plugins\MvxFastHttpFileDownloader.cs" />
-    <Compile Include="Views\Frags\Tabs\Tab1Fragment.cs" />
     <Compile Include="Views\SquareImage.cs" />
     <Compile Include="BindableProgress.cs" />
     <Compile Include="Views\TabView.cs" />
@@ -159,9 +150,11 @@
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
-    <Compile Include="Views\FirstView.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="Views\ConferencesScheduleView.cs" />
+    <Compile Include="Views\Frags\Tabs\ConferencesListFragment.cs" />
+    <Compile Include="Views\Frags\Tabs\ConferencesScheduleFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -194,7 +187,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
-    <AndroidResource Include="Resources\Layout\FirstView.axml" />
+    <AndroidResource Include="Resources\layout\ConferencesScheduleView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -220,8 +215,8 @@
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7appcompat">
-      <Visible>False</Visible>
       <Version>7.18.0</Version>
+      <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup>

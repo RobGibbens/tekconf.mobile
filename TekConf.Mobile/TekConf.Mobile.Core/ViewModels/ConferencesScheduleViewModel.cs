@@ -1,4 +1,4 @@
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Net.Http;
 using Cirrious.MvvmCross.ViewModels;
@@ -12,14 +12,14 @@ namespace TekConf.Mobile.Core.ViewModels
 {
 	//public delegate void ChangedEventHandler(object sender, EventArgs e);
 
-	public class ConferencesViewModel : BaseSubTabViewModel
+	public class ConferencesScheduleViewModel : BaseSubTabViewModel
 	{
 		private readonly HttpClient _httpClient;
 		private readonly IMvxJsonConverter _jsonConverter;
 		private readonly SQLiteAsyncConnection _sqLiteConnection;
 		public event ChangedEventHandler Changed;
 
-		public ConferencesViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter, SQLiteAsyncConnection sqLiteConnection)
+		public ConferencesScheduleViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter, SQLiteAsyncConnection sqLiteConnection)
 		{
 			_httpClient = httpClient;
 			_jsonConverter = jsonConverter;
@@ -118,13 +118,13 @@ namespace TekConf.Mobile.Core.ViewModels
 		private Task<List<Conference>> DeserializeConferenceList(Stream result)
 		{
 			return Task.Factory.StartNew(() =>
-			{
-				var reader = new StreamReader(result);
-				string json = reader.ReadToEnd();
+				{
+					var reader = new StreamReader(result);
+					string json = reader.ReadToEnd();
 					var conferences = _jsonConverter.DeserializeObject<List<Conference>>(json);
 
-				return conferences.OrderBy(c => c.Start).ToList();
-			});
+					return conferences.OrderBy(c => c.Name).ToList();
+				});
 		}
 
 

@@ -43,6 +43,7 @@
     <Compile Include="Messages\ConferencesLoaded.cs" />
     <Compile Include="ViewModels\LoadRequest.cs" />
     <Compile Include="ViewModels\TabViewModel.cs" />
+    <Compile Include="ViewModels\ConferencesScheduleViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

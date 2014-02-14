@@ -1,15 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.IPhoneRetina4.7.0" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.iOS/ToDo-MvvmCross/_ Touch UI.txt">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Droid/Views/ConferencesScheduleView.cs">
     <Files>
-      <File FileName="TekConf.Mobile.Droid/Setup.cs" Line="21" Column="2" />
-      <File FileName="TekConf.Mobile.iOS/Setup.cs" Line="1" Column="1" />
-      <File FileName="TekConf.Mobile.Core/packages.config" Line="14" Column="14" />
-      <File FileName="TekConf.Mobile.Droid/ToDo-MvvmCross/_ Droid UI.txt" Line="1" Column="1" />
-      <File FileName="TekConf.Mobile.iOS/ToDo-MvvmCross/_ Touch UI.txt" Line="19" Column="38" />
-      <File FileName="TekConf.Mobile.iOS/AppDelegate.cs.txt" Line="28" Column="3" />
-      <File FileName="TekConf.Mobile.iOS/AppDelegate.cs" Line="29" Column="2" />
-      <File FileName="TekConf.Mobile.iOS/Views/ConferencesView.cs" Line="28" Column="9" />
+      <File FileName="TekConf.Mobile.Droid/Views/TabView.cs" Line="32" Column="17" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/TabViewModel.cs" Line="28" Column="47" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/ConferencesViewModel.cs" Line="8" Column="24" />
+      <File FileName="TekConf.Mobile.Droid/Views/Frags/Tabs/Tab1Fragment.cs" Line="27" Column="1" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/ConferencesScheduleViewModel.cs" Line="112" Column="5" />
+      <File FileName="TekConf.Mobile.Droid/Views/ConferencesView.cs" Line="46" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/Views/ConferencesScheduleView.cs" Line="42" Column="3" />
+      <File FileName="TekConf.Mobile.iOS/Views/ConferencesView.cs" Line="18" Column="4" />
+      <File FileName="TekConf.Mobile.iOS/Views/ConferencesScheduleView.cs" Line="16" Column="47" />
+      <File FileName="../../../../../Library/Frameworks/Mono.framework/External/xbuild/Xamarin/Android/Xamarin.Android.Common.targets" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -18,5 +20,5 @@
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.TekConf.Mobile.Droid MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="192.168.56.101:5555" />
+  <MonoDevelop.Ide.ItemProperties.TekConf.Mobile.Droid MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="192.168.56.102:5555" />
 </Properties>

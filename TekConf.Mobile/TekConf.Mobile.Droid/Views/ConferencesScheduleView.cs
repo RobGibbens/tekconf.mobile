@@ -9,30 +9,29 @@ using Android.Views;
 using Android.Widget;
 using Android.Animation;
 using System.Threading.Tasks;
-using System;
 
 namespace TekConf.Mobile.Droid.Views
 {
 	[Activity (Label = "Conferences", Icon = "@drawable/Icon")]
-	public class ConferencesView : MvxActivity
+	public class ConferencesScheduleView : MvxActivity
 	{
 		private BindableProgress _bindableProgress;
-
 
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
 			RequestWindowFeature (WindowFeatures.ActionBarOverlay);
-			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
+			ActionBar.SetBackgroundDrawable (new ColorDrawable (Color.Transparent));
+
 			_bindableProgress = new BindableProgress (this);
 
-			SetContentView (Resource.Layout.ConferencesView);
-			var set = this.CreateBindingSet<ConferencesView, ConferencesViewModel> ();
+			SetContentView (Resource.Layout.ConferencesScheduleView);
+			var set = this.CreateBindingSet<ConferencesScheduleView, ConferencesScheduleViewModel> ();
 			set.Bind (_bindableProgress).For (b => b.Visible).To (vm => vm.AreConferencesLoading);
 			set.Apply ();
 
-
+			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
 		}
 
 //		public override bool OnCreateOptionsMenu (IMenu menu)
@@ -43,7 +42,7 @@ namespace TekConf.Mobile.Droid.Views
 
 //		public override bool OnOptionsItemSelected (IMenuItem item)
 //		{
-//			var vm = this.DataContext as ConferencesViewModel;
+//			var vm = this.DataContext as ConferencesScheduleViewModel;
 //			if (vm != null) {
 //				switch (item.ToString ()) {
 //				case "Search":
@@ -63,7 +62,6 @@ namespace TekConf.Mobile.Droid.Views
 //
 //			return false;
 //		}
-
 
 
 	}

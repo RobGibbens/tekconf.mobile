@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <Mvx.MvxGridView
-        android:id="@+id/gridview"
+        android:id="@+id/schedulesGridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:verticalSpacing="1dp"

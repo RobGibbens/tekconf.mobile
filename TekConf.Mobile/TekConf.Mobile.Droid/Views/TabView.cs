@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
-using Android.Widget;
 using Cirrious.MvvmCross.Droid.Fragging;
 using TekConf.Mobile.Core.ViewModels;
+using Android.Graphics.Drawables;
+using Android.Graphics;
 
 namespace TekConf.Mobile.Droid.Views
 {
@@ -22,20 +16,52 @@ namespace TekConf.Mobile.Droid.Views
 			get { return (TabViewModel)base.ViewModel; }
 		}
 
-		public TabView()
-			: base(Resource.Layout.Page_TabView, Resource.Id.actualtabcontent)
+		public TabView() : base(Resource.Layout.Page_TabView, Resource.Id.actualtabcontent)
 		{
+		}
+
+		protected override void OnCreate (Bundle bundle)
+		{
+			base.OnCreate (bundle);
+
+			RequestWindowFeature (WindowFeatures.ActionBarOverlay);
+			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
+		}
+
+		public override bool OnCreateOptionsMenu (IMenu menu)
+		{
+			MenuInflater.Inflate (Resource.Menu.ConferencesListActionItems, menu);
+			return true;
+		}
+
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			var vm = this.DataContext as TabViewModel;
+			if (vm != null) {
+				switch (item.ToString ()) {
+				case "Search":
+					//TODO vm.ShowSessionsCommand.Execute(vm.Conference.slug);
+					break;
+
+				case "Refresh":
+					//Task.Factory.StartNew (() => {
+					//vm.Refresh ();
+					//});
+					break;
+				case "Settings":
+					//vm.ShowSettingsCommand.Execute (null);
+					break;
+				}
+			}
+
+			return false;
 		}
 
 		protected override void AddTabs(Bundle args)
 		{
-			AddTab<Tab1Fragment>("Tab1", "Tab 1", args, TabViewModel.Vm1);
+			AddTab<Tab1Fragment>("Tab1", "Conferences", args, TabViewModel.Vm1);
 			
-			//AddTab<Tab2Fragment>("Tab2", "Tab 2", args, TabViewModel.Vm2);
-			//// note that
-			//AddTab<Tab3Fragment>("Tab3.1", "Tab 3.1", args, TabViewModel.Vm3);
-			//AddTab<Tab3Fragment>("Tab3.2", "Tab 3.2", args, TabViewModel.Vm3);
-			//AddTab<Tab3BigFragment>("Tab3.3", "Tab 3.3", args, TabViewModel.Vm3);
+			AddTab<Tab2Fragment>("Tab2", "Schedule", args, TabViewModel.Vm2);
 		}
 	}
 }
