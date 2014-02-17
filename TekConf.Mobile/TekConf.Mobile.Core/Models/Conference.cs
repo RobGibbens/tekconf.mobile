@@ -1,13 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Cirrious.MvvmCross.ViewModels;
-using SQLite;
 using SQLite.Net.Attributes;
 
 namespace TekConf.Mobile.Core
 {
-	public class Conference : INotifyPropertyChanged
+    public class Conference : INotifyPropertyChanged
 	{
 
         [PrimaryKey, AutoIncrement]

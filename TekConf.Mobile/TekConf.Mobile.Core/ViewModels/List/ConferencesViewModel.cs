@@ -84,7 +84,9 @@ namespace TekConf.Mobile.Core.ViewModels
 		public void CreateDatabase()
 		{
 			var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();
-			Task.WaitAll(conferenceTask);
+            var sessionTask = _sqLiteConnection.CreateTableAsync<Session>();
+
+			Task.WaitAll(conferenceTask, sessionTask);
 		}
 
 		public async Task LoadConferencesAsync(LoadRequest loadRequest)
