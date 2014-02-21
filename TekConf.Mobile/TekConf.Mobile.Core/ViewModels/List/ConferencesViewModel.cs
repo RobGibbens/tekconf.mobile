@@ -1,29 +1,28 @@
-using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using System.Threading.Tasks;
-using Cirrious.CrossCore.Platform;
 using System.Collections.Generic;
-using SQLite.Net.Async;
 using System;
+using TekConf.Mobile.Core.Dtos;
+using AutoMapper;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
 	//public delegate void ChangedEventHandler(object sender, EventArgs e);
 	public class ConferencesViewModel : BaseSubTabViewModel
 	{
-		private readonly HttpClient _httpClient;
-		private readonly IMvxJsonConverter _jsonConverter;
-		private readonly SQLiteAsyncConnection _sqLiteConnection;
 		public event ChangedEventHandler Changed;
 
-		public ConferencesViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter, SQLiteAsyncConnection sqLiteConnection)
+		readonly IRemoteConferenceService _conferenceService;
+
+		readonly IDatabaseService _databaseService;
+
+		public ConferencesViewModel(IRemoteConferenceService conferenceService, IDatabaseService databaseService)
 		{
-			_httpClient = httpClient;
-			_jsonConverter = jsonConverter;
-			_sqLiteConnection = sqLiteConnection;
+			_databaseService = databaseService;
+			_conferenceService = conferenceService;
+
 			this.Conferences = Enumerable.Empty<Conference>();
 		}
 
@@ -36,14 +35,17 @@ namespace TekConf.Mobile.Core.ViewModels
 		public async void Init()
 		{
 			this.Conferences = Enumerable.Empty<Conference>();
-			CreateDatabase();
+
+			Mapper.CreateMap<ConferenceDto, Conference> ();
+			Mapper.CreateMap<SessionDto, Session> ();
+
 			await LoadConferencesAsync(LoadRequest.Load);
 		}
 
 		public async Task RefreshAsync()
 		{
 			this.Conferences = Enumerable.Empty<Conference>();
-			CreateDatabase();
+
 			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
@@ -81,22 +83,31 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 		}
 
-		public void CreateDatabase()
-		{
-			var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();
-            var sessionTask = _sqLiteConnection.CreateTableAsync<Session>();
-
-			Task.WaitAll(conferenceTask, sessionTask);
-		}
-
-		public async Task LoadConferencesAsync(LoadRequest loadRequest)
+		private async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
 			this.AreConferencesLoading = true;
 
-			List<Conference> conferences = await LoadConferencesFromLocalAsync();
+
+			List<Conference> conferences = await _databaseService.LoadConferencesFromLocalAsync();
 			if (!conferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
-				conferences = await LoadConferencesFromRemoteAsync();
+				await _databaseService.DeleteAllConferencesAsync ();
+				var conferenceDtos = await _conferenceService.LoadConferencesFromRemoteAsync ();
+
+				foreach (var conferenceDto in conferenceDtos)
+				{
+					var conference = Mapper.Map<Conference> (conferenceDto);
+					await _databaseService.SaveConferenceAsync (conference);
+
+					foreach (var sessionDto in conferenceDto.Sessions)
+					{
+						var session = Mapper.Map<Session> (sessionDto);
+						session.ConferenceId = conference.Id;
+						await _databaseService.SaveSessionAsync (session);
+					}
+				}
+
+				conferences = await _databaseService.LoadConferencesFromLocalAsync();
 			}
 
 			this.Conferences = conferences;
@@ -105,50 +116,19 @@ namespace TekConf.Mobile.Core.ViewModels
 			OnChanged(EventArgs.Empty);
 		}
 
-		private async Task<List<Conference>> LoadConferencesFromLocalAsync()
+		private async Task<List<Conference>> MapConferences(List<ConferenceDto> conferenceDtos)
 		{
-			var conferences = await _sqLiteConnection.Table<Conference>().OrderBy(x => x.Start).ToListAsync();
+			var conferences = await TaskEx.Run (() => Mapper.Map<List<Conference>> (conferenceDtos));
 
 			return conferences;
 		}
 
-		private async Task<List<Conference>> LoadConferencesFromRemoteAsync()
+		private async Task<List<Session>> MapSessions(List<ConferenceDto> dtos)
 		{
-			const string url = TekConfApi.BaseUrl + "/conferences";
+			var entities = await TaskEx.Run (() => Mapper.Map<List<Session>> (dtos));
 
-			var deleteTask = _sqLiteConnection.DeleteAllAsync<Conference>();
-			var httpCallTask = _httpClient.GetAsync(url, HttpCompletionOption.ResponseContentRead);
-
-			Task.WaitAll(deleteTask, httpCallTask);
-
-			var response = httpCallTask.Result;
-
-			var result = await response.Content.ReadAsStreamAsync();
-			var conferences = await DeserializeConferenceListAsync(result);
-			foreach (var conference in conferences)
-			{
-				if (string.IsNullOrWhiteSpace(conference.ImageUrlSquare))
-				{
-					conference.ImageUrlSquare = conference.ImageUrl;
-				}
-			}
-			await _sqLiteConnection.InsertAllAsync(conferences);
-			conferences = await _sqLiteConnection.Table<Conference>().ToListAsync();
-			return conferences;
+			return entities;
 		}
-
-		private Task<List<Conference>> DeserializeConferenceListAsync(Stream result)
-		{
-			return Task.Factory.StartNew(() =>
-			{
-				var reader = new StreamReader(result);
-				string json = reader.ReadToEnd();
-					var conferences = _jsonConverter.DeserializeObject<List<Conference>>(json);
-
-				return conferences.OrderBy(c => c.Start).ToList();
-			});
-		}
-
 
 		private IList<Conference> _conferences;
 		public IEnumerable<Conference> Conferences

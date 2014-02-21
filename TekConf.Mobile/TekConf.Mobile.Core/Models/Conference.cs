@@ -10,10 +10,14 @@ namespace TekConf.Mobile.Core
 
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+
+		[Indexed]
         public string Name { get; set; }
 
+		[Indexed]
+		public string Slug { get; set;}
         private DateTime _start;
-        public new DateTime Start
+        public DateTime Start
 	    {
 	        get
 	        {

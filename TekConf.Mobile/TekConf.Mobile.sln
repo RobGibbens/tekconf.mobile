@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 2012
 VisualStudioVersion = {0}
 MinimumVisualStudioVersion = {0}
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TekConf.Mobile.Core", "TekConf.Mobile.Core\TekConf.Mobile.Core.csproj", "{5B575A23-D0C5-4594-BBFC-1A36311F442E}"

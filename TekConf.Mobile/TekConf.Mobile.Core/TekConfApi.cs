@@ -1,5 +1,5 @@
 
-namespace TekConf.Mobile.Core.ViewModels
+namespace TekConf.Mobile.Core
 {
 	public static class TekConfApi
 	{

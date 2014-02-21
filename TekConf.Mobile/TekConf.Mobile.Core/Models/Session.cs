@@ -10,9 +10,11 @@ namespace TekConf.Mobile.Core
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Slug { get; set; }
+		[Indexed]
+		public string Slug { get; set; }
         public int ConferenceId { get; set; }
-        public string Title { get; set; }
+		[Indexed]
+		public string Title { get; set; }
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
 
