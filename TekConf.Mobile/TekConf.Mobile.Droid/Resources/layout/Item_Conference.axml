@@ -44,8 +44,19 @@
                 android:textColor="@android:color/white"
                 android:layout_below="@+id/conferenceName"
                 android:layout_marginLeft="5dp"
-                android:paddingBottom="15dp"
+                android:paddingBottom="4dp"
                 local:MvxBind="Text DateRange"
+                android:layout_centerHorizontal="true" />
+            <TekConf.Mobile.Droid.TekConfTextView
+                android:id="@+id/conferenceCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:textColor="@android:color/white"
+                android:layout_below="@+id/conferenceDateRange"
+                android:layout_marginLeft="5dp"
+                android:paddingBottom="15dp"
+                local:MvxBind="Text FormattedCity"
                 android:layout_centerHorizontal="true" />
         <!--            <TextView
                 android:id="@+id/mytextview"

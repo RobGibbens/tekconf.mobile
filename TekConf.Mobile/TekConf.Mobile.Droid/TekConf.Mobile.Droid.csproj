@@ -210,6 +210,9 @@
     <AndroidResource Include="Resources\layout\ConferenceDetailLocationView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_session.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
     <AndroidResource Include="Resources\layout\ConferencesScheduleView.axml">
       <SubType>Designer</SubType>
@@ -237,6 +240,11 @@
     <AndroidResource Include="Resources\drawable\sortAsc.png" />
     <AndroidResource Include="Resources\drawable\calendar.png" />
     <AndroidResource Include="Resources\xml\searchable.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\drawable\star.png" />
+    <AndroidResource Include="Resources\drawable\staro.png" />
+    <AndroidResource Include="Resources\menu\ConferenceActionItems.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

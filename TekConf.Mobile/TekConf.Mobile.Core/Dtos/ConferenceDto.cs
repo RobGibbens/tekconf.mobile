@@ -6,16 +6,19 @@
 	public class ConferenceDto
 	{
 		public string Name { get; set; }
-
 		public string Slug { get; set; }
-
 		public DateTime Start { get; set; }
-
 		public DateTime End { get; set; }
-
 		public string Description { get; set; }
-
 		public string ImageUrl { get; set; }
+
+		public bool? IsOnline { get; set; }
+
+		public Address Address { get; set; }
+		public double[] Position { get; set; }
+
+		public double Longitude { get; set; }
+		public double Latitude { get; set; }
 
 		string _imageUrlSquare;
 		public string ImageUrlSquare {
@@ -32,5 +35,15 @@
 		}
 
 		public List<SessionDto> Sessions { get; set; }
+	}
+
+	public class Address
+	{
+		public int StreetNumber { get; set; }
+		public string StreetName { get; set; }
+		public string City { get; set; }
+		public string State { get; set; }
+		public string PostalArea { get; set; }
+		public string Country { get; set; }
 	}
 }

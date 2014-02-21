@@ -46,6 +46,15 @@
         <TekConf.Mobile.Droid.TekConfTextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:textSize="20dp"
+            local:MvxBind="Text Conference.FormattedCity"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@android:color/black" />
+        <TekConf.Mobile.Droid.TekConfTextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
             android:textSize="16dp"
             local:MvxBind="Text Conference.Description"
             android:layout_marginLeft="15dp"

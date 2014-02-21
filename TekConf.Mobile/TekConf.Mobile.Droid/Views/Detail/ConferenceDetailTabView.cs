@@ -22,49 +22,50 @@ namespace TekConf.Mobile.Droid.Views
 		{
 		}
 
-		//public override bool OnCreateOptionsMenu(IMenu menu)
-		//{
-		//	//MenuInflater.Inflate(Resource.Menu.ConferencesListActionItems, menu);
+		public override bool OnCreateOptionsMenu(IMenu menu)
+		{
+			MenuInflater.Inflate(Resource.Menu.ConferenceActionItems, menu);
 
-		//	//var searchView = (SearchView)menu.FindItem(Resource.Id.menu_search).ActionView;
-		//	//searchView.SearchClick += OnSearchClicked;
+			var searchView = (SearchView)menu.FindItem(Resource.Id.menu_conference_search).ActionView;
+			searchView.SearchClick += OnSearchClicked;
 
-		//	return true;
-		//}
+			return true;
+		}
 
-		//private void OnSearchClicked(object sender, EventArgs e)
-		//{
-		//	var x = "";
-		//}
+		private void OnSearchClicked(object sender, EventArgs e)
+		{
+			var x = "";
+		}
 
-		//public override bool OnOptionsItemSelected(IMenuItem item)
-		//{
-		//	var vm = this.DataContext as ConferencesTabViewModel;
-		//	if (vm != null)
-		//	{
-		//		switch (item.ToString())
-		//		{
-		//			case "Search":
-		//				//TODO vm.ShowSessionsCommand.Execute(vm.Conference.slug);
-		//				break;
 
-		//			case "Refresh":
-		//				Task.Factory.StartNew(() => vm.Refresh().Wait());
-		//				break;
-		//			case "Settings":
-		//				//vm.ShowSettingsCommand.Execute (null);
-		//				break;
-		//			case "Sort By Date":
-		//				Task.Factory.StartNew(() => vm.SortByDate().Wait());
-		//				break;
-		//			case "Sort By Name":
-		//				Task.Factory.StartNew(() => vm.SortByName().Wait());
-		//				break;
-		//		}
-		//	}
+		public override bool OnOptionsItemSelected(IMenuItem item)
+		{
+			var vm = this.DataContext as ConferenceDetailTabViewModel;
+			if (vm != null)
+			{
+				switch (item.ToString())
+				{
+					case "Search":
+						//TODO vm.ShowSessionsCommand.Execute(vm.Conference.slug);
+						break;
 
-		//	return false;
-		//}
+					case "Refresh":
+						//Task.Factory.StartNew(() => vm.Refresh().Wait());
+						break;
+					case "Settings":
+						//vm.ShowSettingsCommand.Execute (null);
+						break;
+					case "Sort By Date":
+						Task.Factory.StartNew(() => vm.SortByDate().Wait());
+						break;
+					case "Sort By Name":
+						Task.Factory.StartNew(() => vm.SortByName().Wait());
+						break;
+				}
+			}
+
+			return false;
+		}
 
 		protected override void AddTabs(Bundle args)
 		{

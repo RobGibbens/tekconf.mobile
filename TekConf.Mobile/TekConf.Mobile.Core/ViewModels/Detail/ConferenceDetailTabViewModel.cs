@@ -20,37 +20,34 @@ namespace TekConf.Mobile.Core.ViewModels
 		public async void Init(int id)
 		{
 			((ConferenceDetailViewModel)ConferenceDetail).Init(id);
-			((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).Init();
+			((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).Init(id);
 			((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).Init();
 			((ConferenceDetailLocationViewModel)ConferenceDetailLocation).Init();
 		}
 
 		//public async Task Refresh()
 		//{
-
 		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetail).RefreshAsync();
 		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessions).RefreshAsync();
 
 		//	Task.WaitAll(conferencesTask, scheduleTask);
 		//}
 
-		//public async Task SortByDate()
-		//{
+		public async Task SortByDate()
+		{
+			await ((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).SortByDateAsync();
+			//var scheduleTask = ((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).SortByDateAsync();
 
-		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetail).SortByDateAsync();
-		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessions).SortByDateAsync();
+			//Task.WaitAll(sessionsTask, scheduleTask);
+		}
 
-		//	Task.WaitAll(conferencesTask, scheduleTask);
-		//}
+		public async Task SortByName()
+		{
+			var sessionsTask = ((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).SortByTitleAsync();
+			//var scheduleTask = ((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).SortByTitleAsync();
 
-		//public async Task SortByName()
-		//{
-
-		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetail).SortByNameAsync();
-		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessions).SortByNameAsync();
-
-		//	Task.WaitAll(conferencesTask, scheduleTask);
-		//}
+			//Task.WaitAll(sessionsTask, scheduleTask);
+		}
 
 
 		public BaseViewModel ConferenceDetail { get; set; }

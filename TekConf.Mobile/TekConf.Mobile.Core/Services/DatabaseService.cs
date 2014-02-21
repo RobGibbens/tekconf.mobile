@@ -44,6 +44,20 @@ namespace TekConf.Mobile.Core
 			await _sqLiteConnection.InsertAsync(session);
 		}
 
+		public async Task<Conference> LoadConferenceAsync(int conferenceId)
+		{
+			var conference = await _sqLiteConnection.Table<Conference>().Where(c => c.Id == conferenceId).FirstOrDefaultAsync();
+
+			return conference;
+		}
+
+		public async Task<List<Session>> LoadSessionsAsync(int conferenceId)
+		{
+			var sessions = await _sqLiteConnection.Table<Session>().Where(s => s.ConferenceId == conferenceId).OrderBy(s => s.Start).ToListAsync();
+
+			return sessions;
+		}
+
 		public void CreateDatabase()
 		{
 			var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();

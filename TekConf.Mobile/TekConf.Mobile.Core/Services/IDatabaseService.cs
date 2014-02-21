@@ -13,6 +13,9 @@ namespace TekConf.Mobile.Core
 		Task SaveAllConferencesAsync (List<Conference> conferences);
 		Task SaveConferenceAsync (Conference conference);
 		Task SaveSessionAsync(Session session);
+
+		Task<Conference> LoadConferenceAsync(int conferenceId);
+		Task<List<Session>> LoadSessionsAsync(int conferenceId);
 	}
 
 

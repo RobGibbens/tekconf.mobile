@@ -13,17 +13,13 @@ namespace TekConf.Mobile.Core.ViewModels
 	public class ConferencesViewModel : BaseSubTabViewModel
 	{
 		public event ChangedEventHandler Changed;
-
 		readonly IRemoteConferenceService _conferenceService;
-
 		readonly IDatabaseService _databaseService;
 
 		public ConferencesViewModel(IRemoteConferenceService conferenceService, IDatabaseService databaseService)
 		{
 			_databaseService = databaseService;
 			_conferenceService = conferenceService;
-
-			this.Conferences = Enumerable.Empty<Conference>();
 		}
 
 		protected virtual void OnChanged(EventArgs e)
@@ -34,18 +30,28 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public async void Init()
 		{
-			this.Conferences = Enumerable.Empty<Conference>();
+			Mapper.CreateMap<ConferenceDto, Conference> ()
+				.ForMember(x => x.StreetNumber, src => src.MapFrom(x => x.Address.StreetNumber))
+				.ForMember(x => x.StreetName, src => src.MapFrom(x => x.Address.StreetName))
+				.ForMember(x => x.City, src => src.MapFrom(x => x.Address.City))
+				.ForMember(x => x.State, src => src.MapFrom(x => x.Address.State))
+				.ForMember(x => x.PostalArea, src => src.MapFrom(x => x.Address.PostalArea))
+				.ForMember(x => x.Country, src => src.MapFrom(x => x.Address.Country))
+				.ForMember(c => c.Latitude, opt => opt.ResolveUsing<LatitudeResolver>())
+				.ForMember(c => c.Longitude, opt => opt.ResolveUsing<LongitudeResolver>());
 
-			Mapper.CreateMap<ConferenceDto, Conference> ();
 			Mapper.CreateMap<SessionDto, Session> ();
 
+			this.AreConferencesLoading = true;
+
 			await LoadConferencesAsync(LoadRequest.Load);
+
+			this.AreConferencesLoading = false;
+
 		}
 
 		public async Task RefreshAsync()
 		{
-			this.Conferences = Enumerable.Empty<Conference>();
-
 			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
@@ -87,7 +93,6 @@ namespace TekConf.Mobile.Core.ViewModels
 		{
 			this.AreConferencesLoading = true;
 
-
 			List<Conference> conferences = await _databaseService.LoadConferencesFromLocalAsync();
 			if (!conferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
@@ -96,12 +101,14 @@ namespace TekConf.Mobile.Core.ViewModels
 
 				foreach (var conferenceDto in conferenceDtos)
 				{
-					var conference = Mapper.Map<Conference> (conferenceDto);
+					ConferenceDto dto = conferenceDto;
+					var conference = await TaskEx.Run(() => Mapper.Map<Conference>(dto));
 					await _databaseService.SaveConferenceAsync (conference);
 
 					foreach (var sessionDto in conferenceDto.Sessions)
 					{
-						var session = Mapper.Map<Session> (sessionDto);
+						SessionDto dto1 = sessionDto;
+						var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
 						session.ConferenceId = conference.Id;
 						await _databaseService.SaveSessionAsync (session);
 					}
@@ -114,20 +121,6 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			this.AreConferencesLoading = false;
 			OnChanged(EventArgs.Empty);
-		}
-
-		private async Task<List<Conference>> MapConferences(List<ConferenceDto> conferenceDtos)
-		{
-			var conferences = await TaskEx.Run (() => Mapper.Map<List<Conference>> (conferenceDtos));
-
-			return conferences;
-		}
-
-		private async Task<List<Session>> MapSessions(List<ConferenceDto> dtos)
-		{
-			var entities = await TaskEx.Run (() => Mapper.Map<List<Session>> (dtos));
-
-			return entities;
 		}
 
 		private IList<Conference> _conferences;
@@ -143,6 +136,36 @@ namespace TekConf.Mobile.Core.ViewModels
 				{
 					_conferences = value.ToList();
 					RaisePropertyChanged(() => Conferences);
+				}
+			}
+		}
+
+		public class LatitudeResolver : ValueResolver<ConferenceDto, double>
+		{
+			protected override double ResolveCore(ConferenceDto source)
+			{
+				if (source != null && source.Position != null && source.Position.Length == 2)
+				{
+					return source.Position[1];
+				}
+				else
+				{
+					return 0.0;
+				}
+			}
+		}
+
+		public class LongitudeResolver : ValueResolver<ConferenceDto, double>
+		{
+			protected override double ResolveCore(ConferenceDto source)
+			{
+				if (source != null && source.Position != null && source.Position.Length == 2)
+				{
+					return source.Position[0];
+				}
+				else
+				{
+					return 0.0;
 				}
 			}
 		}

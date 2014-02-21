@@ -21,7 +21,7 @@ namespace TekConf.Mobile.Core
 
 		public async Task<List<ConferenceDto>> LoadConferencesFromRemoteAsync()
 		{
-			const string url = TekConfApi.BaseUrl + "/conferences";
+			const string url = TekConfApi.BaseUrl + "/conferences"; //?showPastConferences=true
 
 			var json = await _httpClient.GetStringAsync(url);
 			var conferences = await TaskEx.Run(() => _jsonConverter.DeserializeObject<List<ConferenceDto>>(json));
