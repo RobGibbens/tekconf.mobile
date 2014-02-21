@@ -11,48 +11,47 @@ namespace TekConf.Mobile.Core.ViewModels
 	{
 		public ConferenceDetailTabViewModel()
 		{
-			ConferenceDetail = Mvx.IocConstruct<ConferenceDetailViewModel>();
-			ConferenceDetailSessions = Mvx.IocConstruct<ConferenceDetailSessionsViewModel>();
-			ConferenceDetailSchedule = Mvx.IocConstruct<ConferenceDetailScheduleViewModel>();
+			ConferenceDetailViewModel = Mvx.IocConstruct<ConferenceDetailViewModel>();
+			ConferenceDetailSessionsViewModel = Mvx.IocConstruct<ConferenceDetailSessionsViewModel>();
+			ConferenceDetailScheduleViewModel = Mvx.IocConstruct<ConferenceDetailScheduleViewModel>();
 			ConferenceDetailLocation = Mvx.IocConstruct<ConferenceDetailLocationViewModel>();
 		}
 
 		public async void Init(int id)
 		{
-			((ConferenceDetailViewModel)ConferenceDetail).Init(id);
-			((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).Init(id);
-			((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).Init();
+			((ConferenceDetailViewModel)ConferenceDetailViewModel).Init(id);
+			((ConferenceDetailSessionsViewModel)ConferenceDetailSessionsViewModel).Init(id);
+			((ConferenceDetailScheduleViewModel)ConferenceDetailScheduleViewModel).Init(id);
 			((ConferenceDetailLocationViewModel)ConferenceDetailLocation).Init();
 		}
 
 		//public async Task Refresh()
 		//{
-		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetail).RefreshAsync();
-		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessions).RefreshAsync();
+		//	var conferencesTask = ((ConferenceDetailViewModel)ConferenceDetailViewModel).RefreshAsync();
+		//	var scheduleTask = ((ConferencesScheduleViewModel)ConferenceDetailSessionsViewModel).RefreshAsync();
 
 		//	Task.WaitAll(conferencesTask, scheduleTask);
 		//}
 
 		public async Task SortByDate()
 		{
-			await ((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).SortByDateAsync();
-			//var scheduleTask = ((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).SortByDateAsync();
+			var sessionsTask = ((ConferenceDetailSessionsViewModel)ConferenceDetailSessionsViewModel).SortByDateAsync();
+			var scheduleTask = ((ConferenceDetailScheduleViewModel)ConferenceDetailScheduleViewModel).SortByDateAsync();
 
-			//Task.WaitAll(sessionsTask, scheduleTask);
+			Task.WaitAll(sessionsTask, scheduleTask);
 		}
 
 		public async Task SortByName()
 		{
-			var sessionsTask = ((ConferenceDetailSessionsViewModel)ConferenceDetailSessions).SortByTitleAsync();
-			//var scheduleTask = ((ConferenceDetailScheduleViewModel)ConferenceDetailSchedule).SortByTitleAsync();
+			var sessionsTask = ((ConferenceDetailSessionsViewModel)ConferenceDetailSessionsViewModel).SortByTitleAsync();
+			var scheduleTask = ((ConferenceDetailScheduleViewModel)ConferenceDetailScheduleViewModel).SortByTitleAsync();
 
-			//Task.WaitAll(sessionsTask, scheduleTask);
+			Task.WaitAll(sessionsTask, scheduleTask);
 		}
 
-
-		public BaseViewModel ConferenceDetail { get; set; }
-		public BaseViewModel ConferenceDetailSessions { get; set; }
-		public BaseViewModel ConferenceDetailSchedule { get; set; }
+		public BaseViewModel ConferenceDetailViewModel { get; set; }
+		public BaseViewModel ConferenceDetailSessionsViewModel { get; set; }
+		public BaseViewModel ConferenceDetailScheduleViewModel { get; set; }
 		public BaseViewModel ConferenceDetailLocation { get; set; }
 
 	}

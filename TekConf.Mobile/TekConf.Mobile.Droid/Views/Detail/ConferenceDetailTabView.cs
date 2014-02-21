@@ -69,11 +69,11 @@ namespace TekConf.Mobile.Droid.Views
 
 		protected override void AddTabs(Bundle args)
 		{
-			AddTab<ConferenceDetailFragment>("ConferencesDetailTab", "Detail", args, ConferenceDetailTabViewModel.ConferenceDetail);
+			AddTab<ConferenceDetailFragment>("ConferencesDetailTab", "Detail", args, ConferenceDetailTabViewModel.ConferenceDetailViewModel);
 
-			AddTab<ConferenceDetailSessionsFragment>("ConferenceDetailSessionsTab", "Sessions", args, ConferenceDetailTabViewModel.ConferenceDetailSessions);
+			AddTab<ConferenceDetailSessionsFragment>("ConferenceDetailSessionsTab", "Sessions", args, ConferenceDetailTabViewModel.ConferenceDetailSessionsViewModel);
 
-			AddTab<ConferenceDetailScheduleFragment>("ConferenceDetailScheduleTab", "Schedule", args, ConferenceDetailTabViewModel.ConferenceDetailSessions);
+			AddTab<ConferenceDetailScheduleFragment>("ConferenceDetailScheduleTab", "Schedule", args, ConferenceDetailTabViewModel.ConferenceDetailScheduleViewModel);
 			//AddTab<ConferenceDetailLocationFragment>("ConferenceDetailLocationTab", "Map", args, ConferenceDetailTabViewModel.ConferenceDetailLocation);
 
 		}

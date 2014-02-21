@@ -11,7 +11,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="4dp"
         android:layout_alignParentLeft="true"
-        android:src="@drawable/staro" />
+        local:MvxBind="AssetImagePath State, Converter=SessionScheduleState" />
     <TekConf.Mobile.Droid.TekConfTextView
         android:id="@+id/sessionTitle"
         android:layout_width="match_parent"
@@ -21,6 +21,7 @@
         android:textColor="@android:color/black"
         android:layout_marginLeft="5dp"
         android:paddingTop="5dp"
+        android:textSize="18dp"
         local:MvxBind="Text Title"
         android:layout_centerHorizontal="false"
         android:layout_toRightOf="@id/icon" />

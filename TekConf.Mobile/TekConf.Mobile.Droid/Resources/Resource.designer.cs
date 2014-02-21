@@ -885,49 +885,52 @@ namespace TekConf.Mobile.Droid
 			public const int calendar = 2130837591;
 			
 			// aapt resource value: 0x7f020058
-			public const int cog = 2130837592;
+			public const int check = 2130837592;
 			
 			// aapt resource value: 0x7f020059
-			public const int DefaultConference = 2130837593;
+			public const int cog = 2130837593;
 			
 			// aapt resource value: 0x7f02005a
-			public const int ic_errorstatus = 2130837594;
+			public const int DefaultConference = 2130837594;
 			
 			// aapt resource value: 0x7f02005b
-			public const int ic_successstatus = 2130837595;
+			public const int ic_errorstatus = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int Icon = 2130837596;
+			public const int ic_successstatus = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int refresh = 2130837597;
+			public const int Icon = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int roundedbg = 2130837598;
+			public const int refresh = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int roundedbgdark = 2130837599;
+			public const int roundedbg = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int search = 2130837600;
+			public const int roundedbgdark = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int sortAlphaAsc = 2130837601;
+			public const int search = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int sortAlphaDesc = 2130837602;
+			public const int sortAlphaAsc = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int sortAsc = 2130837603;
+			public const int sortAlphaDesc = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int splash = 2130837604;
+			public const int sortAsc = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int star = 2130837605;
+			public const int splash = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int staro = 2130837606;
+			public const int star = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int staro = 2130837607;
 			
 			static Drawable()
 			{

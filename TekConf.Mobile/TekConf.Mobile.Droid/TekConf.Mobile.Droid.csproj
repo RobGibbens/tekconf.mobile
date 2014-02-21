@@ -136,6 +136,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\FavoriteImageViewBinding.cs" />
     <Compile Include="Code\TekConfTextView.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,6 +235,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\sessionstates\added.png" />
+    <AndroidAsset Include="Assets\sessionstates\notadded.png" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\drawable\sortAlphaAsc.png" />
     <AndroidResource Include="Resources\drawable\sortAlphaDesc.png" />
@@ -247,6 +250,7 @@
     <AndroidResource Include="Resources\menu\ConferenceActionItems.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\check.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="AndHUD">

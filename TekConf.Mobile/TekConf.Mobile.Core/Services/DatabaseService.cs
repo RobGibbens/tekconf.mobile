@@ -46,14 +46,30 @@ namespace TekConf.Mobile.Core
 
 		public async Task<Conference> LoadConferenceAsync(int conferenceId)
 		{
-			var conference = await _sqLiteConnection.Table<Conference>().Where(c => c.Id == conferenceId).FirstOrDefaultAsync();
+			var conference = await _sqLiteConnection.Table<Conference>()
+														.Where(c => c.Id == conferenceId)
+														.FirstOrDefaultAsync();
 
 			return conference;
 		}
 
 		public async Task<List<Session>> LoadSessionsAsync(int conferenceId)
 		{
-			var sessions = await _sqLiteConnection.Table<Session>().Where(s => s.ConferenceId == conferenceId).OrderBy(s => s.Start).ToListAsync();
+			var sessions = await _sqLiteConnection.Table<Session>()
+															.Where(s => s.ConferenceId == conferenceId)
+															.OrderBy(s => s.Start)
+															.ToListAsync();
+
+			return sessions;
+		}
+
+		public async Task<List<Session>> LoadFavoriteSessionsAsync(int conferenceId)
+		{
+			var sessions = await _sqLiteConnection.Table<Session>()
+																.Where(s => s.ConferenceId == conferenceId)
+																.Where(s => s.IsAddedToSchedule)
+																.OrderBy(s => s.Start)
+																.ToListAsync();
 
 			return sessions;
 		}

@@ -32,7 +32,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			this.AreSessionsLoading = true;
 
 			var sessions = await _databaseService.LoadSessionsAsync(id);
-
+			
 			this.Sessions = sessions;
 
 			this.AreSessionsLoading = false;

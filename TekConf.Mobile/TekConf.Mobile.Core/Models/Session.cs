@@ -39,7 +39,31 @@ namespace TekConf.Mobile.Core
 		public string Description { get; set; }
 		public string TwitterHashTag { get; set; }
 		public string SessionType { get; set; }
-		public bool IsAddedToSchedule { get; set; }
+
+		private bool _isAddedToSchedule;
+		public bool IsAddedToSchedule
+		{
+			get { return _isAddedToSchedule; }
+			set
+			{
+				if (_isAddedToSchedule != value)
+				{
+					_isAddedToSchedule = value;
+					OnPropertyChanged("IsAddedToSchedule");
+					OnPropertyChanged("State");
+				}
+			}
+		}
+
+		private SessionScheduleState _state;
+		public SessionScheduleState State
+		{
+			get
+			{
+				_state = _isAddedToSchedule ? SessionScheduleState.Added : SessionScheduleState.NotAdded;
+				return _state;
+			}
+		}
 
 		public string StartDescription
 		{

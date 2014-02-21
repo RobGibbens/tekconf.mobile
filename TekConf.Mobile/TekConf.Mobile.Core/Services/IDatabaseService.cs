@@ -1,7 +1,5 @@
-using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using SQLite.Net.Async;
 
 namespace TekConf.Mobile.Core
 {
@@ -16,7 +14,6 @@ namespace TekConf.Mobile.Core
 
 		Task<Conference> LoadConferenceAsync(int conferenceId);
 		Task<List<Session>> LoadSessionsAsync(int conferenceId);
+		Task<List<Session>> LoadFavoriteSessionsAsync(int conferenceId);
 	}
-
-
 }
