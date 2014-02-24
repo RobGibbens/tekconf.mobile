@@ -63,6 +63,62 @@ namespace TekConf.Mobile.Core
 			return sessions;
 		}
 
+		public async Task<List<Session>> SearchSessionsAsync (int conferenceId, string query)
+		{
+			var sessions = await _sqLiteConnection.Table<Session>()
+				.Where(s => s.ConferenceId == conferenceId)
+				.Where(s => 
+						s.Description.Contains(query)
+						|| s.Room.Contains(query)
+						|| s.Title.Contains(query)
+				)
+				.OrderBy(s => s.Start)
+				.ToListAsync();
+
+			return sessions;
+		}
+
+		public async Task<List<Session>> SearchScheduledSessionsAsync (int conferenceId, string query)
+		{
+			var sessions = await _sqLiteConnection.Table<Session>()
+				.Where(s => s.ConferenceId == conferenceId)
+				.Where(s => 
+					s.Description.Contains(query)
+					|| s.Room.Contains(query)
+					|| s.Title.Contains(query)
+				)
+				.OrderBy(s => s.Start)
+				.ToListAsync();
+
+			return sessions;
+		}
+
+		public async Task<List<Conference>> SearchConferencesAsync (string query)
+		{
+			var conferences = await _sqLiteConnection.Table<Conference>()
+				.Where(c => 
+					c.Description.Contains(query) 
+					|| c.City.Contains(query)
+					|| c.Name.Contains(query)
+					|| c.State.Contains(query)
+				).ToListAsync();
+
+			return conferences;
+		}
+
+		public async Task<List<ScheduledConference>> SearchScheduledConferences (string query)
+		{
+			var conferences = await _sqLiteConnection.Table<ScheduledConference>()
+				.Where(c => 
+					c.Description.Contains(query) 
+					|| c.City.Contains(query)
+					|| c.Name.Contains(query)
+					|| c.State.Contains(query)
+				).ToListAsync();
+
+			return conferences;
+		}
+
 		public async Task<List<Session>> LoadFavoriteSessionsAsync(int conferenceId)
 		{
 			var sessions = await _sqLiteConnection.Table<Session>()

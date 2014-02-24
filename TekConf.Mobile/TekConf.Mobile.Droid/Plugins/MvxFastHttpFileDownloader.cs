@@ -1,7 +1,5 @@
 ﻿using System;
 using Cirrious.CrossCore.Core;
-using System;
-using Cirrious.CrossCore.Core;
 using Cirrious.MvvmCross.Plugins.DownloadCache;
 using System.Collections.Generic;
 using System.Linq;

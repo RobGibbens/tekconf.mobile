@@ -29,7 +29,6 @@ namespace TekConf.Mobile.iOS
 			var httpClient = new HttpClient(new AFNetworkHandler());
 			httpClient.DefaultRequestHeaders.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
 			Mvx.RegisterSingleton<HttpClient>(httpClient);
-			string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
 			var sqLiteConnection = CreateSqLiteConnection();
 

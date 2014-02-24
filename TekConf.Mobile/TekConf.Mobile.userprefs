@@ -1,41 +1,30 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Core/ViewModels/List/ConferencesViewModel.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs">
     <Files>
-      <File FileName="TekConf.Mobile.Droid/Resources/menu/ConferencesListActionItems.xml" Line="1" Column="1" />
-      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesViewModel.cs" Line="89" Column="4" />
-      <File FileName="TekConf.Mobile.Core/Services/IDatabaseService.cs" Line="15" Column="7" />
-      <File FileName="TekConf.Mobile.Core/Services/IRemoteConferenceService.cs" Line="1" Column="1" />
-      <File FileName="TekConf.Mobile.Core/Services/RemoteConferenceService.cs" Line="29" Column="1" />
-      <File FileName="TekConf.Mobile.Core/Models/Conference.cs" Line="20" Column="15" />
-      <File FileName="TekConf.Mobile.Core/Models/Session.cs" Line="21" Column="30" />
-      <File FileName="TekConf.Mobile.Core/Dtos/ConferenceDto.cs" Line="26" Column="6" />
-      <File FileName="TekConf.Mobile.Core/Dtos/SessionDto.cs" Line="1" Column="1" />
-      <File FileName="TekConf.Mobile.Core/Services/DatabaseService.cs" Line="44" Column="49" />
-      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesTabViewModel.cs" Line="1" Column="1" />
-      <File FileName="TekConf.Mobile.Core/App.cs" Line="12" Column="20" />
+      <File FileName="TekConf.Mobile.Droid/Views/Detail/Fragments/ConferenceDetailSessionsFragment.cs" Line="16" Column="4" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/Detail/ConferenceDetailSessionsViewModel.cs" Line="67" Column="36" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesViewModel.cs" Line="133" Column="6" />
+      <File FileName="TekConf.Mobile.Core/Services/IDatabaseService.cs" Line="17" Column="35" />
+      <File FileName="TekConf.Mobile.Core/Services/DatabaseService.cs" Line="79" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/Views/Detail/ConferenceDetailTabView.cs" Line="24" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/Detail/ConferenceDetailView.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/Detail/ConferenceDetailTabViewModel.cs" Line="22" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/Views/Detail/Fragments/ConferenceDetailScheduleFragment.cs" Line="17" Column="4" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/Detail/ConferenceDetailScheduleViewModel.cs" Line="68" Column="7" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/Detail/ConferenceDetailViewModel.cs" Line="5" Column="2" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs" Line="30" Column="41" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/Detail/ConferenceDetailLocationViewModel.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Core/Models/ScheduledConference.cs" Line="18" Column="9" />
+      <File FileName="TekConf.Mobile.Droid/Plugins/MvxFastHttpFileDownloader.cs" Line="2" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/Detail/Fragments/ConferenceDetailFragment.cs" Line="16" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/Views/Detail/Fragments/ConferenceDetailLocationFragment.cs" Line="16" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/Setup.cs" Line="43" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/LinkerPleaseInclude.cs" Line="45" Column="57" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" Line="17" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesScheduleFragment.cs" Line="15" Column="4" />
+      <File FileName="TekConf.Mobile.iOS/Setup.cs" Line="32" Column="4" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State expanded="True">
-          <Node name="TekConf.Mobile.Core" expanded="True">
-            <Node name="Dtos" expanded="True" />
-            <Node name="Models" expanded="True" />
-            <Node name="Services" expanded="True" />
-            <Node name="ViewModels" expanded="True">
-              <Node name="List" expanded="True">
-                <Node name="ConferencesViewModel.cs" selected="True" />
-              </Node>
-            </Node>
-          </Node>
-          <Node name="TekConf.Mobile.Droid" expanded="True">
-            <Node name="Resources" expanded="True">
-              <Node name="menu" expanded="True" />
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

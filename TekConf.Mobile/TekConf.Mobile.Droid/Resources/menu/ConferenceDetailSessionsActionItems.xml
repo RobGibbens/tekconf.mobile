@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menu_conference_detail_sessions_search" android:title="Search" android:showAsAction="always" android:actionViewClass="android.widget.SearchView"/>
+  	<item android:id="@+id/menu_conference_detail_sessions_settings" android:icon="@drawable/refresh" android:title="Refresh" android:showAsAction="ifRoom"/>
+  	<item android:id="@+id/menu_conference_detail_sessions_refresh" android:icon="@drawable/cog" android:title="Settings" android:showAsAction="ifRoom"/>
+  	<item android:id="@+id/menu_conference_detail_sessions_sortByDate" android:icon="@drawable/calendar" android:title="Sort By Date" android:showAsAction="ifRoom"/>
+	<item android:id="@+id/menu_conference_detail_sessions_sortByTitle" android:icon="@drawable/sortAlphaAsc" android:title="Sort By Title" android:showAsAction="ifRoom"/>
+</menu>

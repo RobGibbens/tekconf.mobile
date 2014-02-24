@@ -9,6 +9,7 @@ namespace TekConf.Mobile.Core.ViewModels
 	{
 		private readonly IDatabaseService _databaseService;
 		public event ChangedEventHandler SessionsChanged;
+		private int _conferenceId;
 
 		public ConferenceDetailScheduleViewModel(IDatabaseService databaseService)
 		{
@@ -17,9 +18,9 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public async void Init(int id)
 		{
-			//this.Sessions = Enumerable.Empty<Session>();
+			_conferenceId = id;
 
-			await LoadSessionsAsync(id, LoadRequest.Load);
+			await LoadSessionsAsync(LoadRequest.Load);
 		}
 
 		protected virtual void OnSessionsChanged(EventArgs e)
@@ -27,11 +28,12 @@ namespace TekConf.Mobile.Core.ViewModels
 			if (SessionsChanged != null)
 				SessionsChanged(this, e);
 		}
-		private async Task LoadSessionsAsync(int id, LoadRequest loadRequest)
+
+		private async Task LoadSessionsAsync(LoadRequest loadRequest)
 		{
 			this.AreSessionsLoading = true;
 
-			var sessions = await _databaseService.LoadFavoriteSessionsAsync(id);
+			var sessions = await _databaseService.LoadFavoriteSessionsAsync(_conferenceId);
 
 			this.Sessions = sessions;
 
@@ -39,11 +41,15 @@ namespace TekConf.Mobile.Core.ViewModels
 			OnSessionsChanged(EventArgs.Empty);
 		}
 
-		public async Task RefreshAsync(int id)
+		public async Task RefreshAsync()
 		{
-			//this.Sessions = Enumerable.Empty<Session>();
+			await LoadSessionsAsync(LoadRequest.Refresh);
+		}
 
-			await LoadSessionsAsync(id, LoadRequest.Refresh);
+		public async Task SearchAsync(string query)
+		{
+			var sessions = await _databaseService.SearchSessionsAsync (_conferenceId, query);
+			this.Sessions = sessions;
 		}
 
 		public async Task SortByDateAsync()

@@ -41,34 +41,6 @@ namespace TekConf.Mobile.Droid.Views
 
 		}
 
-//		public override bool OnCreateOptionsMenu (IMenu menu)
-//		{
-//			MenuInflater.Inflate (Resource.Menu.ConferencesListActionItems, menu);
-//			return true;
-//		}
-
-//		public override bool OnOptionsItemSelected (IMenuItem item)
-//		{
-//			var vm = this.DataContext as ConferencesViewModel;
-//			if (vm != null) {
-//				switch (item.ToString ()) {
-//				case "Search":
-//					//TODO vm.ShowSessionsCommand.Execute(vm.Conference.slug);
-//					break;
-//
-//				case "Refresh":
-//					//Task.Factory.StartNew (() => {
-//						//vm.Refresh ();
-//					//});
-//					break;
-//				case "Settings":
-//					//vm.ShowSettingsCommand.Execute (null);
-//					break;
-//				}
-//			}
-//
-//			return false;
-//		}
 
 
 	}

@@ -1,27 +1,30 @@
 using System;
 using System.Threading.Tasks;
-using SQLite.Net.Async;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
 	public class ConferenceDetailViewModel : BaseSubTabViewModel
 	{
 		public event ConferenceDetailChangedEventHandler Changed;
+		private int _conferenceId;
 
-		private readonly SQLiteAsyncConnection _sqLiteConnection;
-		public ConferenceDetailViewModel(SQLiteAsyncConnection sqLiteConnection)
+		IDatabaseService _databaseService;
+
+		public ConferenceDetailViewModel(IDatabaseService databaseService)
 		{
-			_sqLiteConnection = sqLiteConnection;
-			
+			_databaseService = databaseService;
 		}
+
+		public async void Init(int id)
+		{
+			_conferenceId = id;
+			await LoadConferencesAsync();
+		}
+
 		protected virtual void OnChanged(EventArgs e)
 		{
 			if (Changed != null)
 				Changed(this, e);
-		}
-		public async void Init(int id)
-		{
-			await LoadConferencesAsync(id);
 		}
 
 		private bool _isConferenceLoading;
@@ -38,26 +41,24 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 		}
 
-		public async Task LoadConferencesAsync(int id)
+		public async Task LoadConferencesAsync()
 		{
 			this.IsConferenceLoading = true;
 
-			Conference conference = await LoadConferenceFromLocalAsync(id);
+			Conference conference = await LoadConferenceFromLocalAsync();
 
 			this.Conference = conference;
 
 			this.IsConferenceLoading = false;
 			OnChanged(EventArgs.Empty);
 		}
-
-
-		private async Task<Conference> LoadConferenceFromLocalAsync(int id)
+			
+		private async Task<Conference> LoadConferenceFromLocalAsync()
 		{
-			var conference = await _sqLiteConnection.Table<Conference>().Where(c => c.Id == id).FirstOrDefaultAsync();
+			var conference = await _databaseService.LoadConferenceAsync (_conferenceId);
 
 			return conference;
 		}
-
 
 		private Conference _conference;
 		public Conference Conference

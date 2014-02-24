@@ -15,7 +15,7 @@ namespace TekConf.Mobile.Core
 		public string Name { get; set; }
 
 		private DateTime _start;
-		public new DateTime Start
+		public DateTime Start
 		{
 			get
 			{
@@ -101,6 +101,82 @@ namespace TekConf.Mobile.Core
 			}
 
 			DateRange = range;
+		}
+
+		public bool? IsOnline { get; set; }
+		public int StreetNumber { get; set; }
+		public string StreetName { get; set; }
+		public string City { get; set; }
+		public string State { get; set; }
+		public string PostalArea { get; set; }
+		public string Country { get; set; }
+		public double Longitude { get; set; }
+		public double Latitude { get; set; }
+
+		public string FormattedCity
+		{
+			get
+			{
+				string formattedAddress;
+				if (IsOnline == true)
+				{
+					formattedAddress = "online";
+				}
+				else if (!string.IsNullOrWhiteSpace(City) && !string.IsNullOrWhiteSpace(State))
+				{
+					formattedAddress = City + ", " + State;
+				}
+				else if (!string.IsNullOrWhiteSpace(City) && !string.IsNullOrWhiteSpace(Country))
+				{
+					formattedAddress = City + ", " + Country;
+				}
+				else if (!string.IsNullOrWhiteSpace(City))
+				{
+					formattedAddress = City;
+				}
+				else
+				{
+					formattedAddress = "No location set";
+				}
+
+				return formattedAddress;
+			}
+
+		}
+
+		public string FormattedAddress
+		{
+			get
+			{
+				string formattedAddress;
+				if (IsOnline == true)
+				{
+					formattedAddress = "online";
+				}
+				else if (StreetNumber != default(int) && !string.IsNullOrWhiteSpace(StreetName) && !string.IsNullOrWhiteSpace(City) &&
+					!string.IsNullOrWhiteSpace(State))
+				{
+					formattedAddress = StreetNumber + " " + StreetName + "\n" + City + ", " + State + " " + PostalArea;
+				}
+				else if (!string.IsNullOrWhiteSpace(City) && !string.IsNullOrWhiteSpace(State))
+				{
+					formattedAddress = City + ", " + State;
+				}
+				else if (!string.IsNullOrWhiteSpace(City) && !string.IsNullOrWhiteSpace(Country))
+				{
+					formattedAddress = City + ", " + Country;
+				}
+				else if (!string.IsNullOrWhiteSpace(City))
+				{
+					formattedAddress = City;
+				}
+				else
+				{
+					formattedAddress = "No location set";
+				}
+
+				return formattedAddress;
+			}
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

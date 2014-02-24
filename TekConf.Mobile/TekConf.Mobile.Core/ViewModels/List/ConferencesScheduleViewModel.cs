@@ -10,20 +10,27 @@ using System;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
-	//public delegate void ChangedEventHandler(object sender, EventArgs e);
-
 	public class ConferencesScheduleViewModel : BaseSubTabViewModel
 	{
 		private readonly HttpClient _httpClient;
 		private readonly IMvxJsonConverter _jsonConverter;
 		private readonly SQLiteAsyncConnection _sqLiteConnection;
 		public event ChangedEventHandler Changed;
+		readonly IRemoteConferenceService _conferenceService;
+		readonly IDatabaseService _databaseService;
 
-		public ConferencesScheduleViewModel(HttpClient httpClient, IMvxJsonConverter jsonConverter, SQLiteAsyncConnection sqLiteConnection)
+		public ConferencesScheduleViewModel(HttpClient httpClient, 
+			IMvxJsonConverter jsonConverter, 
+			SQLiteAsyncConnection sqLiteConnection,
+			IRemoteConferenceService conferenceService, 
+			IDatabaseService databaseService)
 		{
 			_httpClient = httpClient;
 			_jsonConverter = jsonConverter;
 			_sqLiteConnection = sqLiteConnection;
+			_databaseService = databaseService;
+			_conferenceService = conferenceService;
+
 			this.Conferences = Enumerable.Empty<ScheduledConference>();
 		}
 
@@ -47,17 +54,21 @@ namespace TekConf.Mobile.Core.ViewModels
 			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
+		public async Task Search(string query)
+		{
+			var conferences = await _databaseService.SearchScheduledConferences (query);
+			this.Conferences = conferences;
+		}
+
 		public async Task SortByDateAsync()
 		{
-			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Start); });
+			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderByDescending(x => x.Start); });
 		}
 
 		public async Task SortByNameAsync()
 		{
 			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Name); });
 		}
-
-
 
 		private bool _areConferencesLoading;
 		public bool AreConferencesLoading
@@ -97,7 +108,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		private async Task<List<ScheduledConference>> LoadConferencesFromLocalAsync()
 		{
-			var conferences = await _sqLiteConnection.Table<ScheduledConference>().OrderBy(x => x.Start).ToListAsync();
+			var conferences = await _sqLiteConnection.Table<ScheduledConference>().OrderByDescending(x => x.Start).ToListAsync();
 
 			return conferences;
 		}
@@ -126,7 +137,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			await _sqLiteConnection.InsertAllAsync(conferences);
 
-			return conferences;
+			return conferences.OrderByDescending(c => c.Start).ToList();
 		}
 
 		private Task<List<ScheduledConference>> DeserializeConferenceListAsync(Stream result)

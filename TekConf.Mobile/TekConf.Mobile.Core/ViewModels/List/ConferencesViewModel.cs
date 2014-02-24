@@ -9,10 +9,8 @@ using AutoMapper;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
-	//public delegate void ChangedEventHandler(object sender, EventArgs e);
 	public class ConferencesViewModel : BaseSubTabViewModel
 	{
-		public event ChangedEventHandler Changed;
 		readonly IRemoteConferenceService _conferenceService;
 		readonly IDatabaseService _databaseService;
 
@@ -20,12 +18,6 @@ namespace TekConf.Mobile.Core.ViewModels
 		{
 			_databaseService = databaseService;
 			_conferenceService = conferenceService;
-		}
-
-		protected virtual void OnChanged(EventArgs e)
-		{
-			if (Changed != null)
-				Changed(this, e);
 		}
 
 		public async void Init()
@@ -75,6 +67,12 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 		}
 
+		public async Task SearchAsync(string query)
+		{
+			var conferences = await _databaseService.SearchConferencesAsync (query);
+			this.Conferences = conferences;
+		}
+
 		private bool _areConferencesLoading;
 		public bool AreConferencesLoading
 		{
@@ -89,7 +87,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 		}
 
-		private async Task LoadConferencesAsync(LoadRequest loadRequest)
+		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
 			this.AreConferencesLoading = true;
 
@@ -120,7 +118,6 @@ namespace TekConf.Mobile.Core.ViewModels
 			this.Conferences = conferences;
 
 			this.AreConferencesLoading = false;
-			OnChanged(EventArgs.Empty);
 		}
 
 		private IList<Conference> _conferences;

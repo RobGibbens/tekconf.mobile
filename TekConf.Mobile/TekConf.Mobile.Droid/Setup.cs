@@ -40,7 +40,6 @@ namespace TekConf.Mobile.Droid
 			var httpClient = new HttpClient(new OkHttpNetworkHandler());
 			httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 			Mvx.RegisterSingleton<HttpClient>(httpClient);
-			string folder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
 			var sqLiteConnection = CreateSqLiteConnection();
 
