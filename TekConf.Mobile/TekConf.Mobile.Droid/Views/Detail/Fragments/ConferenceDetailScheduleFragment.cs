@@ -23,17 +23,36 @@ namespace TekConf.Mobile.Droid.Views
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
 		}
+
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 		{
 			inflater.Inflate(Resource.Menu.ConferenceDetailSessionsActionItems, menu);
 			var viewModel = this.DataContext as ConferenceDetailScheduleViewModel;
 			var searchView = (SearchView)menu.FindItem(Resource.Id.menu_conference_detail_sessions_search).ActionView;
-			searchView.QueryTextSubmit += async (sender, e) => {
 
-				await viewModel.SearchAsync(e.Query);
+			var textChangedLastTime = DateTime.Now;
 
+			searchView.QueryTextChange += async (object sender, SearchView.QueryTextChangeEventArgs e) => 
+			{
+				var changedSpan = DateTime.Now.Subtract(textChangedLastTime);
+				if (changedSpan.TotalMilliseconds > 200)
+				{
+					await viewModel.SearchAsync(e.NewText);
+				}
+				textChangedLastTime = DateTime.Now;
+			};
+
+			searchView.Close += async (sender, e) => 
+			{
+				await viewModel.LoadSessionsAsync(LoadRequest.Load);
 				searchView.ClearFocus();
-				//((InputMethodManager)GetSystemService(InputMethodService)).ShowSoftInput(searchView, ShowFlags.Implicit);
+				searchView.OnActionViewCollapsed();
+			};
+
+			searchView.QueryTextSubmit += async (sender, e) => {
+				await viewModel.SearchAsync(e.Query);
+				searchView.ClearFocus();
+				searchView.OnActionViewCollapsed();
 			};
 		}
 

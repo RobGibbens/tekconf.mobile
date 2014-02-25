@@ -5,6 +5,7 @@ using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using TekConf.Mobile.Core.ViewModels;
 using Android.Widget;
 using System.Threading.Tasks;
+using System;
 
 namespace TekConf.Mobile.Droid.Views
 {
@@ -22,35 +23,38 @@ namespace TekConf.Mobile.Droid.Views
 			HasOptionsMenu = true;
 		}
 
-		//		public override void OnCreateOptionsMenu (IMenu menu)
-		//		{
-		//			base.OnCreateOptionsMenu (menu, inflater);
-		//		}
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 		{
 			var conferencesScheduleViewModel = this.DataContext as ConferencesScheduleViewModel;
-
-			//var conferencesViewModel = tabViewModel.ConferencesViewModel as ConferencesViewModel;
 
 			inflater.Inflate(Resource.Menu.ConferencesListActionItems, menu);
 
 			var searchView = (SearchView)menu.FindItem(Resource.Id.menu_search).ActionView;
 
+			var textChangedLastTime = DateTime.Now;
+			searchView.QueryTextChange += async (object sender, SearchView.QueryTextChangeEventArgs e) => 
+			{
+				var changedSpan = DateTime.Now.Subtract(textChangedLastTime);
+				if (changedSpan.TotalMilliseconds > 200)
+				{
+					await conferencesScheduleViewModel.SearchAsync(e.NewText);
+				}
+				textChangedLastTime = DateTime.Now;
+			};
+
 			searchView.Close += async (sender, e) => 
 			{
 				await conferencesScheduleViewModel.LoadConferencesAsync(LoadRequest.Load);
 				searchView.ClearFocus();
-				//((InputMethodManager)GetSystemService(InputMethodService)).ShowSoftInput(searchView, ShowFlags.Implicit);
+				searchView.OnActionViewCollapsed();
 			};
+
 			searchView.QueryTextSubmit += async (sender, e) => {
-
-				await conferencesScheduleViewModel.Search(e.Query);
-
+				await conferencesScheduleViewModel.SearchAsync(e.Query);
 				searchView.ClearFocus();
-				//((InputMethodManager)GetSystemService(InputMethodService)).ShowSoftInput(searchView, ShowFlags.Implicit);
+				searchView.OnActionViewCollapsed(); 
 			};
 		}
-
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
 		{
@@ -59,22 +63,18 @@ namespace TekConf.Mobile.Droid.Views
 			{
 				switch (item.ToString())
 				{
-				case "Search":
-					//TODO vm.ShowSessionsCommand.Execute(vm.Conference.slug);
-					break;
-
-				case "Refresh":
-					Task.Factory.StartNew(() => vm.RefreshAsync().Wait());
-					break;
-				case "Settings":
-					//vm.ShowSettingsCommand.Execute (null);
-					break;
-				case "Sort By Date":
-					Task.Factory.StartNew(() => vm.SortByDateAsync().Wait());
-					break;
-				case "Sort By Name":
-					Task.Factory.StartNew(() => vm.SortByNameAsync().Wait());
-					break;
+					case "Refresh":
+						Task.Factory.StartNew(() => vm.RefreshAsync().Wait());
+						break;
+					case "Settings":
+						//vm.ShowSettingsCommand.Execute (null);
+						break;
+					case "Sort By Date":
+						Task.Factory.StartNew(() => vm.SortByDateAsync().Wait());
+						break;
+					case "Sort By Name":
+						Task.Factory.StartNew(() => vm.SortByNameAsync().Wait());
+						break;
 				}
 			}
 

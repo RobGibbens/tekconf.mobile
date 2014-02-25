@@ -6,9 +6,6 @@ using Cirrious.MvvmCross.Binding.BindingContext;
 using Cirrious.MvvmCross.Droid.Views;
 using TekConf.Mobile.Core.ViewModels;
 using Android.Views;
-using Android.Widget;
-using Android.Animation;
-using System.Threading.Tasks;
 
 namespace TekConf.Mobile.Droid.Views
 {
@@ -33,36 +30,5 @@ namespace TekConf.Mobile.Droid.Views
 
 			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
 		}
-
-//		public override bool OnCreateOptionsMenu (IMenu menu)
-//		{
-//			MenuInflater.Inflate (Resource.Menu.ConferencesListActionItems, menu);
-//			return true;
-//		}
-
-//		public override bool OnOptionsItemSelected (IMenuItem item)
-//		{
-//			var vm = this.DataContext as ConferencesScheduleViewModel;
-//			if (vm != null) {
-//				switch (item.ToString ()) {
-//				case "Search":
-//					//TODO vm.ShowSessionsCommand.Execute(vm.Conference.slug);
-//					break;
-//
-//				case "Refresh":
-//					//Task.Factory.StartNew (() => {
-//						//vm.Refresh ();
-//					//});
-//					break;
-//				case "Settings":
-//					//vm.ShowSettingsCommand.Execute (null);
-//					break;
-//				}
-//			}
-//
-//			return false;
-//		}
-
-
 	}
 }

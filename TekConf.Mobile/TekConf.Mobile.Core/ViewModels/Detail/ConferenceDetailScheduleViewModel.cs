@@ -29,7 +29,7 @@ namespace TekConf.Mobile.Core.ViewModels
 				SessionsChanged(this, e);
 		}
 
-		private async Task LoadSessionsAsync(LoadRequest loadRequest)
+		public async Task LoadSessionsAsync(LoadRequest loadRequest)
 		{
 			this.AreSessionsLoading = true;
 

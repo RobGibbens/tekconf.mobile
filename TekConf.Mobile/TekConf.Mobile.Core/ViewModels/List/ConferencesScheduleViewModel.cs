@@ -54,7 +54,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
-		public async Task Search(string query)
+		public async Task SearchAsync(string query)
 		{
 			var conferences = await _databaseService.SearchScheduledConferences (query);
 			this.Conferences = conferences;

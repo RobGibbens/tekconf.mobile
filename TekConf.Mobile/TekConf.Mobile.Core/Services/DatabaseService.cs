@@ -95,6 +95,11 @@ namespace TekConf.Mobile.Core
 
 		public async Task<List<Conference>> SearchConferencesAsync (string query)
 		{
+			if (string.IsNullOrWhiteSpace(query))
+			{
+				return await LoadConferencesFromLocalAsync ();
+			}
+
 			var conferences = await _sqLiteConnection.Table<Conference>()
 				.Where(c => 
 					c.Description.Contains(query) 
@@ -108,6 +113,11 @@ namespace TekConf.Mobile.Core
 
 		public async Task<List<ScheduledConference>> SearchScheduledConferences (string query)
 		{
+			if (string.IsNullOrWhiteSpace(query))
+			{
+				//return await LoadScheduledConferencesFromLocalAsync ();
+			}
+
 			var conferences = await _sqLiteConnection.Table<ScheduledConference>()
 				.Where(c => 
 					c.Description.Contains(query) 

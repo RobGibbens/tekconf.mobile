@@ -149,7 +149,6 @@
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Plugins\MvxFastFileDownloadRequest.cs" />
     <Compile Include="Plugins\MvxFastHttpFileDownloader.cs" />
-    <Compile Include="BindableProgress.cs" />
     <Compile Include="Views\List\ConferencesTabView.cs" />
     <Compile Include="Bootstrap\DownloadCachePluginBootstrap.cs" />
     <Compile Include="Bootstrap\FilePluginBootstrap.cs" />
@@ -162,6 +161,8 @@
     <Compile Include="Views\List\Fragments\ConferencesScheduleFragment.cs" />
     <Compile Include="Code\SquareImage.cs" />
     <Compile Include="Code\TekConfGridView.cs" />
+    <Compile Include="Code\BindableProgress.cs" />
+    <Compile Include="Code\ToDo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
