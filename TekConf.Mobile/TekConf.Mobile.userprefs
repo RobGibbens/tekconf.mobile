@@ -1,24 +1,24 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Droid/Views/List/ConferencesTabView.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Core/Services/DatabaseService.cs">
     <Files>
-      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" Line="23" Column="25" />
-      <File FileName="TekConf.Mobile.Droid/Views/List/ConferencesTabView.cs" Line="10" Column="3" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs" Line="50" Column="27" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/ConferencesScheduleView.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesScheduleFragment.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/ConferencesView.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/ConferencesTabView.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesTabViewModel.cs" Line="17" Column="1" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesViewModel.cs" Line="67" Column="5" />
+      <File FileName="TekConf.Mobile.Core/Services/DatabaseService.cs" Line="63" Column="4" />
+      <File FileName="TekConf.Mobile.Droid/Setup.cs" Line="32" Column="30" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" line="57" column="1" />
-      <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Views/List/Fragments/ConferencesScheduleFragment.cs" line="47" column="1" />
-      <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Views/List/Fragments/ConferencesScheduleFragment.cs" line="53" column="1" />
-      <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Code/BindableProgress.cs" line="21" column="1" />
-      <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Code/BindableProgress.cs" line="25" column="1" />
-      <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Code/BindableProgress.cs" line="15" column="7" />
-      <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Views/List/ConferencesView.cs" line="26" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="TekConf.Mobile.Core/ViewModels/List/ConferencesViewModel.cs" line="105" offsetX="675" offsetY="1444" expression="conference.Id" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.TekConf.Mobile.Droid MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="192.168.56.101:5555" />
+  <MonoDevelop.Ide.ItemProperties.TekConf.Mobile.Droid MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="034e562808eaca17" />
 </Properties>

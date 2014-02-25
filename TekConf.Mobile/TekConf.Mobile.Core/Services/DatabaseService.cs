@@ -13,7 +13,7 @@ namespace TekConf.Mobile.Core
 		public DatabaseService (SQLiteAsyncConnection sqLiteConnection)
 		{
 			_sqLiteConnection = sqLiteConnection;
-			CreateDatabase ();
+			TaskEx.Run (() => CreateDatabase ()).Wait();
 		}
 
 		public async Task<List<Conference>> LoadConferencesAsync()
@@ -44,9 +44,9 @@ namespace TekConf.Mobile.Core
 			await _sqLiteConnection.InsertAsync (conference);
 		}
 
-		public async Task SaveScheduledConferenceAsync (ScheduledConference conference)
+		public async Task SaveScheduledConferenceAsync (ScheduledConference scheduledConference)
 		{
-			await _sqLiteConnection.InsertAsync (conference);
+			//await _sqLiteConnection.InsertAsync (scheduledConference);
 		}
 
 		public async Task SaveAllConferencesAsync (List<Conference> conferences)
@@ -54,13 +54,14 @@ namespace TekConf.Mobile.Core
 			await _sqLiteConnection.InsertAllAsync(conferences);
 		}
 
-		public async Task SaveAllScheduledConferencesAsync (List<ScheduledConference> conferences)
+		public async Task SaveAllScheduledConferencesAsync (List<ScheduledConference> scheduledConferences)
 		{
-			await _sqLiteConnection.InsertAllAsync(conferences);
+			//await _sqLiteConnection.InsertAllAsync(scheduledConferences);
 		}
 
 		public async Task SaveSessionAsync (Session session)
 		{
+
 			await _sqLiteConnection.InsertAsync(session);
 		}
 
@@ -158,13 +159,13 @@ namespace TekConf.Mobile.Core
 			return sessions;
 		}
 
-		public void CreateDatabase()
+		public async Task CreateDatabase()
 		{
-			var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();
-			var sessionTask = _sqLiteConnection.CreateTableAsync<Session>();
-			var scheduledConferenceTask = _sqLiteConnection.CreateTableAsync<ScheduledConference> ();
+			var conferenceTask = await _sqLiteConnection.CreateTableAsync<Conference>();
+			var sessionTask = await _sqLiteConnection.CreateTableAsync<Session>();
+			var scheduledConferenceTask = await _sqLiteConnection.CreateTableAsync<ScheduledConference> ();
 
-			Task.WaitAll(conferenceTask, sessionTask, scheduledConferenceTask);
+			//Task.WaitAll(conferenceTask, sessionTask, scheduledConferenceTask);
 		}
 	}
 
