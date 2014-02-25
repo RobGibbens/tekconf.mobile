@@ -8,7 +8,7 @@ namespace TekConf.Mobile.Core.ViewModels
 	public class ConferenceDetailScheduleViewModel : BaseSubTabViewModel
 	{
 		private readonly IDatabaseService _databaseService;
-		public event ChangedEventHandler SessionsChanged;
+
 		private int _conferenceId;
 
 		public ConferenceDetailScheduleViewModel(IDatabaseService databaseService)
@@ -19,14 +19,7 @@ namespace TekConf.Mobile.Core.ViewModels
 		public async void Init(int id)
 		{
 			_conferenceId = id;
-
 			await LoadSessionsAsync(LoadRequest.Load);
-		}
-
-		protected virtual void OnSessionsChanged(EventArgs e)
-		{
-			if (SessionsChanged != null)
-				SessionsChanged(this, e);
 		}
 
 		public async Task LoadSessionsAsync(LoadRequest loadRequest)
@@ -38,7 +31,6 @@ namespace TekConf.Mobile.Core.ViewModels
 			this.Sessions = sessions;
 
 			this.AreSessionsLoading = false;
-			OnSessionsChanged(EventArgs.Empty);
 		}
 
 		public async Task RefreshAsync()

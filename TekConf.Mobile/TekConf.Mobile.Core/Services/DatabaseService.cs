@@ -16,10 +16,15 @@ namespace TekConf.Mobile.Core
 			CreateDatabase ();
 		}
 
-		public async Task<List<Conference>> LoadConferencesFromLocalAsync()
+		public async Task<List<Conference>> LoadConferencesAsync()
 		{
 			var conferences = await _sqLiteConnection.Table<Conference>().OrderBy(x => x.Start).ToListAsync();
+			return conferences;
+		}
 
+		public async Task<List<ScheduledConference>> LoadScheduledConferencesAsync()
+		{
+			var conferences = await _sqLiteConnection.Table<ScheduledConference>().OrderByDescending(x => x.Start).ToListAsync();
 			return conferences;
 		}
 
@@ -29,12 +34,27 @@ namespace TekConf.Mobile.Core
 			await _sqLiteConnection.DeleteAllAsync<Conference>();
 		}
 
+		public async Task DeleteAllScheduledConferencesAsync ()
+		{
+			await _sqLiteConnection.DeleteAllAsync<ScheduledConference> ();
+		}
+
 		public async Task SaveConferenceAsync (Conference conference)
 		{
 			await _sqLiteConnection.InsertAsync (conference);
 		}
 
+		public async Task SaveScheduledConferenceAsync (ScheduledConference conference)
+		{
+			await _sqLiteConnection.InsertAsync (conference);
+		}
+
 		public async Task SaveAllConferencesAsync (List<Conference> conferences)
+		{
+			await _sqLiteConnection.InsertAllAsync(conferences);
+		}
+
+		public async Task SaveAllScheduledConferencesAsync (List<ScheduledConference> conferences)
 		{
 			await _sqLiteConnection.InsertAllAsync(conferences);
 		}
@@ -49,7 +69,6 @@ namespace TekConf.Mobile.Core
 			var conference = await _sqLiteConnection.Table<Conference>()
 														.Where(c => c.Id == conferenceId)
 														.FirstOrDefaultAsync();
-
 			return conference;
 		}
 
@@ -59,7 +78,6 @@ namespace TekConf.Mobile.Core
 															.Where(s => s.ConferenceId == conferenceId)
 															.OrderBy(s => s.Start)
 															.ToListAsync();
-
 			return sessions;
 		}
 
@@ -97,7 +115,7 @@ namespace TekConf.Mobile.Core
 		{
 			if (string.IsNullOrWhiteSpace(query))
 			{
-				return await LoadConferencesFromLocalAsync ();
+				return await LoadConferencesAsync ();
 			}
 
 			var conferences = await _sqLiteConnection.Table<Conference>()
@@ -144,8 +162,9 @@ namespace TekConf.Mobile.Core
 		{
 			var conferenceTask = _sqLiteConnection.CreateTableAsync<Conference>();
 			var sessionTask = _sqLiteConnection.CreateTableAsync<Session>();
+			var scheduledConferenceTask = _sqLiteConnection.CreateTableAsync<ScheduledConference> ();
 
-			Task.WaitAll(conferenceTask, sessionTask);
+			Task.WaitAll(conferenceTask, sessionTask, scheduledConferenceTask);
 		}
 	}
 

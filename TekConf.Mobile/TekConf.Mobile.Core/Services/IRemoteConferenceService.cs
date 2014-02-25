@@ -7,6 +7,7 @@ namespace TekConf.Mobile.Core
 {
 	public interface IRemoteConferenceService
 	{
-		Task<List<ConferenceDto>> LoadConferencesFromRemoteAsync();
+		Task<List<ConferenceDto>> LoadConferencesAsync();
+		Task<List<ConferenceDto>> LoadScheduledConferencesAsync();
 	}
 }

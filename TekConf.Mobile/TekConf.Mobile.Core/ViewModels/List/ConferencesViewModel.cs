@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System;
 using TekConf.Mobile.Core.Dtos;
 using AutoMapper;
+using Cirrious.MvvmCross.Plugins.Messenger;
+using TekConf.Mobile.Core.Messages;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -14,8 +16,11 @@ namespace TekConf.Mobile.Core.ViewModels
 		readonly IRemoteConferenceService _conferenceService;
 		readonly IDatabaseService _databaseService;
 
-		public ConferencesViewModel(IRemoteConferenceService conferenceService, IDatabaseService databaseService)
+		IMvxMessenger _messenger;
+
+		public ConferencesViewModel(IRemoteConferenceService conferenceService, IDatabaseService databaseService, IMvxMessenger messenger)
 		{
+			_messenger = messenger;
 			_databaseService = databaseService;
 			_conferenceService = conferenceService;
 		}
@@ -34,12 +39,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			Mapper.CreateMap<SessionDto, Session> ();
 
-			this.AreConferencesLoading = true;
-
 			await LoadConferencesAsync(LoadRequest.Load);
-
-			this.AreConferencesLoading = false;
-
 		}
 
 		public async Task RefreshAsync()
@@ -73,29 +73,16 @@ namespace TekConf.Mobile.Core.ViewModels
 			this.Conferences = conferences;
 		}
 
-		private bool _areConferencesLoading;
-		public bool AreConferencesLoading
-		{
-			get { return _areConferencesLoading; }
-			set
-			{
-				if (_areConferencesLoading != value)
-				{
-					_areConferencesLoading = value;
-					RaisePropertyChanged(() => AreConferencesLoading);
-				}
-			}
-		}
-
 		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
-			this.AreConferencesLoading = true;
+			_messenger.Publish (new ConferencesLoading (this));
 
-			List<Conference> conferences = await _databaseService.LoadConferencesFromLocalAsync();
+			List<Conference> conferences = await _databaseService.LoadConferencesAsync();
+
 			if (!conferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
 				await _databaseService.DeleteAllConferencesAsync ();
-				var conferenceDtos = await _conferenceService.LoadConferencesFromRemoteAsync ();
+				var conferenceDtos = await _conferenceService.LoadConferencesAsync ();
 
 				foreach (var conferenceDto in conferenceDtos)
 				{
@@ -112,12 +99,12 @@ namespace TekConf.Mobile.Core.ViewModels
 					}
 				}
 
-				conferences = await _databaseService.LoadConferencesFromLocalAsync();
+				conferences = await _databaseService.LoadConferencesAsync();
 			}
 
 			this.Conferences = conferences;
 
-			this.AreConferencesLoading = false;
+			_messenger.Publish (new ConferencesLoaded (this));
 		}
 
 		private IList<Conference> _conferences;

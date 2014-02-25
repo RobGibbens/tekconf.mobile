@@ -1,11 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Droid/Views/List/ConferencesTabView.cs">
     <Files>
-      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" Line="40" Column="5" />
-      <File FileName="TekConf.Mobile.Droid/Code/BindableProgress.cs" Line="17" Column="3" />
-      <File FileName="TekConf.Mobile.Droid/Code/ToDo.cs" Line="21" Column="1" />
-      <File FileName="TekConf.Mobile.Droid/Views/List/ConferencesView.cs" Line="30" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" Line="23" Column="25" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/ConferencesTabView.cs" Line="10" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

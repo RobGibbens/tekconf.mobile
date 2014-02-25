@@ -235,6 +235,7 @@
     <AndroidResource Include="Resources\menu\ConferenceDetailSessionsActionItems.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />

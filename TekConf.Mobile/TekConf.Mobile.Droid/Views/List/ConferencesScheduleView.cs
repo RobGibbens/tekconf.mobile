@@ -12,8 +12,6 @@ namespace TekConf.Mobile.Droid.Views
 	[Activity (Label = "Conferences", Icon = "@drawable/Icon")]
 	public class ConferencesScheduleView : MvxActivity
 	{
-		private BindableProgress _bindableProgress;
-
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -21,12 +19,7 @@ namespace TekConf.Mobile.Droid.Views
 			RequestWindowFeature (WindowFeatures.ActionBarOverlay);
 			ActionBar.SetBackgroundDrawable (new ColorDrawable (Color.Transparent));
 
-			_bindableProgress = new BindableProgress (this);
-
 			SetContentView (Resource.Layout.ConferencesScheduleView);
-			var set = this.CreateBindingSet<ConferencesScheduleView, ConferencesScheduleViewModel> ();
-			set.Bind (_bindableProgress).For (b => b.Visible).To (vm => vm.AreConferencesLoading);
-			set.Apply ();
 
 			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
 		}
