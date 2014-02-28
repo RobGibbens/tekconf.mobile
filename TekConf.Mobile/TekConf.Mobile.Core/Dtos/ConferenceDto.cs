@@ -37,13 +37,4 @@
 		public List<SessionDto> Sessions { get; set; }
 	}
 
-	public class Address
-	{
-		public int StreetNumber { get; set; }
-		public string StreetName { get; set; }
-		public string City { get; set; }
-		public string State { get; set; }
-		public string PostalArea { get; set; }
-		public string Country { get; set; }
-	}
 }

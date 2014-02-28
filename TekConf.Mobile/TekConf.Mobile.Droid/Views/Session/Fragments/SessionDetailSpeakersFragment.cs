@@ -45,7 +45,7 @@ namespace TekConf.Mobile.Droid.Views
 
 			searchView.Close += async (sender, e) => 
 			{
-				await viewModel.LoadSessionsAsync(LoadRequest.Load);
+				await viewModel.LoadSessionSpeakersAsync(LoadRequest.Load);
 				searchView.ClearFocus();
 				searchView.OnActionViewCollapsed();
 			};
@@ -54,7 +54,6 @@ namespace TekConf.Mobile.Droid.Views
 				await viewModel.SearchAsync(e.Query);
 				searchView.ClearFocus();
 				searchView.OnActionViewCollapsed();
-
 			};
 		}
 

@@ -38,6 +38,7 @@ namespace TekConf.Mobile.Core.ViewModels
 				.ForMember(c => c.Longitude, opt => opt.ResolveUsing<LongitudeResolver>());
 
 			Mapper.CreateMap<SessionDto, Session> ();
+			Mapper.CreateMap<SpeakerDto, Speaker> ();
 
 			await LoadConferencesAsync(LoadRequest.Load);
 		}
@@ -96,6 +97,13 @@ namespace TekConf.Mobile.Core.ViewModels
 						var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
 						session.ConferenceId = conference.Id;
 						await _databaseService.SaveSessionAsync (session);
+
+						foreach (var speakerDto in sessionDto.Speakers) {
+							SpeakerDto speakerDto1 = speakerDto;
+							var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
+							speaker.SessionId = session.Id;
+							await _databaseService.SaveSpeakerAsync (speaker);
+						}
 					}
 				}
 

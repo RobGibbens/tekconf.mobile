@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace TekConf.Mobile.Core.Dtos
 {
 	using System;
@@ -23,5 +25,8 @@ namespace TekConf.Mobile.Core.Dtos
 		public string SessionType { get; set; }
 
 		public bool IsAddedToSchedule { get; set; }
+
+		public List<SpeakerDto> Speakers { get; set; }
+
 	}
 }

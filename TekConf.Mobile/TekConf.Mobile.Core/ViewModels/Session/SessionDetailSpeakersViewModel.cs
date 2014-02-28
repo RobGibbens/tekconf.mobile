@@ -8,7 +8,7 @@ namespace TekConf.Mobile.Core.ViewModels
 	public class SessionDetailSpeakersViewModel : BaseSubTabViewModel
 	{
 		private readonly IDatabaseService _databaseService;
-		private int _conferenceId;
+		private int _sessionId;
 
 		public SessionDetailSpeakersViewModel(IDatabaseService databaseService)
 		{
@@ -17,64 +17,54 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public async void Init(int id)
 		{
-			_conferenceId = id;
+			_sessionId = id;
 
-			await LoadSessionsAsync(LoadRequest.Load);
+			await LoadSessionSpeakersAsync(LoadRequest.Load);
 		}
 
-		public async Task LoadSessionsAsync(LoadRequest loadRequest)
+		public async Task LoadSessionSpeakersAsync(LoadRequest loadRequest)
 		{
-			this.AreSessionsLoading = true;
+			this.AreSpeakersLoading = true;
 
-			var sessions = await _databaseService.LoadSessionsAsync(_conferenceId);
+			var sessions = await _databaseService.LoadSpeakersAsync(_sessionId);
 
-			this.Sessions = sessions;
+			this.Speakers = sessions;
 
-			this.AreSessionsLoading = false;
+			this.AreSpeakersLoading = false;
 		}
 
 		public async Task SearchAsync(string query)
 		{
-			var sessions = await _databaseService.SearchSessionsAsync (_conferenceId, query);
-			this.Sessions = sessions;
+			//var speakers = await _databaseService.SearchSpeakersAsync (_sessionId, query);
+			//this.Speakers = speakers;
 		}
 
 		public async Task RefreshAsync()
 		{
-			this.Sessions = Enumerable.Empty<Session>();
+			this.Speakers = Enumerable.Empty<Speaker>();
 
-			await LoadSessionsAsync(LoadRequest.Refresh);
+			await LoadSessionSpeakersAsync(LoadRequest.Refresh);
 		}
 
-		public async Task SortByDateAsync()
-		{
-			await TaskEx.Run(() => { this.Sessions = this.Sessions.OrderBy(x => x.Start); });
-		}
-
-		public async Task SortByTitleAsync()
-		{
-			await TaskEx.Run(() => { this.Sessions = this.Sessions.OrderBy(x => x.Title); });
-		}
-
-		private IList<Session> _sessions;
-		public IEnumerable<Session> Sessions
+		private IList<Speaker> _speakers;
+		public IEnumerable<Speaker> Speakers
 		{
 			get
 			{
-				return _sessions;
+				return _speakers;
 			}
 			set
 			{
-				if (_sessions != value)
+				if (_speakers != value)
 				{
-					_sessions = value.ToList();
-					RaisePropertyChanged(() => Sessions);
+					_speakers = value.ToList();
+					RaisePropertyChanged(() => Speakers);
 				}
 			}
 		}
 
 		private bool _areSessionsLoading;
-		public bool AreSessionsLoading
+		public bool AreSpeakersLoading
 		{
 			get { return _areSessionsLoading; }
 			set
@@ -82,7 +72,7 @@ namespace TekConf.Mobile.Core.ViewModels
 				if (_areSessionsLoading != value)
 				{
 					_areSessionsLoading = value;
-					RaisePropertyChanged(() => AreSessionsLoading);
+					RaisePropertyChanged(() => AreSpeakersLoading);
 				}
 			}
 		}

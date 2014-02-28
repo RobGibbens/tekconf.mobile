@@ -61,8 +61,12 @@ namespace TekConf.Mobile.Core
 
 		public async Task SaveSessionAsync (Session session)
 		{
-
 			await _sqLiteConnection.InsertAsync(session);
+		}
+
+		public async Task SaveSpeakerAsync (Speaker speaker)
+		{
+			await _sqLiteConnection.InsertAsync(speaker);
 		}
 
 		public async Task<Conference> LoadConferenceAsync(int conferenceId)
@@ -88,6 +92,15 @@ namespace TekConf.Mobile.Core
 															.Where(s => s.ConferenceId == conferenceId)
 															.OrderBy(s => s.Start)
 															.ToListAsync();
+			return sessions;
+		}
+
+		public async Task<List<Speaker>> LoadSpeakersAsync(int sessionId)
+		{
+			var sessions = await _sqLiteConnection.Table<Speaker>()
+				.Where(s => s.SessionId == sessionId)
+				.OrderBy(s => s.LastName)
+				.ToListAsync();
 			return sessions;
 		}
 
@@ -170,9 +183,10 @@ namespace TekConf.Mobile.Core
 
 		public async Task CreateDatabase()
 		{
-			var conferenceTask = await _sqLiteConnection.CreateTableAsync<Conference>();
-			var sessionTask = await _sqLiteConnection.CreateTableAsync<Session>();
-			var scheduledConferenceTask = await _sqLiteConnection.CreateTableAsync<ScheduledConference> ();
+			await _sqLiteConnection.CreateTableAsync<Conference>();
+			await _sqLiteConnection.CreateTableAsync<Session>();
+			await _sqLiteConnection.CreateTableAsync<ScheduledConference> ();
+			await _sqLiteConnection.CreateTableAsync<Speaker> ();
 
 			//Task.WaitAll(conferenceTask, sessionTask, scheduledConferenceTask);
 		}

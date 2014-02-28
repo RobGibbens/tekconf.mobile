@@ -62,6 +62,9 @@
     <Compile Include="ViewModels\Session\SessionDetailTabViewModel.cs" />
     <Compile Include="ViewModels\Session\SessionDetailViewModel.cs" />
     <Compile Include="ViewModels\Session\SessionDetailSpeakersViewModel.cs" />
+    <Compile Include="Models\Speaker.cs" />
+    <Compile Include="Dtos\SpeakerDto.cs" />
+    <Compile Include="Dtos\Address.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
