@@ -13,6 +13,6 @@
         android:stretchMode="columnWidth"
         android:numColumns="2"
         android:background="#000000"
-        local:MvxBind="ItemsSource Conferences"
+        local:MvxBind="ItemsSource Conferences; ItemClick ShowDetailCommand"
         local:MvxItemTemplate="@layout/item_conference" />
 </LinearLayout>

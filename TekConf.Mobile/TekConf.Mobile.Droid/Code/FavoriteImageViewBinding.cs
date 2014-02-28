@@ -44,7 +44,8 @@ namespace TekConf.Mobile.Droid.Code
 
 			if (_currentValue)
 			{
-				imageView.SetBackgroundResource(Resource.Drawable.check);
+				imageView.DefaultImagePath = "res:check";
+				//imageView.SetBackgroundResource(Resource.Drawable.check);
 			}
 			else
 			{

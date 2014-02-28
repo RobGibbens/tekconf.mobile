@@ -15,11 +15,12 @@ namespace TekConf.Mobile.Core.ViewModels
 	{
 		readonly IRemoteConferenceService _conferenceService;
 		readonly IDatabaseService _databaseService;
-
-		IMvxMessenger _messenger;
+		private OrderConferencesBy _orderConferencesBy;
+		readonly IMvxMessenger _messenger;
 
 		public ConferencesViewModel(IRemoteConferenceService conferenceService, IDatabaseService databaseService, IMvxMessenger messenger)
 		{
+			_orderConferencesBy = OrderConferencesBy.Date;
 			_messenger = messenger;
 			_databaseService = databaseService;
 			_conferenceService = conferenceService;
@@ -50,11 +51,13 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public async Task SortByDateAsync()
 		{
+			_orderConferencesBy = OrderConferencesBy.Date;
 			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Start); });
 		}
 
 		public async Task SortByNameAsync()
 		{
+			_orderConferencesBy = OrderConferencesBy.Name;
 			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Name); });
 		}
 
@@ -127,6 +130,9 @@ namespace TekConf.Mobile.Core.ViewModels
 				if (_conferences != value)
 				{
 					_conferences = value.ToList();
+					_conferences = _orderConferencesBy == OrderConferencesBy.Name
+											? _conferences.OrderBy(c => c.Name).ToList()
+											: _conferences.OrderBy(c => c.Start).ToList();
 					RaisePropertyChanged(() => Conferences);
 				}
 			}

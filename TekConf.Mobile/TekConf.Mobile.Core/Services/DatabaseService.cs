@@ -46,7 +46,7 @@ namespace TekConf.Mobile.Core
 
 		public async Task SaveScheduledConferenceAsync (ScheduledConference scheduledConference)
 		{
-			//await _sqLiteConnection.InsertAsync (scheduledConference);
+			await _sqLiteConnection.InsertAsync (scheduledConference);
 		}
 
 		public async Task SaveAllConferencesAsync (List<Conference> conferences)
@@ -56,7 +56,7 @@ namespace TekConf.Mobile.Core
 
 		public async Task SaveAllScheduledConferencesAsync (List<ScheduledConference> scheduledConferences)
 		{
-			//await _sqLiteConnection.InsertAllAsync(scheduledConferences);
+			await _sqLiteConnection.InsertAllAsync(scheduledConferences);
 		}
 
 		public async Task SaveSessionAsync (Session session)
@@ -73,6 +73,14 @@ namespace TekConf.Mobile.Core
 		{
 			var conference = await _sqLiteConnection.Table<Conference>()
 														.Where(c => c.Id == conferenceId)
+														.FirstOrDefaultAsync();
+			return conference;
+		}
+
+		public async Task<Conference> LoadConferenceAsync(string name)
+		{
+			var conference = await _sqLiteConnection.Table<Conference>()
+														.Where(c => c.Name == name)
 														.FirstOrDefaultAsync();
 			return conference;
 		}

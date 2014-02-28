@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using Cirrious.CrossCore.Platform;
@@ -22,7 +23,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public ConferencesScheduleViewModel(
 			SQLiteAsyncConnection sqLiteConnection,
-			IRemoteConferenceService conferenceService, 
+			IRemoteConferenceService conferenceService,
 			IDatabaseService databaseService,
 			IMvxMessenger messenger)
 		{
@@ -34,7 +35,7 @@ namespace TekConf.Mobile.Core.ViewModels
 		public async void Init()
 		{
 
-			Mapper.CreateMap<ConferenceDto, ScheduledConference> ()
+			Mapper.CreateMap<ConferenceDto, ScheduledConference>()
 				.ForMember(x => x.StreetNumber, src => src.MapFrom(x => x.Address.StreetNumber))
 				.ForMember(x => x.StreetName, src => src.MapFrom(x => x.Address.StreetName))
 				.ForMember(x => x.City, src => src.MapFrom(x => x.Address.City))
@@ -54,7 +55,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public async Task SearchAsync(string query)
 		{
-			var conferences = await _databaseService.SearchScheduledConferences (query);
+			var conferences = await _databaseService.SearchScheduledConferences(query);
 			this.Conferences = conferences;
 		}
 
@@ -70,28 +71,28 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
-			_messenger.Publish (new ConferencesLoading (this));
+			_messenger.Publish(new ConferencesLoading(this));
 
 			List<ScheduledConference> scheduledConferences = await _databaseService.LoadScheduledConferencesAsync();
 
 			if (!scheduledConferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
-				await _databaseService.DeleteAllScheduledConferencesAsync ();
-				var scheduledConferenceDtos = await _conferenceService.LoadScheduledConferencesAsync ();
+				await _databaseService.DeleteAllScheduledConferencesAsync();
+				var scheduledConferenceDtos = await _conferenceService.LoadScheduledConferencesAsync();
 
 				foreach (var scheduledConferenceDto in scheduledConferenceDtos)
 				{
 					var dto = scheduledConferenceDto;
 					var scheduledConference = await TaskEx.Run(() => Mapper.Map<ScheduledConference>(dto));
-					await _databaseService.SaveScheduledConferenceAsync (scheduledConference);
+					await _databaseService.SaveScheduledConferenceAsync(scheduledConference);
 
-					//					foreach (var sessionDto in scheduledConferenceDto.Sessions)
-					//					{
-					//						SessionDto dto1 = sessionDto;
-					//						var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
-					//						session.ConferenceId = scheduledConference.Id;
-					//						await _databaseService.SaveSessionAsync (session);
-					//					}
+					//foreach (var sessionDto in scheduledConferenceDto.Sessions)
+					//{
+					//	SessionDto dto1 = sessionDto;
+					//	var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
+					//	session.ConferenceId = scheduledConference.Id;
+					//	await _databaseService.SaveSessionAsync(session);
+					//}
 				}
 
 				scheduledConferences = await _databaseService.LoadScheduledConferencesAsync();
@@ -99,7 +100,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			this.Conferences = scheduledConferences;
 
-			_messenger.Publish (new ConferencesLoaded (this));
+			_messenger.Publish(new ConferencesLoaded(this));
 		}
 
 		private IList<ScheduledConference> _conferences;
@@ -116,6 +117,20 @@ namespace TekConf.Mobile.Core.ViewModels
 					_conferences = value.ToList();
 					RaisePropertyChanged(() => Conferences);
 				}
+			}
+		}
+
+		public ICommand ShowDetailCommand
+		{
+			get
+			{
+				return new MvxCommand<ScheduledConference>(scheduledConference =>
+					{
+						var dbConference = TaskEx.Run(() => _databaseService.LoadConferenceAsync(scheduledConference.Name)).Result;
+
+						ShowViewModel<ConferenceDetailTabViewModel>(new { id = dbConference.Id });
+					}
+				);
 			}
 		}
 	}

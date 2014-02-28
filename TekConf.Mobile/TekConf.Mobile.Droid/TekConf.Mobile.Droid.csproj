@@ -221,25 +221,12 @@
     <AndroidResource Include="Resources\layout\ConferencesScheduleView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\calendar.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\check.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\cog.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\refresh.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\search.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\sortAlphaAsc.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\sortAlphaDesc.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\sortAsc.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\sortDesc.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\star.png" />
-    <AndroidResource Include="Resources\drawable-xxxhdpi\staro.png" />
     <AndroidResource Include="Resources\menu\ConferenceDetailActionItems.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\menu\ConferenceDetailSessionsActionItems.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
     <AndroidResource Include="Resources\layout\SessionDetailView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
@@ -305,9 +292,6 @@
     <Folder Include="Resources\drawable-mdpi\" />
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\drawable-xxxhdpi\" />
-    <Folder Include="Views\Session\" />
-    <Folder Include="Views\Session\Fragments\" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
