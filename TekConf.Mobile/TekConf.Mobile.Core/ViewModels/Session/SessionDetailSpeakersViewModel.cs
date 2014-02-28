@@ -1,18 +1,16 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Cirrious.MvvmCross.ViewModels;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
-	public class ConferenceDetailSessionsViewModel : BaseSubTabViewModel
+	public class SessionDetailSpeakersViewModel : BaseSubTabViewModel
 	{
 		private readonly IDatabaseService _databaseService;
 		private int _conferenceId;
 
-		public ConferenceDetailSessionsViewModel(IDatabaseService databaseService)
+		public SessionDetailSpeakersViewModel(IDatabaseService databaseService)
 		{
 			_databaseService = databaseService;
 		}
@@ -29,7 +27,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			this.AreSessionsLoading = true;
 
 			var sessions = await _databaseService.LoadSessionsAsync(_conferenceId);
-			
+
 			this.Sessions = sessions;
 
 			this.AreSessionsLoading = false;
@@ -86,16 +84,6 @@ namespace TekConf.Mobile.Core.ViewModels
 					_areSessionsLoading = value;
 					RaisePropertyChanged(() => AreSessionsLoading);
 				}
-			}
-		}
-
-		public ICommand ShowSessionCommand
-		{
-			get
-			{
-				return new MvxCommand<Session>(session => 
-					ShowViewModel<SessionDetailTabViewModel>(new { id = session.Id })
-				);
 			}
 		}
 	}

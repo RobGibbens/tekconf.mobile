@@ -1122,6 +1122,15 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f06005c
 			public const int menu_search = 2131099740;
 			
+			// aapt resource value: 0x7f060061
+			public const int menu_session_detail_favorite = 2131099745;
+			
+			// aapt resource value: 0x7f060063
+			public const int menu_session_speakers_favorite = 2131099747;
+			
+			// aapt resource value: 0x7f060062
+			public const int menu_session_speakers_search = 2131099746;
+			
 			// aapt resource value: 0x7f06005d
 			public const int menu_settings = 2131099741;
 			
@@ -1380,10 +1389,16 @@ namespace TekConf.Mobile.Droid
 			public const int Page_TabView = 2130903075;
 			
 			// aapt resource value: 0x7f030024
-			public const int SplashScreen = 2130903076;
+			public const int SessionDetailSpeakersView = 2130903076;
 			
 			// aapt resource value: 0x7f030025
-			public const int support_simple_spinner_dropdown_item = 2130903077;
+			public const int SessionDetailView = 2130903077;
+			
+			// aapt resource value: 0x7f030026
+			public const int SplashScreen = 2130903078;
+			
+			// aapt resource value: 0x7f030027
+			public const int support_simple_spinner_dropdown_item = 2130903079;
 			
 			static Layout()
 			{
@@ -1409,6 +1424,12 @@ namespace TekConf.Mobile.Droid
 			
 			// aapt resource value: 0x7f0e0003
 			public const int ConferencesListActionItems = 2131623939;
+			
+			// aapt resource value: 0x7f0e0004
+			public const int SessionDetailActionItems = 2131623940;
+			
+			// aapt resource value: 0x7f0e0005
+			public const int SessionDetailSpeakersActionItems = 2131623941;
 			
 			static Menu()
 			{

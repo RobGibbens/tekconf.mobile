@@ -4,9 +4,6 @@ using Cirrious.CrossCore;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
-
-	public delegate void ConferenceDetailChangedEventHandler(object sender, EventArgs e);
-
 	public class ConferenceDetailTabViewModel : BaseViewModel
 	{
 		public ConferenceDetailTabViewModel()

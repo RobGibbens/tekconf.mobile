@@ -12,8 +12,6 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +59,9 @@
     <Compile Include="Dtos\ConferenceDto.cs" />
     <Compile Include="Dtos\SessionDto.cs" />
     <Compile Include="Services\DatabaseService.cs" />
+    <Compile Include="ViewModels\Session\SessionDetailTabViewModel.cs" />
+    <Compile Include="ViewModels\Session\SessionDetailViewModel.cs" />
+    <Compile Include="ViewModels\Session\SessionDetailSpeakersViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -143,4 +144,7 @@
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Session\" />
+  </ItemGroup>
 </Project>

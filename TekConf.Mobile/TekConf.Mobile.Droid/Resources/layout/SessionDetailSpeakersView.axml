@@ -7,7 +7,7 @@
     <Mvx.MvxListView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource Sessions; ItemClick ShowSessionCommand"
+        local:MvxBind="ItemsSource Sessions"
         local:MvxItemTemplate="@layout/item_session"
         android:background="@android:color/white"
         android:divider="@android:color/transparent"

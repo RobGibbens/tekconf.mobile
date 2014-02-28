@@ -163,6 +163,10 @@
     <Compile Include="Code\TekConfGridView.cs" />
     <Compile Include="Code\BindableProgress.cs" />
     <Compile Include="Code\ToDo.cs" />
+    <Compile Include="Views\Session\SessionDetailTabView.cs" />
+    <Compile Include="Views\Session\SessionDetailView.cs" />
+    <Compile Include="Views\Session\Fragments\SessionDetailFragment.cs" />
+    <Compile Include="Views\Session\Fragments\SessionDetailSpeakersFragment.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -236,6 +240,18 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
+    <AndroidResource Include="Resources\layout\SessionDetailView.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\SessionDetailSpeakersView.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\SessionDetailActionItems.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\SessionDetailSpeakersActionItems.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -287,6 +303,8 @@
     <Folder Include="Resources\drawable-xhdpi\" />
     <Folder Include="Resources\drawable-xxhdpi\" />
     <Folder Include="Resources\drawable-xxxhdpi\" />
+    <Folder Include="Views\Session\" />
+    <Folder Include="Views\Session\Fragments\" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

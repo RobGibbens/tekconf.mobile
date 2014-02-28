@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:id="@+id/menu_session_speakers_search" android:title="Search" android:showAsAction="always" android:actionViewClass="android.widget.SearchView"/>
+	<item android:id="@+id/menu_session_speakers_favorite" android:icon="@drawable/staro" android:title="Add to Schedule" android:showAsAction="ifRoom"/>
+</menu>

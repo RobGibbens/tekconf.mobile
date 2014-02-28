@@ -5,7 +5,6 @@ namespace TekConf.Mobile.Core.ViewModels
 {
 	public class ConferenceDetailViewModel : BaseSubTabViewModel
 	{
-		public event ConferenceDetailChangedEventHandler Changed;
 		private int _conferenceId;
 
 		IDatabaseService _databaseService;
@@ -19,12 +18,6 @@ namespace TekConf.Mobile.Core.ViewModels
 		{
 			_conferenceId = id;
 			await LoadConferencesAsync();
-		}
-
-		protected virtual void OnChanged(EventArgs e)
-		{
-			if (Changed != null)
-				Changed(this, e);
 		}
 
 		private bool _isConferenceLoading;
@@ -50,7 +43,6 @@ namespace TekConf.Mobile.Core.ViewModels
 			this.Conference = conference;
 
 			this.IsConferenceLoading = false;
-			OnChanged(EventArgs.Empty);
 		}
 			
 		private async Task<Conference> LoadConferenceFromLocalAsync()

@@ -8,6 +8,7 @@ namespace TekConf.Mobile.Core
 		Task<List<Conference>> LoadConferencesAsync();
 		Task<List<ScheduledConference>> LoadScheduledConferencesAsync();
 		Task<Conference> LoadConferenceAsync(int conferenceId);
+		Task<Session> LoadSessionAsync(int sessionId);
 		Task<List<Session>> LoadSessionsAsync(int conferenceId);
 		Task<List<Session>> LoadFavoriteSessionsAsync(int conferenceId);
 
