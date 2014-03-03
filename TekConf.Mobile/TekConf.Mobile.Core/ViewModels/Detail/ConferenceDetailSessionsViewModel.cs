@@ -98,5 +98,13 @@ namespace TekConf.Mobile.Core.ViewModels
 				);
 			}
 		}
+
+		public ICommand ShowSettingsCommand
+		{
+			get
+			{
+				return new MvxCommand<Conference>(conference => ShowViewModel<SettingsDetailTabViewModel>());
+			}
+		}
 	}
 }

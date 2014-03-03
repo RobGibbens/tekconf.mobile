@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Cirrious.MvvmCross.ViewModels;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -82,6 +84,15 @@ namespace TekConf.Mobile.Core.ViewModels
 					_areSessionsLoading = value;
 					RaisePropertyChanged(() => AreSessionsLoading);
 				}
+			}
+		}
+
+
+		public ICommand ShowSettingsCommand
+		{
+			get
+			{
+				return new MvxCommand<Conference>(conference => ShowViewModel<SettingsDetailTabViewModel>());
 			}
 		}
 	}

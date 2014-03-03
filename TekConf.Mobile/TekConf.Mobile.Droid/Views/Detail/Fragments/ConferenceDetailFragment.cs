@@ -38,7 +38,7 @@ namespace TekConf.Mobile.Droid.Views
 						//Task.Factory.StartNew(() => vm.RefreshAsync().Wait());
 						break;
 					case "Settings":
-						//vm.ShowSettingsCommand.Execute (null);
+						vm.ShowSettingsCommand.Execute (null);
 						break;
 				}
 			}

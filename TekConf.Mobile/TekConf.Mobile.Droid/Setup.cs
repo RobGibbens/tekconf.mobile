@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using Android.Content;
-using Android.Widget;
 using Cirrious.CrossCore.Converters;
 using Cirrious.CrossCore.Platform;
 using Cirrious.MvvmCross.Binding;
-using Cirrious.MvvmCross.Binding.Bindings.Target.Construction;
-using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Platform;
 using Cirrious.MvvmCross.ViewModels;
 using Cirrious.CrossCore;
@@ -16,12 +13,10 @@ using System.Net.Http;
 using ModernHttpClient;
 using Cirrious.MvvmCross.Plugins.DownloadCache;
 using System.Net.Http.Headers;
-using SQLite;
 using SQLite.Net;
 using SQLite.Net.Async;
-using SQLite.Net.Interop;
 using SQLite.Net.Platform.XamarinAndroid;
-using TekConf.Mobile.Core;
+using TekConf.Mobile.Core.Services;
 using TekConf.Mobile.Droid.Code;
 
 namespace TekConf.Mobile.Droid
@@ -44,6 +39,7 @@ namespace TekConf.Mobile.Droid
 			var sqLiteConnection = CreateSqLiteConnection();
 
 			Mvx.RegisterSingleton(sqLiteConnection);
+			Mvx.RegisterType(typeof(IAuthenticationService), typeof(AuthenticationService));
 
 			return new Core.App();
 		}

@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Cirrious.MvvmCross.ViewModels;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -66,6 +68,14 @@ namespace TekConf.Mobile.Core.ViewModels
 					_conference = value;
 					RaisePropertyChanged(() => Conference);
 				}
+			}
+		}
+
+		public ICommand ShowSettingsCommand
+		{
+			get
+			{
+				return new MvxCommand<Conference>(conference => ShowViewModel<SettingsDetailTabViewModel>());
 			}
 		}
 	}

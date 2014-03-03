@@ -71,6 +71,14 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 		}
 
+		public ICommand ShowSettingsCommand
+		{
+			get
+			{
+				return new MvxCommand<Conference>(conference => ShowViewModel<SettingsDetailTabViewModel>());
+			}
+		}
+
 		public async Task SearchAsync(string query)
 		{
 			var conferences = await _databaseService.SearchConferencesAsync (query);

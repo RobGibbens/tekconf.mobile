@@ -43,13 +43,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkSkip />
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <BundleAssemblies>False</BundleAssemblies>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cirrious.MvvmCross.Droid.Fragging">
       <HintPath>..\packages\MvvmCross.HotTuna.Droid.Fragging.3.1.1\lib\MonoAndroid\Cirrious.MvvmCross.Droid.Fragging.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile">
+      <HintPath>..\Components\azure-mobile-services-1.1.0\lib\android\Microsoft.WindowsAzure.Mobile.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Mobile.Ext">
+      <HintPath>..\Components\azure-mobile-services-1.1.0\lib\android\Microsoft.WindowsAzure.Mobile.Ext.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Json" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
@@ -132,10 +143,15 @@
     <Reference Include="Xamarin.Android.Support.v7.AppCompat">
       <HintPath>..\Components\xamandroidsupportv7appcompat-7.18.0\lib\android\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Auth.Android">
+      <HintPath>..\Components\xamarin.auth-1.2.2\lib\android\Xamarin.Auth.Android.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Code\Extensions.cs" />
     <Compile Include="Code\FavoriteImageViewBinding.cs" />
     <Compile Include="Code\TekConfTextView.cs" />
+    <Compile Include="Code\AuthenticationService.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Detail\ConferenceDetailTabView.cs" />
@@ -167,6 +183,8 @@
     <Compile Include="Views\Session\SessionDetailView.cs" />
     <Compile Include="Views\Session\Fragments\SessionDetailFragment.cs" />
     <Compile Include="Views\Session\Fragments\SessionDetailSpeakersFragment.cs" />
+    <Compile Include="Views\Settings\Fragments\LoginFragment.cs" />
+    <Compile Include="Views\Settings\SettingsDetailTabView.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -215,6 +233,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\item_session.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\LoginView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
@@ -275,24 +296,44 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\check.png" />
+    <AndroidResource Include="Resources\drawable\twitterLogin.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\twitterLogin.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\twitterLogin.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\twitterLogin.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\twitterLogin.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\twitterLogin.png" />
+    <AndroidResource Include="Resources\drawable\facebookLogin.png" />
+    <AndroidResource Include="Resources\drawable\twitter.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\facebookLogin.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\facebookLogin.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\facebookLogin.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\facebookLogin.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\facebookLogin.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\twitter.png" />
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="AndHUD">
       <Version>1.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="azure-mobile-services">
+      <Visible>False</Visible>
+      <Version>1.1.0</Version>
+    </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7appcompat">
       <Version>7.18.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+    <XamarinComponentReference Include="xamarin.auth">
+      <Visible>False</Visible>
+      <Version>1.2.2</Version>
+    </XamarinComponentReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\drawable-hdpi\" />
-    <Folder Include="Resources\drawable-ldpi\" />
-    <Folder Include="Resources\drawable-mdpi\" />
-    <Folder Include="Resources\drawable-xhdpi\" />
-    <Folder Include="Resources\drawable-xxhdpi\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

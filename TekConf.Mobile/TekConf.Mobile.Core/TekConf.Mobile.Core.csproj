@@ -37,6 +37,8 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Services\IAuthenticationService.cs" />
+    <Compile Include="Services\MobileServiceAuthenticationProvider.cs" />
     <Compile Include="ViewModels\Base\BaseSubTabViewModel.cs" />
     <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\Detail\ConferenceDetailLocationViewModel.cs" />
@@ -66,6 +68,8 @@
     <Compile Include="Models\Speaker.cs" />
     <Compile Include="Dtos\SpeakerDto.cs" />
     <Compile Include="Dtos\Address.cs" />
+    <Compile Include="ViewModels\Settings\SettingsDetailTabViewModel.cs" />
+    <Compile Include="ViewModels\Settings\LoginViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>
@@ -100,9 +104,6 @@
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks.Extensions">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\portable-net40+sl4+win8+wp71\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\MvvmCross.HotTuna.Plugin.Json.3.1.1\lib\portable-win+net45+sl50+wp8+MonoAndroid+MonoTouch\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SQLite.Net">
       <HintPath>..\packages\SQLite.Net-PCL.2.1.0\lib\portable-net4+sl4+wp7+win8+monotouch+MonoAndroid\SQLite.Net.dll</HintPath>
