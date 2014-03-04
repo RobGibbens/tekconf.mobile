@@ -1,39 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px"
-    android:textColor="@android:color/black"
-    android:background="@android:color/white">
-    <TextView
-        android:text="Login"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
+    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/relativeLayout1">
     <ImageButton
-        android:src="@drawable/twitter"
         android:id="@+id/loginWithTwitterButton"
+        android:src="@drawable/twitter"
         android:background="@android:color/white"
-        android:maxWidth="128dp"
-        android:maxHeight="128dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
         android:layout_width="128dp"
         android:layout_height="128dp"
+        android:maxHeight="128dp"
+        android:maxWidth="128dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
         local:MvxBind="Click LoginWithTwitterCommand" />
     <ImageButton
+        android:id="@+id/loginWithFacebookButton"
         android:src="@drawable/facebookLogin"
+        android:background="@android:color/white"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:id="@+id/loginWithFacebookButton"
-        local:MvxBind="Click LoginWithFacebookCommand"
-        android:background="@android:color/white"
+        android:maxHeight="128dp"
+        android:maxWidth="128dp"
         android:scaleType="fitCenter"
         android:adjustViewBounds="true"
-        android:maxHeight="128dp"
-        android:maxWidth="128dp" />
-</LinearLayout>
+        android:layout_toRightOf="@+id/loginWithTwitterButton"
+        android:layout_alignParentRight="true"
+        local:MvxBind="Click LoginWithFacebookCommand" />
+</RelativeLayout>

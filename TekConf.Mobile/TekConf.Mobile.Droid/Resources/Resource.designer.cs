@@ -1173,6 +1173,9 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f06002e
 			public const int radio = 2131099694;
 			
+			// aapt resource value: 0x7f060052
+			public const int relativeLayout1 = 2131099730;
+			
 			// aapt resource value: 0x7f060033
 			public const int right_container = 2131099699;
 			
@@ -1247,9 +1250,6 @@ namespace TekConf.Mobile.Droid
 			
 			// aapt resource value: 0x7f060002
 			public const int tabMode = 2131099650;
-			
-			// aapt resource value: 0x7f060052
-			public const int textView1 = 2131099730;
 			
 			// aapt resource value: 0x7f06004f
 			public const int textViewStatus = 2131099727;
