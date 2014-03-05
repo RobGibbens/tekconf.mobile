@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:local="http://schemas.android.com/apk/res-auto"
-    android:minWidth="25px"
-    android:minHeight="25px"
-    android:background="@android:color/white"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/relativeLayout1">
-    <ImageButton
-        android:id="@+id/loginWithTwitterButton"
-        android:src="@drawable/twitter"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
+    <Mvx.MvxGridView
+        android:id="@+id/loginGridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="1dp"
+        android:horizontalSpacing="1dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="2"
         android:background="@android:color/white"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:maxHeight="128dp"
-        android:maxWidth="128dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        local:MvxBind="Click LoginWithTwitterCommand" />
-    <ImageButton
-        android:id="@+id/loginWithFacebookButton"
-        android:src="@drawable/facebookLogin"
-        android:background="@android:color/white"
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:maxHeight="128dp"
-        android:maxWidth="128dp"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"
-        android:layout_toRightOf="@+id/loginWithTwitterButton"
-        android:layout_alignParentRight="true"
-        local:MvxBind="Click LoginWithFacebookCommand" />
-</RelativeLayout>
+        local:MvxBind="ItemsSource LoginProviders; ItemClick LoginCommand"
+        local:MvxItemTemplate="@layout/item_login" />
+</LinearLayout>

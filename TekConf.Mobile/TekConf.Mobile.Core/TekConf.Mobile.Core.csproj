@@ -32,6 +32,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Models\LoginProvider.cs" />
     <Compile Include="Models\Session.cs" />
     <Compile Include="Models\SessionScheduleState.cs" />
     <Compile Include="Properties\Annotations.cs" />

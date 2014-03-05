@@ -201,7 +201,7 @@
     <AndroidAsset Include="Assets\fonts\OpenSans-Semibold.ttf" />
     <AndroidAsset Include="Assets\fonts\OpenSans-SemiboldItalic.ttf" />
     <None Include="Resources\AboutResources.txt" />
-    <None Include="Assets\AboutAssets.txt" />
+    <AndroidAsset Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
     <AndroidResource Include="Resources\layout\ConferencesView.axml">
       <SubType>Designer</SubType>
@@ -236,6 +236,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\LoginView.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\item_login.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />
@@ -282,6 +285,10 @@
   <ItemGroup>
     <AndroidAsset Include="Assets\sessionstates\added.png" />
     <AndroidAsset Include="Assets\sessionstates\notadded.png" />
+    <AndroidAsset Include="Assets\twitter.png" />
+    <AndroidAsset Include="Assets\facebookLogin.png" />
+    <AndroidAsset Include="Assets\Google.png" />
+    <AndroidAsset Include="Assets\Microsoft.png" />
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\drawable\sortAlphaAsc.png" />
     <AndroidResource Include="Resources\drawable\sortAlphaDesc.png" />
