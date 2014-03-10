@@ -5,6 +5,7 @@ using Cirrious.CrossCore;
 using Cirrious.CrossCore.Droid.Platform;
 using Microsoft.WindowsAzure.MobileServices;
 using TekConf.Mobile.Core.Services;
+using System.Threading;
 
 namespace TekConf.Mobile.Droid.Code
 {
@@ -15,7 +16,7 @@ namespace TekConf.Mobile.Droid.Code
 		private IMvxAndroidCurrentTopActivity _currentActivity;
 		private Core.Services.MobileServiceAuthenticationProvider _provider;
 
-		public async Task Login(Core.Services.MobileServiceAuthenticationProvider provider)
+		public async Task<MobileUser> Login(Core.Services.MobileServiceAuthenticationProvider provider)
 		{
 			_provider = provider;
 			_currentActivity = Mvx.Resolve<IMvxAndroidCurrentTopActivity>();
@@ -27,8 +28,9 @@ namespace TekConf.Mobile.Droid.Code
 				"NeMPYjchPdsFKlUqDdyAJYZtdrOPiJ11");
 
 			await Authenticate();
-
+			return new MobileUser { Token = _user.MobileServiceAuthenticationToken, UserId = _user.UserId };
 		}
+
 		void CreateAndShowDialog(Exception exception, String title)
 		{
 			CreateAndShowDialog(exception.Message, title);
@@ -48,12 +50,23 @@ namespace TekConf.Mobile.Droid.Code
 			try
 			{
 				_user = await _client.LoginAsync(_currentActivity.Activity, _provider.AsMobileServiceProvider());
-				CreateAndShowDialog(string.Format("you are now logged in - {0}", _user.UserId), "Logged in!");
+
+
+				//CreateAndShowDialog(string.Format("you are now logged in - {0}", _user.UserId), "Logged in!");
 			}
 			catch (Exception ex)
 			{
 				CreateAndShowDialog(ex, "Authentication failed");
 			}
 		}
+
+
+
+
+
+
+
+
+
 	}
 }

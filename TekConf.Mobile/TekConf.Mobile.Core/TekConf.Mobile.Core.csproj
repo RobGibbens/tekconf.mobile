@@ -71,6 +71,8 @@
     <Compile Include="Dtos\Address.cs" />
     <Compile Include="ViewModels\Settings\SettingsDetailTabViewModel.cs" />
     <Compile Include="ViewModels\Settings\LoginViewModel.cs" />
+    <Compile Include="Services\MobileUser.cs" />
+    <Compile Include="Services\TekConfUser.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

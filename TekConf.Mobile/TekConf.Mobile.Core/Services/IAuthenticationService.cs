@@ -4,6 +4,6 @@ namespace TekConf.Mobile.Core.Services
 {
 	public interface IAuthenticationService
 	{
-		Task Login(MobileServiceAuthenticationProvider provider);
+		Task<MobileUser> Login(MobileServiceAuthenticationProvider provider);
 	}
 }
