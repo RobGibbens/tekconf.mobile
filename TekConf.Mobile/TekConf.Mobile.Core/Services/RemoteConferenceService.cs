@@ -29,9 +29,9 @@ namespace TekConf.Mobile.Core
 			return conferences.OrderBy(c => c.Start).ToList();
 		}
 
-		public async Task<List<ConferenceDto>> LoadScheduledConferencesAsync()
+		public async Task<List<ConferenceDto>> LoadScheduledConferencesAsync(string userName)
 		{
-			string url = string.Format(TekConfApi.BaseUrl + "/conferences/schedules?userName={0}", "robgibbens");
+			string url = string.Format(TekConfApi.BaseUrl + "/conferences/schedules?userName={0}", userName);
 
 			var json = await _httpClient.GetStringAsync(url);
 			var conferences = await TaskEx.Run(() => _jsonConverter.DeserializeObject<List<ConferenceDto>>(json));

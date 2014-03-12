@@ -9,6 +9,7 @@ using Android.Views.InputMethods;
 using System.Threading.Tasks;
 using System;
 using Cirrious.MvvmCross.Droid.Fragging;
+using Cirrious.MvvmCross.Binding.Droid.Views;
 
 namespace TekConf.Mobile.Droid.Views
 {
@@ -24,6 +25,9 @@ namespace TekConf.Mobile.Droid.Views
 		{
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
+			var listView = this.Activity.FindViewById<MvxListView> (Resource.Id.gridview);
+			var emptyView = this.Activity.FindViewById<TextView> (Resource.Id.emptyConferences);
+			listView.EmptyView = emptyView;
 		}
 
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)

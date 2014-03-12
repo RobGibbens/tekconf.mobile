@@ -1,12 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs">
     <Files>
-      <File FileName="TekConf.Mobile.Droid/Code/AuthenticationService.cs" Line="52" Column="1" />
-      <File FileName="TekConf.Mobile.Core/ViewModels/Settings/LoginViewModel.cs" Line="73" Column="3" />
-      <File FileName="TekConf.Mobile.Core/Services/IAuthenticationService.cs" Line="9" Column="2" />
-      <File FileName="TekConf.Mobile.Core/Services/RemoteConferenceService.cs" Line="32" Column="49" />
-      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs" Line="72" Column="24" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/ConferencesView.cs" Line="1" Column="1" />
+      <File FileName="TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" Line="28" Column="82" />
+      <File FileName="TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs" Line="77" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -14,10 +12,15 @@
       <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Core/ViewModels/Settings/LoginViewModel.cs" line="104" column="1" />
       <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Core/Services/RemoteConferenceService.cs" line="34" column="92" />
       <Breakpoint file="/Users/rob/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs" line="81" column="60" />
+      <Breakpoint file="/Users/robertgibbens/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Core/ViewModels/List/ConferencesScheduleViewModel.cs" line="54" column="24" />
+      <Breakpoint file="/Users/robertgibbens/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Core/ViewModels/Settings/LoginViewModel.cs" line="109" column="1" />
+      <Breakpoint file="/Users/robertgibbens/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Core/ViewModels/Settings/LoginViewModel.cs" line="75" column="1" />
+      <Breakpoint file="/Users/robertgibbens/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Core/ViewModels/Settings/LoginViewModel.cs" line="76" column="1" />
+      <Breakpoint file="/Users/robertgibbens/dev/tekconf.mobile/TekConf.Mobile/TekConf.Mobile.Droid/Views/List/Fragments/ConferencesListFragment.cs" line="27" column="1" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="TekConf.Mobile.Core/ViewModels/List/ConferencesViewModel.cs" line="105" offsetX="675" offsetY="1444" expression="conference.Id" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
-  <MonoDevelop.Ide.ItemProperties.TekConf.Mobile.Droid MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="192.168.56.101:5555" />
+  <MonoDevelop.Ide.ItemProperties.TekConf.Mobile.Droid MonoForAntroid.PreferredDevice="3.7in WVGA (Nexus One)" AndroidDeviceId-Debug="emulator-5554" />
 </Properties>

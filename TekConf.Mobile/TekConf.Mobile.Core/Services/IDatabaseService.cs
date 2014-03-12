@@ -30,5 +30,8 @@ namespace TekConf.Mobile.Core
 		Task<List<Session>> SearchSessionsAsync (int id, string query);
 		Task<List<Conference>> SearchConferencesAsync (string query);
 		Task<List<ScheduledConference>> SearchScheduledConferences (string query);
+
+		Task SaveCurrentUserAsync (User user);
+		Task<User> LoadCurrentUserAsync ();
 	}
 }

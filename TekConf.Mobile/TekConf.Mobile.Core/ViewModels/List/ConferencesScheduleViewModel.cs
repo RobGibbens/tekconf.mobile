@@ -20,6 +20,7 @@ namespace TekConf.Mobile.Core.ViewModels
 		private readonly IRemoteConferenceService _conferenceService;
 		private readonly IDatabaseService _databaseService;
 		private readonly IMvxMessenger _messenger;
+		private User _currentUser;
 
 		public ConferencesScheduleViewModel(
 			SQLiteAsyncConnection sqLiteConnection,
@@ -45,7 +46,7 @@ namespace TekConf.Mobile.Core.ViewModels
 				.ForMember(c => c.Latitude, opt => opt.ResolveUsing<TekConf.Mobile.Core.ViewModels.ConferencesViewModel.LatitudeResolver>())
 				.ForMember(c => c.Longitude, opt => opt.ResolveUsing<TekConf.Mobile.Core.ViewModels.ConferencesViewModel.LongitudeResolver>());
 
-			await LoadConferencesAsync(LoadRequest.Load);
+				await LoadConferencesAsync (LoadRequest.Load);
 		}
 
 		public async Task RefreshAsync()
@@ -73,32 +74,34 @@ namespace TekConf.Mobile.Core.ViewModels
 		{
 			_messenger.Publish(new ConferencesLoading(this));
 
-			List<ScheduledConference> scheduledConferences = await _databaseService.LoadScheduledConferencesAsync();
+			_currentUser = await _databaseService.LoadCurrentUserAsync ();
+			if (_currentUser != null) {
 
-			if (!scheduledConferences.Any() || loadRequest == LoadRequest.Refresh)
-			{
-				await _databaseService.DeleteAllScheduledConferencesAsync();
-				var scheduledConferenceDtos = await _conferenceService.LoadScheduledConferencesAsync();
+				List<ScheduledConference> scheduledConferences = await _databaseService.LoadScheduledConferencesAsync ();
 
-				foreach (var scheduledConferenceDto in scheduledConferenceDtos)
-				{
-					var dto = scheduledConferenceDto;
-					var scheduledConference = await TaskEx.Run(() => Mapper.Map<ScheduledConference>(dto));
-					await _databaseService.SaveScheduledConferenceAsync(scheduledConference);
+				if (!scheduledConferences.Any () || loadRequest == LoadRequest.Refresh) {
+					await _databaseService.DeleteAllScheduledConferencesAsync ();
+					var scheduledConferenceDtos = await _conferenceService.LoadScheduledConferencesAsync (_currentUser.UserName);
 
-					//foreach (var sessionDto in scheduledConferenceDto.Sessions)
-					//{
-					//	SessionDto dto1 = sessionDto;
-					//	var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
-					//	session.ConferenceId = scheduledConference.Id;
-					//	await _databaseService.SaveSessionAsync(session);
-					//}
+					foreach (var scheduledConferenceDto in scheduledConferenceDtos) {
+						var dto = scheduledConferenceDto;
+						var scheduledConference = await TaskEx.Run (() => Mapper.Map<ScheduledConference> (dto));
+						await _databaseService.SaveScheduledConferenceAsync (scheduledConference);
+
+						//foreach (var sessionDto in scheduledConferenceDto.Sessions)
+						//{
+						//	SessionDto dto1 = sessionDto;
+						//	var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
+						//	session.ConferenceId = scheduledConference.Id;
+						//	await _databaseService.SaveSessionAsync(session);
+						//}
+					}
+
+					scheduledConferences = await _databaseService.LoadScheduledConferencesAsync ();
 				}
 
-				scheduledConferences = await _databaseService.LoadScheduledConferencesAsync();
+				this.Conferences = scheduledConferences;
 			}
-
-			this.Conferences = scheduledConferences;
 
 			_messenger.Publish(new ConferencesLoaded(this));
 		}

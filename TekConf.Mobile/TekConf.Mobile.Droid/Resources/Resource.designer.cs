@@ -1014,17 +1014,17 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f06000d
 			public const int collapseActionView = 2131099661;
 			
+			// aapt resource value: 0x7f060049
+			public const int conferenceCity = 2131099721;
+			
 			// aapt resource value: 0x7f060048
-			public const int conferenceCity = 2131099720;
-			
-			// aapt resource value: 0x7f060047
-			public const int conferenceDateRange = 2131099719;
-			
-			// aapt resource value: 0x7f060045
-			public const int conferenceImage = 2131099717;
+			public const int conferenceDateRange = 2131099720;
 			
 			// aapt resource value: 0x7f060046
-			public const int conferenceName = 2131099718;
+			public const int conferenceImage = 2131099718;
+			
+			// aapt resource value: 0x7f060047
+			public const int conferenceName = 2131099719;
 			
 			// aapt resource value: 0x7f060027
 			public const int default_activity_button = 2131099687;
@@ -1040,6 +1040,9 @@ namespace TekConf.Mobile.Droid
 			
 			// aapt resource value: 0x7f060037
 			public const int edit_query = 2131099703;
+			
+			// aapt resource value: 0x7f060045
+			public const int emptyConferences = 2131099717;
 			
 			// aapt resource value: 0x7f060013
 			public const int end = 2131099667;
@@ -1077,80 +1080,80 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f060028
 			public const int list_item = 2131099688;
 			
-			// aapt resource value: 0x7f060051
-			public const int loadingImage = 2131099729;
-			
-			// aapt resource value: 0x7f06004f
-			public const int loadingProgressBar = 2131099727;
-			
 			// aapt resource value: 0x7f060052
-			public const int loadingProgressWheel = 2131099730;
+			public const int loadingImage = 2131099730;
 			
-			// aapt resource value: 0x7f060049
-			public const int loginButton = 2131099721;
+			// aapt resource value: 0x7f060050
+			public const int loadingProgressBar = 2131099728;
 			
 			// aapt resource value: 0x7f060053
-			public const int loginGridView = 2131099731;
+			public const int loadingProgressWheel = 2131099731;
 			
-			// aapt resource value: 0x7f06005a
-			public const int menu_conference_detail_refresh = 2131099738;
-			
-			// aapt resource value: 0x7f06005d
-			public const int menu_conference_detail_sessions_refresh = 2131099741;
-			
-			// aapt resource value: 0x7f06005b
-			public const int menu_conference_detail_sessions_search = 2131099739;
-			
-			// aapt resource value: 0x7f06005c
-			public const int menu_conference_detail_sessions_settings = 2131099740;
-			
-			// aapt resource value: 0x7f06005e
-			public const int menu_conference_detail_sessions_sortByDate = 2131099742;
-			
-			// aapt resource value: 0x7f06005f
-			public const int menu_conference_detail_sessions_sortByTitle = 2131099743;
-			
-			// aapt resource value: 0x7f060059
-			public const int menu_conference_detail_settings = 2131099737;
-			
-			// aapt resource value: 0x7f060056
-			public const int menu_conference_refresh = 2131099734;
+			// aapt resource value: 0x7f06004a
+			public const int loginButton = 2131099722;
 			
 			// aapt resource value: 0x7f060054
-			public const int menu_conference_search = 2131099732;
+			public const int loginGridView = 2131099732;
 			
-			// aapt resource value: 0x7f060055
-			public const int menu_conference_settings = 2131099733;
+			// aapt resource value: 0x7f06005b
+			public const int menu_conference_detail_refresh = 2131099739;
 			
-			// aapt resource value: 0x7f060057
-			public const int menu_conference_sortByDate = 2131099735;
+			// aapt resource value: 0x7f06005e
+			public const int menu_conference_detail_sessions_refresh = 2131099742;
 			
-			// aapt resource value: 0x7f060058
-			public const int menu_conference_sortByName = 2131099736;
+			// aapt resource value: 0x7f06005c
+			public const int menu_conference_detail_sessions_search = 2131099740;
 			
-			// aapt resource value: 0x7f060062
-			public const int menu_refresh = 2131099746;
+			// aapt resource value: 0x7f06005d
+			public const int menu_conference_detail_sessions_settings = 2131099741;
+			
+			// aapt resource value: 0x7f06005f
+			public const int menu_conference_detail_sessions_sortByDate = 2131099743;
 			
 			// aapt resource value: 0x7f060060
-			public const int menu_search = 2131099744;
+			public const int menu_conference_detail_sessions_sortByTitle = 2131099744;
 			
-			// aapt resource value: 0x7f060065
-			public const int menu_session_detail_favorite = 2131099749;
+			// aapt resource value: 0x7f06005a
+			public const int menu_conference_detail_settings = 2131099738;
 			
-			// aapt resource value: 0x7f060067
-			public const int menu_session_speakers_favorite = 2131099751;
+			// aapt resource value: 0x7f060057
+			public const int menu_conference_refresh = 2131099735;
 			
-			// aapt resource value: 0x7f060066
-			public const int menu_session_speakers_search = 2131099750;
+			// aapt resource value: 0x7f060055
+			public const int menu_conference_search = 2131099733;
 			
-			// aapt resource value: 0x7f060061
-			public const int menu_settings = 2131099745;
+			// aapt resource value: 0x7f060056
+			public const int menu_conference_settings = 2131099734;
+			
+			// aapt resource value: 0x7f060058
+			public const int menu_conference_sortByDate = 2131099736;
+			
+			// aapt resource value: 0x7f060059
+			public const int menu_conference_sortByName = 2131099737;
 			
 			// aapt resource value: 0x7f060063
-			public const int menu_sortByDate = 2131099747;
+			public const int menu_refresh = 2131099747;
+			
+			// aapt resource value: 0x7f060061
+			public const int menu_search = 2131099745;
+			
+			// aapt resource value: 0x7f060066
+			public const int menu_session_detail_favorite = 2131099750;
+			
+			// aapt resource value: 0x7f060068
+			public const int menu_session_speakers_favorite = 2131099752;
+			
+			// aapt resource value: 0x7f060067
+			public const int menu_session_speakers_search = 2131099751;
+			
+			// aapt resource value: 0x7f060062
+			public const int menu_settings = 2131099746;
 			
 			// aapt resource value: 0x7f060064
-			public const int menu_sortByName = 2131099748;
+			public const int menu_sortByDate = 2131099748;
+			
+			// aapt resource value: 0x7f060065
+			public const int menu_sortByName = 2131099749;
 			
 			// aapt resource value: 0x7f060012
 			public const int middle = 2131099666;
@@ -1212,14 +1215,14 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f060042
 			public const int search_voice_btn = 2131099714;
 			
+			// aapt resource value: 0x7f06004d
+			public const int sessionRoom = 2131099725;
+			
 			// aapt resource value: 0x7f06004c
-			public const int sessionRoom = 2131099724;
+			public const int sessionStart = 2131099724;
 			
 			// aapt resource value: 0x7f06004b
-			public const int sessionStart = 2131099723;
-			
-			// aapt resource value: 0x7f06004a
-			public const int sessionTitle = 2131099722;
+			public const int sessionTitle = 2131099723;
 			
 			// aapt resource value: 0x7f06002d
 			public const int shortcut = 2131099693;
@@ -1233,11 +1236,11 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f060006
 			public const int showTitle = 2131099654;
 			
-			// aapt resource value: 0x7f06004e
-			public const int speakerDescription = 2131099726;
+			// aapt resource value: 0x7f06004f
+			public const int speakerDescription = 2131099727;
 			
-			// aapt resource value: 0x7f06004d
-			public const int speakerName = 2131099725;
+			// aapt resource value: 0x7f06004e
+			public const int speakerName = 2131099726;
 			
 			// aapt resource value: 0x7f06001d
 			public const int split_action_bar = 2131099677;
@@ -1248,8 +1251,8 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f060002
 			public const int tabMode = 2131099650;
 			
-			// aapt resource value: 0x7f060050
-			public const int textViewStatus = 2131099728;
+			// aapt resource value: 0x7f060051
+			public const int textViewStatus = 2131099729;
 			
 			// aapt resource value: 0x7f06002a
 			public const int title = 2131099690;

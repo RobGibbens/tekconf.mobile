@@ -189,12 +189,25 @@ namespace TekConf.Mobile.Core
 			return sessions;
 		}
 
+		public async Task SaveCurrentUserAsync (User user)
+		{
+			await _sqLiteConnection.InsertAsync(user);
+		}
+
+		public async Task<User> LoadCurrentUserAsync ()
+		{
+			var user = await _sqLiteConnection.Table<User> ().FirstOrDefaultAsync ();
+
+			return user;
+		}
+
 		public async Task CreateDatabase()
 		{
 			await _sqLiteConnection.CreateTableAsync<Conference>();
 			await _sqLiteConnection.CreateTableAsync<Session>();
 			await _sqLiteConnection.CreateTableAsync<ScheduledConference> ();
 			await _sqLiteConnection.CreateTableAsync<Speaker> ();
+			await _sqLiteConnection.CreateTableAsync<User>();
 
 			//Task.WaitAll(conferenceTask, sessionTask, scheduledConferenceTask);
 		}

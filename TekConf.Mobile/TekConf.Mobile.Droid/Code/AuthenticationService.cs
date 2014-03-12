@@ -50,8 +50,6 @@ namespace TekConf.Mobile.Droid.Code
 			try
 			{
 				_user = await _client.LoginAsync(_currentActivity.Activity, _provider.AsMobileServiceProvider());
-
-
 				//CreateAndShowDialog(string.Format("you are now logged in - {0}", _user.UserId), "Logged in!");
 			}
 			catch (Exception ex)
@@ -59,14 +57,6 @@ namespace TekConf.Mobile.Droid.Code
 				CreateAndShowDialog(ex, "Authentication failed");
 			}
 		}
-
-
-
-
-
-
-
-
 
 	}
 }

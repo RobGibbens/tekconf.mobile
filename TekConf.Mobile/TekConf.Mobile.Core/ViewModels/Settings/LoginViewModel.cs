@@ -20,8 +20,11 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		private IMvxJsonConverter _jsonConverter;
 
-		public LoginViewModel(IAuthenticationService authenticationService, IMvxJsonConverter jsonConverter, HttpClient httpClient)
+		private IDatabaseService _databaseService;
+
+		public LoginViewModel(IAuthenticationService authenticationService, IMvxJsonConverter jsonConverter, IDatabaseService databaseService, HttpClient httpClient)
 		{
+			_databaseService = databaseService;
 			_jsonConverter = jsonConverter;
 			_authenticationService = authenticationService;
 			_httpClient = httpClient;
@@ -69,6 +72,8 @@ namespace TekConf.Mobile.Core.ViewModels
 		{
 			var user = await _authenticationService.Login(provider);
 			var userName = await GetIsOauthUserRegistered (user.UserId);
+			await _databaseService.SaveCurrentUserAsync(new User { UserName = userName } );
+			ShowViewModel<ConferencesTabViewModel> ();
 		}
 
 

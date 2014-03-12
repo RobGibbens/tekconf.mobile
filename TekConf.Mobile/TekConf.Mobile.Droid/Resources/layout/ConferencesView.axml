@@ -15,4 +15,11 @@
         android:background="#000000"
         local:MvxBind="ItemsSource Conferences; ItemClick ShowDetailCommand"
         local:MvxItemTemplate="@layout/item_conference" />
+    <TextView
+        android:id="@+id/emptyConferences"
+        android:text="No conferences found"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:visibility="gone" />
 </LinearLayout>
