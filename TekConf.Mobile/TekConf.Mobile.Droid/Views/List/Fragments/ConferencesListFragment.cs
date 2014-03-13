@@ -21,7 +21,7 @@ namespace TekConf.Mobile.Droid.Views
 			var view =  this.BindingInflate(Resource.Layout.ConferencesView, null);
 
 			var listView = view.FindViewById<MvxGridView>(Resource.Id.gridview);
-			var emptyView = view.FindViewById<TextView>(Resource.Id.emptyConferences);
+			var emptyView = view.FindViewById<TekConfTextView>(Resource.Id.emptyConferences);
 			if (listView != null && emptyView != null)
 			{
 				listView.EmptyView = emptyView;

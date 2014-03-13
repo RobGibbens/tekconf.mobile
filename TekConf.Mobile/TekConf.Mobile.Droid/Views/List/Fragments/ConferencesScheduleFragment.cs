@@ -19,7 +19,7 @@ namespace TekConf.Mobile.Droid.Views
 			var view = this.BindingInflate(Resource.Layout.ConferencesScheduleView, null);
 
 			var listView = view.FindViewById<MvxGridView>(Resource.Id.schedulesGridview);
-			var emptyView = view.FindViewById<TextView>(Resource.Id.emptyConferencesSchedule);
+			var emptyView = view.FindViewById<TekConfTextView>(Resource.Id.emptyConferencesSchedule);
 			if (listView != null && emptyView != null)
 			{
 				listView.EmptyView = emptyView;

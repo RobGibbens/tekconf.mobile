@@ -16,9 +16,10 @@
         android:background="@android:color/black"
         local:MvxBind="ItemsSource Conferences; ItemClick ShowDetailCommand"
         local:MvxItemTemplate="@layout/item_conference" />
-    <TextView
+    <TekConf.Mobile.Droid.TekConfTextView
         android:id="@+id/emptyConferences"
         android:text="No conferences found"
+        android:textSize="18dp"
         android:textColor="@android:color/black"
         android:layout_width="fill_parent"
         android:layout_height="120dp"

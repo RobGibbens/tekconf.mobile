@@ -14,13 +14,15 @@
         android:background="@android:color/white"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp" />
-    <TextView
+    <TekConf.Mobile.Droid.TekConfTextView
         android:id="@+id/emptySessions"
-        android:text="No sessions found."
+        android:text="No sessions to display.\n\nEither sessions have not been released, or sessions have not been added to TekConf."
+        android:textSize="18dp"
         android:textColor="@android:color/black"
         android:layout_width="fill_parent"
         android:layout_height="120dp"
         android:gravity="center"
         android:visibility="gone"
-        android:background="@android:color/white" />
+        android:background="@android:color/white"
+        android:paddingTop="20dp" />
 </LinearLayout>
