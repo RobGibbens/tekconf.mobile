@@ -85,9 +85,24 @@ namespace TekConf.Mobile.Core.ViewModels
 			this.Conferences = conferences;
 		}
 
+		private bool _areConferencesLoading;
+		public bool AreConferencesLoading
+		{
+			get { return _areConferencesLoading; }
+			set
+			{
+				if (_areConferencesLoading != value)
+				{
+					_areConferencesLoading = value;
+					RaisePropertyChanged(() => AreConferencesLoading);
+				}
+			}
+		}
+
 		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
-			_messenger.Publish (new ConferencesLoading (this));
+			this.AreConferencesLoading = true;
+			//_messenger.Publish (new ConferencesLoading (this));
 
 			List<Conference> conferences = await _databaseService.LoadConferencesAsync();
 
@@ -121,9 +136,10 @@ namespace TekConf.Mobile.Core.ViewModels
 				conferences = await _databaseService.LoadConferencesAsync();
 			}
 
+			this.AreConferencesLoading = false;
+			//_messenger.Publish(new ConferencesLoaded(this));
 			this.Conferences = conferences;
 
-			_messenger.Publish (new ConferencesLoaded (this));
 		}
 
 		private IList<Conference> _conferences;

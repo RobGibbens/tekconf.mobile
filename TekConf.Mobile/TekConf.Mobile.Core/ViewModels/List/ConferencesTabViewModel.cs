@@ -20,5 +20,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		public BaseViewModel ConferencesViewModel { get; set; }
 		public BaseViewModel ConferencesScheduleViewModel { get; set; }
+
+
 	}
 }

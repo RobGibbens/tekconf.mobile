@@ -3,8 +3,10 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
     <Mvx.MvxListView
+        android:id="@+id/scheduleListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         local:MvxBind="ItemsSource Sessions"
@@ -12,4 +14,13 @@
         android:background="@android:color/white"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp" />
+    <TextView
+        android:id="@+id/emptySchedule"
+        android:text="No schedule found. Make sure you're logged in"
+        android:textColor="@android:color/black"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:background="@android:color/white" />
 </LinearLayout>

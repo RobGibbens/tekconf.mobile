@@ -1,6 +1,7 @@
 using Android.OS;
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
+using Cirrious.MvvmCross.Binding.Droid.Views;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using TekConf.Mobile.Core.ViewModels;
 using Android.Widget;
@@ -14,7 +15,17 @@ namespace TekConf.Mobile.Droid.Views
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			base.OnCreateView(inflater, container, savedInstanceState);
-			return this.BindingInflate(Resource.Layout.ConferencesScheduleView, null);
+			
+			var view = this.BindingInflate(Resource.Layout.ConferencesScheduleView, null);
+
+			var listView = view.FindViewById<MvxGridView>(Resource.Id.schedulesGridview);
+			var emptyView = view.FindViewById<TextView>(Resource.Id.emptyConferencesSchedule);
+			if (listView != null && emptyView != null)
+			{
+				listView.EmptyView = emptyView;
+			}
+
+			return view;
 		}
 
 		public override void OnCreate (Bundle savedInstanceState)

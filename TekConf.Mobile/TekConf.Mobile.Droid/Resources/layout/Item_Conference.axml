@@ -9,7 +9,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:textColor="@android:color/white"
-        android:background="#ffffff">
+        android:background="@android:color/white">
         <TekConf.Mobile.Droid.SquareImage
             android:id="@+id/conferenceImage"
             android:layout_width="match_parent"

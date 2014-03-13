@@ -12,7 +12,7 @@ namespace TekConf.Mobile.Droid.Views
 	[Activity]
 	public class ConferencesTabView : MvxTabsFragmentActivity
 	{
-		IMvxMessenger _messenger;
+		readonly IMvxMessenger _messenger;
 		private BindableProgress _bindableProgress;
 		private MvxSubscriptionToken _conferencesLoadingToken;
 		private MvxSubscriptionToken _conferencesLoadedToken;
@@ -20,6 +20,7 @@ namespace TekConf.Mobile.Droid.Views
 		public ConferencesTabView() : base(Resource.Layout.Page_TabView, Resource.Id.actualtabcontent)
 		{
 			_messenger = Mvx.Resolve<IMvxMessenger>();
+			//WireUpLoadingEvents();
 		}
 
 		public ConferencesTabViewModel ConferencesTabViewModel
@@ -36,18 +37,28 @@ namespace TekConf.Mobile.Droid.Views
 		protected override void OnResume()
 		{
 			base.OnResume();
-			_bindableProgress = new BindableProgress (this);
-			_conferencesLoadingToken = _messenger.SubscribeOnMainThread<ConferencesLoading>(OnConferencesLoading);
-			_conferencesLoadedToken = _messenger.SubscribeOnMainThread<ConferencesLoaded>(OnConferencesLoaded);
+			//WireUpLoadingEvents();
 		}
+
+		//private void WireUpLoadingEvents()
+		//{
+		//	if (_bindableProgress == null)
+		//		_bindableProgress = new BindableProgress(this);
+
+		//	if (_conferencesLoadingToken == null)
+		//	_conferencesLoadingToken = _messenger.SubscribeOnMainThread<ConferencesLoading>(OnConferencesLoading);
+
+		//	if (_conferencesLoadedToken == null)
+		//	_conferencesLoadedToken = _messenger.SubscribeOnMainThread<ConferencesLoaded>(OnConferencesLoaded);
+		//}
 
 		protected override void OnPause()
 		{
-			_messenger.Unsubscribe<ConferencesLoading>(_conferencesLoadingToken);
-			_conferencesLoadingToken = null;
+			//_messenger.Unsubscribe<ConferencesLoading>(_conferencesLoadingToken);
+			//_conferencesLoadingToken = null;
 
-			_messenger.Unsubscribe<ConferencesLoaded>(_conferencesLoadedToken);
-			_conferencesLoadedToken = null;
+			//_messenger.Unsubscribe<ConferencesLoaded>(_conferencesLoadedToken);
+			//_conferencesLoadedToken = null;
 
 			base.OnPause();
 		}

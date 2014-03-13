@@ -3,7 +3,8 @@
     xmlns:local="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
     <Mvx.MvxGridView
         android:id="@+id/schedulesGridview"
         android:layout_width="match_parent"
@@ -15,4 +16,12 @@
         android:background="#000000"
         local:MvxBind="ItemsSource Conferences; ItemClick ShowDetailCommand"
         local:MvxItemTemplate="@layout/item_conference" />
+    <TextView
+        android:id="@+id/emptyConferencesSchedule"
+        android:text="No schedule found. Make sure you're logged in."
+        android:textColor="@android:color/black"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:visibility="gone" />
 </LinearLayout>

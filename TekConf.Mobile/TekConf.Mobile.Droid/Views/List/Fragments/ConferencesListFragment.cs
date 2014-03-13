@@ -18,16 +18,23 @@ namespace TekConf.Mobile.Droid.Views
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
 			base.OnCreateView(inflater, container, savedInstanceState);
-			return this.BindingInflate(Resource.Layout.ConferencesView, null);
+			var view =  this.BindingInflate(Resource.Layout.ConferencesView, null);
+
+			var listView = view.FindViewById<MvxGridView>(Resource.Id.gridview);
+			var emptyView = view.FindViewById<TextView>(Resource.Id.emptyConferences);
+			if (listView != null && emptyView != null)
+			{
+				listView.EmptyView = emptyView;
+			}
+
+			return view;
 		}
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
-			var listView = this.Activity.FindViewById<MvxListView> (Resource.Id.gridview);
-			var emptyView = this.Activity.FindViewById<TextView> (Resource.Id.emptyConferences);
-			listView.EmptyView = emptyView;
+			
 		}
 
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
