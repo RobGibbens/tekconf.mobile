@@ -1,6 +1,6 @@
 using Cirrious.CrossCore.Plugins;
 
-namespace TekConf.Mobile.Core.Tests.Bootstrap
+namespace Specs.Core.Bootstrap
 {
     public class FilePluginBootstrap
         : MvxPluginBootstrapAction<Cirrious.MvvmCross.Plugins.File.PluginLoader>

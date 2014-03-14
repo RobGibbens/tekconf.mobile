@@ -106,29 +106,33 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			List<Conference> conferences = await _databaseService.LoadConferencesAsync();
 
-			if (!conferences.Any() || loadRequest == LoadRequest.Refresh)
+			if (conferences == null || !conferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
 				await _databaseService.DeleteAllConferencesAsync ();
 				var conferenceDtos = await _conferenceService.LoadConferencesAsync ();
 
-				foreach (var conferenceDto in conferenceDtos)
+				if (conferenceDtos != null)
 				{
-					ConferenceDto dto = conferenceDto;
-					var conference = await TaskEx.Run(() => Mapper.Map<Conference>(dto));
-					await _databaseService.SaveConferenceAsync (conference);
-
-					foreach (var sessionDto in conferenceDto.Sessions)
+					foreach (var conferenceDto in conferenceDtos)
 					{
-						SessionDto dto1 = sessionDto;
-						var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
-						session.ConferenceId = conference.Id;
-						await _databaseService.SaveSessionAsync (session);
+						ConferenceDto dto = conferenceDto;
+						var conference = await TaskEx.Run(() => Mapper.Map<Conference>(dto));
+						await _databaseService.SaveConferenceAsync(conference);
 
-						foreach (var speakerDto in sessionDto.Speakers) {
-							SpeakerDto speakerDto1 = speakerDto;
-							var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
-							speaker.SessionId = session.Id;
-							await _databaseService.SaveSpeakerAsync (speaker);
+						foreach (var sessionDto in conferenceDto.Sessions)
+						{
+							SessionDto dto1 = sessionDto;
+							var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
+							session.ConferenceId = conference.Id;
+							await _databaseService.SaveSessionAsync(session);
+
+							foreach (var speakerDto in sessionDto.Speakers)
+							{
+								SpeakerDto speakerDto1 = speakerDto;
+								var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
+								speaker.SessionId = session.Id;
+								await _databaseService.SaveSpeakerAsync(speaker);
+							}
 						}
 					}
 				}
