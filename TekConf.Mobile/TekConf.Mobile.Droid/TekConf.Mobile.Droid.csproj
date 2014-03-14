@@ -184,6 +184,7 @@
     <Compile Include="Views\Session\Fragments\SessionDetailFragment.cs" />
     <Compile Include="Views\Session\Fragments\SessionDetailSpeakersFragment.cs" />
     <Compile Include="Views\Settings\Fragments\LoginFragment.cs" />
+    <Compile Include="Views\Settings\Fragments\SettingsDetailFragment.cs" />
     <Compile Include="Views\Settings\SettingsDetailTabView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +240,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\item_login.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\SettingsDetailView.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <None Include="ToDo-MvvmCross\_ Droid UI.txt" />

@@ -9,13 +9,19 @@ namespace TekConf.Mobile.Core.ViewModels
 		public SettingsDetailTabViewModel()
 		{
 			LoginViewModel = Mvx.IocConstruct<LoginViewModel>();
+			SettingsDetailViewModel = Mvx.IocConstruct<SettingsDetailViewModel>();
+
 		}
 
 		public async void Init(int id)
 		{
 			((LoginViewModel)LoginViewModel).Init();
+			((SettingsDetailViewModel)SettingsDetailViewModel).Init();
+
 		}
 
 		public BaseViewModel LoginViewModel { get; set; }
+		public BaseViewModel SettingsDetailViewModel { get; set; }
+
 	}
 }

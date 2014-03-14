@@ -86,6 +86,7 @@ namespace TekConf.Mobile.Core.ViewModels
 					foreach (var scheduledConferenceDto in scheduledConferenceDtos) {
 						var dto = scheduledConferenceDto;
 						var scheduledConference = await TaskEx.Run (() => Mapper.Map<ScheduledConference> (dto));
+						
 						await _databaseService.SaveScheduledConferenceAsync (scheduledConference);
 
 						//foreach (var sessionDto in scheduledConferenceDto.Sessions)
@@ -128,8 +129,8 @@ namespace TekConf.Mobile.Core.ViewModels
 			get
 			{
 				return new MvxCommand<ScheduledConference>(scheduledConference =>
-					{
-						var dbConference = TaskEx.Run(() => _databaseService.LoadConferenceAsync(scheduledConference.Name)).Result;
+				{
+						var dbConference = TaskEx.Run(() => _databaseService.LoadScheduledConferenceAsync(scheduledConference.Name)).Result;
 
 						ShowViewModel<ConferenceDetailTabViewModel>(new { id = dbConference.Id });
 					}

@@ -17,6 +17,7 @@
             android:scaleType="centerCrop"
             local:MvxBind="ImageUrl ImageUrlSquare" />
         <RelativeLayout
+            android:id="@+id/conferenceInfoLayout"
             android:orientation="vertical"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -26,7 +27,7 @@
             android:layout_centerHorizontal="true">
             <TekConf.Mobile.Droid.TekConfTextView
                 android:id="@+id/conferenceName"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:ellipsize="end"
@@ -38,7 +39,7 @@
                 android:layout_centerHorizontal="true" />
             <TekConf.Mobile.Droid.TekConfTextView
                 android:id="@+id/conferenceDateRange"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:textColor="@android:color/white"
@@ -49,7 +50,7 @@
                 android:layout_centerHorizontal="true" />
             <TekConf.Mobile.Droid.TekConfTextView
                 android:id="@+id/conferenceCity"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:textColor="@android:color/white"
@@ -58,17 +59,6 @@
                 android:paddingBottom="15dp"
                 local:MvxBind="Text FormattedCity"
                 android:layout_centerHorizontal="true" />
-        <!--            <TextView
-                android:id="@+id/mytextview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:textColor="@android:color/white"
-                android:layout_below="@+id/conferenceDateRange"
-                android:layout_marginLeft="5dp"
-                android:paddingBottom="5dp"
-                android:layout_centerHorizontal="true"
-                android:text="@string/fa_refresh" />-->
         </RelativeLayout>
     </RelativeLayout>
 </FrameLayout>

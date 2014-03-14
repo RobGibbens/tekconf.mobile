@@ -16,6 +16,7 @@ using System.Net.Http.Headers;
 using SQLite.Net;
 using SQLite.Net.Async;
 using SQLite.Net.Platform.XamarinAndroid;
+using TekConf.Mobile.Core;
 using TekConf.Mobile.Core.Services;
 using TekConf.Mobile.Droid.Code;
 
@@ -92,18 +93,14 @@ namespace TekConf.Mobile.Droid
 	{
 		public override object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
-			string image = "";
-			if (DateTime.Now.Millisecond % 2 == 0)
+			string image = "sessionstates/notadded.png";
+
+			if (value != null)
 			{
-				image = "sessionstates/notadded.png";
+				image = string.Format("sessionstates/{0}.png", ((SessionScheduleState)value).ToString().ToLower());
 			}
-			else
-			{
-				image = "sessionstates/added.png";
-			}
-			Thread.Sleep(2);
-			//var image = string.Format("sessionstates/{0}.png", ((SessionScheduleState)value).ToString().ToLower());
 			return image;
+
 		}
 	}
 

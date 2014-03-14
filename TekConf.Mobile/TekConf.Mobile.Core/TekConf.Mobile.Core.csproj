@@ -74,6 +74,7 @@
     <Compile Include="Services\MobileUser.cs" />
     <Compile Include="Services\TekConfUser.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\Settings\SettingsDetailViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ItemGroup>

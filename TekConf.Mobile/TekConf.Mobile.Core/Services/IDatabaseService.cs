@@ -18,6 +18,7 @@ namespace TekConf.Mobile.Core
 		Task DeleteAllConferencesAsync();
 		Task DeleteAllScheduledConferencesAsync();
 
+		Task<ScheduledConference> LoadScheduledConferenceAsync(string conferenceName); 
 		Task SaveAllConferencesAsync (List<Conference> conferences);
 		Task SaveAllScheduledConferencesAsync (List<ScheduledConference> conferences);
 

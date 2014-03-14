@@ -20,7 +20,9 @@ namespace TekConf.Mobile.Droid.Views
 
 		protected override void AddTabs(Bundle args)
 		{
+			AddTab<SettingsDetailFragment>("SettingsTab", "Settings", args, SettingsDetailTabViewModel.SettingsDetailViewModel);
 			AddTab<LoginFragment>("LoginTab", "Login", args, SettingsDetailTabViewModel.LoginViewModel);
+
 		}
 	}
 }

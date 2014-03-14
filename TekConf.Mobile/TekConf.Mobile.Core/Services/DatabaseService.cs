@@ -85,6 +85,14 @@ namespace TekConf.Mobile.Core
 			return conference;
 		}
 
+		public async Task<ScheduledConference> LoadScheduledConferenceAsync(string name)
+		{
+			var conference = await _sqLiteConnection.Table<ScheduledConference>()
+														.Where(c => c.Name == name)
+														.FirstOrDefaultAsync();
+			return conference;
+		}
+
 		public async Task<Session> LoadSessionAsync(int sessionId)
 		{
 			var session = await _sqLiteConnection.Table<Session>()
