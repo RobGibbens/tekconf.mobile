@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Cirrious.MvvmCross.ViewModels;
+using Cirrious.CrossCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -9,9 +14,12 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		IDatabaseService _databaseService;
 
-		public SessionDetailViewModel(IDatabaseService databaseService)
+		IRemoteConferenceService _remoteConferenceService;
+
+		public SessionDetailViewModel(IDatabaseService databaseService, IRemoteConferenceService remoteConferenceService)
 		{
 			_databaseService = databaseService;
+			_remoteConferenceService = remoteConferenceService;
 		}
 
 		public async void Init(int id)
@@ -50,6 +58,44 @@ namespace TekConf.Mobile.Core.ViewModels
 			var session = await _databaseService.LoadSessionAsync (_sessionId);
 
 			return session;
+		}
+
+		public async Task ToggleFavoriteAsync()
+		{
+			var existingConference = await _databaseService.LoadConferenceAsync (this.Session.ConferenceId);
+			var existingScheduledConference = await _databaseService.LoadScheduledConferenceAsync (existingConference.Name);
+			if (existingScheduledConference == null)
+			{
+				existingScheduledConference = new ScheduledConference (existingConference);
+				await _databaseService.SaveScheduledConferenceAsync (existingScheduledConference);
+			}
+
+			var existingSessions = await _databaseService.LoadFavoriteSessionsAsync (existingScheduledConference.Id);
+			if (existingSessions == null)
+			{
+				existingSessions = new List<Session> ();
+			}
+
+			var session = existingSessions.FirstOrDefault (s => s.Title == this.Session.Title);
+			if (session == null)
+			{
+				this.Session.IsAddedToSchedule = true;
+				var user = await _databaseService.LoadCurrentUserAsync ();
+				if (user != null) {
+					var userName = user.UserName;
+					var conferenceSlug = existingScheduledConference.Slug;
+					var sessionSlug = this.Session.Slug;
+					await _remoteConferenceService.AddSessionToScheduleAsync (userName, conferenceSlug, sessionSlug);
+				}
+			}
+			else
+			{
+				this.Session.IsAddedToSchedule = false;
+			}
+
+			await _databaseService.SaveSessionAsync (this.Session);
+
+
 		}
 
 		private Session _session;

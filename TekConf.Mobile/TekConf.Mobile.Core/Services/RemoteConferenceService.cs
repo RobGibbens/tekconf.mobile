@@ -12,6 +12,7 @@ namespace TekConf.Mobile.Core
 	{
 		private readonly HttpClient _httpClient;
 		private readonly IMvxJsonConverter _jsonConverter;
+		private readonly string AddSessionToScheduleUrl = TekConfApi.BaseUrl + "/conferences/{1}/schedule?userName={0}&conferenceSlug={1}&sessionSlug={2}&format=json";
 
 		public ConferenceService (HttpClient httpClient, IMvxJsonConverter jsonConverter)
 		{
@@ -37,6 +38,12 @@ namespace TekConf.Mobile.Core
 			var conferences = await TaskEx.Run(() => _jsonConverter.DeserializeObject<List<ConferenceDto>>(json));
 
 			return conferences.OrderBy(c => c.Start).ToList();
+		}
+
+		public async Task AddSessionToScheduleAsync(string userName, string conferenceSlug, string sessionSlug)
+		{
+			string uri = string.Format(AddSessionToScheduleUrl, userName, conferenceSlug, sessionSlug);
+			var response = await _httpClient.PostAsync (uri, null);
 		}
 	}
 }

@@ -19,9 +19,7 @@
     <MandroidI18n />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
-    <AndroidStoreUncompressedFileExtensions />
-    <JavaMaximumHeapSize />
-    <JavaOptions />
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,9 +29,9 @@
     <DefineConstants>DEBUG;__MOBILE__;__ANDROID__;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -44,10 +42,15 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
-    <AndroidLinkSkip />
-    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkSkip>
+    </AndroidLinkSkip>
     <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
-    <BundleAssemblies>False</BundleAssemblies>
+    <AndroidStoreUncompressedFileExtensions>
+    </AndroidStoreUncompressedFileExtensions>
+    <JavaMaximumHeapSize>
+    </JavaMaximumHeapSize>
+    <JavaOptions>
+    </JavaOptions>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cirrious.MvvmCross.Droid.Fragging">
@@ -270,6 +273,22 @@
     <AndroidResource Include="Resources\layout\item_speaker.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\calendar.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\check.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\cog.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\facebookLogin.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\search.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\sortAlphaAsc.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\sortAlphaDesc.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\sortAsc.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\sortDesc.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\splash.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\star.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\staro.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\twitter.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\twitterLogin.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
@@ -332,16 +351,16 @@
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="azure-mobile-services">
-      <Visible>False</Visible>
       <Version>1.1.0</Version>
+      <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamandroidsupportv7appcompat">
       <Version>7.18.0</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="xamarin.auth">
-      <Visible>False</Visible>
       <Version>1.2.2</Version>
+      <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
   <ItemGroup />
@@ -352,4 +371,7 @@
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
+  <ItemGroup>
+    <Folder Include="Resources\drawable-xxxhdpi\" />
+  </ItemGroup>
 </Project>

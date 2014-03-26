@@ -10,5 +10,7 @@ namespace TekConf.Mobile.Core
 	{
 		public const string BaseUrl = "http://api.tekconf.com/v1";
 	}
+
+
 	
 }

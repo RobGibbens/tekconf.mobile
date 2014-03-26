@@ -9,7 +9,7 @@ namespace TekConf.Mobile.Core
 	public class Session : INotifyPropertyChanged
 	{
 		[PrimaryKey, AutoIncrement]
-		public int Id { get; set; }
+		public virtual int Id { get; set; }
 		[Indexed]
 		public string Slug { get; set; }
 		public int ConferenceId { get; set; }

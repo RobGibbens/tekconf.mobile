@@ -33,7 +33,7 @@ namespace TekConf.Mobile.Droid.Views
 			AddTab<ConferencesListFragment>("ConferencesTab", "Conferences", args, ConferencesTabViewModel.ConferencesViewModel);
 			AddTab<ConferencesScheduleFragment>("ConferencesScheduleTab", "Schedule", args, ConferencesTabViewModel.ConferencesScheduleViewModel);
 		}
-
+			
 		protected override void OnResume()
 		{
 			base.OnResume();

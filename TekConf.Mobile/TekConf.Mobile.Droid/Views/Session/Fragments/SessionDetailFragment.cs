@@ -35,7 +35,7 @@ namespace TekConf.Mobile.Droid.Views
 				switch (item.ToString())
 				{
 					case "Add to Schedule":
-						//Task.Factory.StartNew(() => vm.RefreshAsync().Wait());
+						Task.Run(() => vm.ToggleFavoriteAsync());
 						break;
 				}
 			}

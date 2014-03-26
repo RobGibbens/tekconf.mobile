@@ -9,7 +9,7 @@ namespace TekConf.Mobile.Core
 	{
 
 		[PrimaryKey, AutoIncrement]
-		public int Id { get; set; }
+		public virtual int Id { get; set; }
 
 		[Indexed]
 		public string Name { get; set; }

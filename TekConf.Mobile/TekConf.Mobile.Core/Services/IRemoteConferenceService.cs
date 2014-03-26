@@ -9,5 +9,6 @@ namespace TekConf.Mobile.Core
 	{
 		Task<List<ConferenceDto>> LoadConferencesAsync();
 		Task<List<ConferenceDto>> LoadScheduledConferencesAsync(string userName);
+		Task AddSessionToScheduleAsync (string userName, string conferenceSlug, string sessionSlug);
 	}
 }
