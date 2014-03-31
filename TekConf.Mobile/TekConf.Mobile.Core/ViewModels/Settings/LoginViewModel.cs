@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading;
 using System;
 using Cirrious.CrossCore.Platform;
+using AutoMapper;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -22,8 +23,15 @@ namespace TekConf.Mobile.Core.ViewModels
 
 		private IDatabaseService _databaseService;
 
-		public LoginViewModel(IAuthenticationService authenticationService, IMvxJsonConverter jsonConverter, IDatabaseService databaseService, HttpClient httpClient)
+		private IRemoteConferenceService _remoteConferenceService;
+
+		public LoginViewModel(IAuthenticationService authenticationService,
+			IRemoteConferenceService remoteConferenceService,
+						IMvxJsonConverter jsonConverter, 
+						IDatabaseService databaseService, 
+						HttpClient httpClient)
 		{
+			_remoteConferenceService = remoteConferenceService;
 			_databaseService = databaseService;
 			_jsonConverter = jsonConverter;
 			_authenticationService = authenticationService;
@@ -73,6 +81,32 @@ namespace TekConf.Mobile.Core.ViewModels
 			var user = await _authenticationService.Login(provider);
 			var userName = await GetIsOauthUserRegistered (user.UserId);
 			await _databaseService.SaveCurrentUserAsync(new User { UserName = userName } );
+
+			await _databaseService.DeleteAllScheduledConferencesAsync ();
+			var scheduledConferenceDtos = await _remoteConferenceService.LoadScheduledConferencesAsync (userName);
+
+			foreach (var scheduledConferenceDto in scheduledConferenceDtos) {
+				var dto = scheduledConferenceDto;
+				var scheduledConference = await TaskEx.Run (() => Mapper.Map<ScheduledConference> (dto));
+
+				await _databaseService.SaveScheduledConferenceAsync (scheduledConference);
+
+				foreach (var sessionDto in conferenceDto.Sessions)
+				{
+					SessionDto dto1 = sessionDto;
+					var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
+					session.ConferenceId = conference.Id;
+					await _databaseService.SaveSessionAsync(session);
+
+					foreach (var speakerDto in sessionDto.Speakers)
+					{
+						SpeakerDto speakerDto1 = speakerDto;
+						var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
+						speaker.SessionId = session.Id;
+						await _databaseService.SaveSpeakerAsync(speaker);
+					}
+				}
+			}
 			ShowViewModel<ConferencesTabViewModel> ();
 		}
 
