@@ -10,6 +10,7 @@ using System.Threading;
 using System;
 using Cirrious.CrossCore.Platform;
 using AutoMapper;
+using TekConf.Mobile.Core.Dtos;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -91,22 +92,30 @@ namespace TekConf.Mobile.Core.ViewModels
 
 				await _databaseService.SaveScheduledConferenceAsync (scheduledConference);
 
-				foreach (var sessionDto in conferenceDto.Sessions)
+				foreach (var sessionDto in dto.Sessions)
 				{
 					SessionDto dto1 = sessionDto;
-					var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
-					session.ConferenceId = conference.Id;
-					await _databaseService.SaveSessionAsync(session);
 
-					foreach (var speakerDto in sessionDto.Speakers)
-					{
-						SpeakerDto speakerDto1 = speakerDto;
-						var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
-						speaker.SessionId = session.Id;
-						await _databaseService.SaveSpeakerAsync(speaker);
+					var existingSession = await _databaseService.LoadSessionAsync (sessionDto.Slug);
+
+					if (existingSession == null) {
+//						existingSession = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
+//						existingSession.ConferenceId = conference.Id;
+//						await _databaseService.SaveSessionAsync(existingSession);
+//						foreach (var speakerDto in sessionDto.Speakers)
+//						{
+//							SpeakerDto speakerDto1 = speakerDto;
+//							var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
+//							speaker.SessionId = session.Id;
+//							await _databaseService.SaveSpeakerAsync(speaker);
+//						}
+					} else {
+						existingSession.IsAddedToSchedule = true;
+						await _databaseService.SaveSessionAsync (existingSession);
 					}
 				}
 			}
+
 			ShowViewModel<ConferencesTabViewModel> ();
 		}
 

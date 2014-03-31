@@ -75,6 +75,8 @@ namespace TekConf.Mobile.Core
 			}
 		}
 
+
+
 		public async Task SaveSpeakerAsync (Speaker speaker)
 		{
 			await _sqLiteConnection.InsertAsync(speaker);
@@ -108,6 +110,15 @@ namespace TekConf.Mobile.Core
 		{
 			var session = await _sqLiteConnection.Table<Session>()
 				.Where(s => s.Id == sessionId)
+				.FirstOrDefaultAsync();
+
+			return session;
+		}
+
+		public async Task<Session> LoadSessionAsync(string sessionSlug)
+		{
+			var session = await _sqLiteConnection.Table<Session>()
+				.Where(s => s.Slug == sessionSlug)
 				.FirstOrDefaultAsync();
 
 			return session;
