@@ -87,6 +87,9 @@ namespace TekConf.Mobile.Core.ViewModels
 			var scheduledConferenceDtos = await _remoteConferenceService.LoadScheduledConferencesAsync (userName);
 
 			foreach (var scheduledConferenceDto in scheduledConferenceDtos) {
+				//Check if conference already exists
+				//
+
 				var dto = scheduledConferenceDto;
 				var scheduledConference = await TaskEx.Run (() => Mapper.Map<ScheduledConference> (dto));
 
