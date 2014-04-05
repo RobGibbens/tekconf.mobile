@@ -50,8 +50,6 @@
     <Compile Include="ViewModels\List\ConferencesViewModel.cs" />
     <Compile Include="Models\Conference.cs" />
     <Compile Include="TekConfApi.cs" />
-    <Compile Include="Messages\ConferencesLoadingMessage.cs" />
-    <Compile Include="Messages\ConferencesLoaded.cs" />
     <Compile Include="Code\LoadRequest.cs" />
     <Compile Include="ViewModels\List\ConferencesTabViewModel.cs" />
     <Compile Include="ViewModels\List\ConferencesScheduleViewModel.cs" />
@@ -155,4 +153,7 @@
   </Target>
   <ItemGroup />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Messages\" />
+  </ItemGroup>
 </Project>

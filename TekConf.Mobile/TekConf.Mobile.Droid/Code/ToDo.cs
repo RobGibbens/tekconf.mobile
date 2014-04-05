@@ -8,12 +8,10 @@ namespace TekConf.Mobile.Droid
 		{
 			//TODO : Test offline
 			//TODO : Get progress bar working
+			//TODO : Load scheduled conferences
 			//TODO : Click on ScheduledConferences
 			//TODO : Get IsScheduled working
-			//TODO : Get checkmark working
-			//TODO : Get checkmark green
-			//TODO : Click on session -> show session detail
-			//TODO : Oauth login
+			//TODO : Click on favorite session -> show session detail
 		}
 	}
 }

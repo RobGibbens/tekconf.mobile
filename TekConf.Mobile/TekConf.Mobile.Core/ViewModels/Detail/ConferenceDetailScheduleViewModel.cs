@@ -87,6 +87,15 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 		}
 
+		public ICommand ShowSessionCommand
+		{
+			get
+			{
+				return new MvxCommand<Session>(session => 
+					ShowViewModel<SessionDetailTabViewModel>(new { id = session.Id })
+				);
+			}
+		}
 
 		public ICommand ShowSettingsCommand
 		{

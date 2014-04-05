@@ -24,6 +24,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			await LoadSessionsAsync(LoadRequest.Load);
 		}
 
+		//TODO : Refresh from service
 		public async Task LoadSessionsAsync(LoadRequest loadRequest)
 		{
 			this.AreSessionsLoading = true;
@@ -34,6 +35,7 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			this.AreSessionsLoading = false;
 		}
+
 
 		public async Task SearchAsync(string query)
 		{

@@ -7,6 +7,32 @@ namespace TekConf.Mobile.Core
 {
 	public class Conference : INotifyPropertyChanged
 	{
+		public Conference ()
+		{
+			
+		}
+		public Conference (Conference conference)
+		{
+			this.IsAddedToSchedule = conference.IsAddedToSchedule;
+			this.City = conference.City;
+			this.Country = conference.Country;
+			this.DateRange = conference.DateRange;
+			this.Description = conference.Description;
+			this.End = conference.End;
+			this.ImageUrl = conference.ImageUrl;
+			this.ImageUrlSquare = conference.ImageUrlSquare;
+			this.IsOnline = conference.IsOnline;
+			this.Latitude = conference.Latitude;
+			this.Longitude = conference.Longitude;
+			this.Name = conference.Name;
+			this.PostalArea = conference.PostalArea;
+			this.Start = conference.Start;
+			this.State = conference.State;
+			this.StreetName = conference.StreetName;
+			this.StreetNumber = conference.StreetNumber;
+			this.Slug = conference.Slug;
+		}
+
 
 		[PrimaryKey, AutoIncrement]
 		public virtual int Id { get; set; }
@@ -34,6 +60,7 @@ namespace TekConf.Mobile.Core
 			}
 		}
 
+
 		private DateTime _end;
 		private string _dateRange;
 
@@ -54,6 +81,7 @@ namespace TekConf.Mobile.Core
 			}
 		}
 
+		public bool IsAddedToSchedule { get; set;}
 		public string Description { get; set; }
 		public string ImageUrl { get; set; }
 		public string ImageUrlSquare { get; set; }

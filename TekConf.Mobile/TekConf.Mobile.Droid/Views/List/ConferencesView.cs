@@ -14,7 +14,6 @@ namespace TekConf.Mobile.Droid.Views
 	[MetaData(("android.app.searchable"), Resource = "@xml/searchable")]
 	public class ConferencesView : MvxActivity
 	{
-		private BindableProgress _bindableProgress;
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
@@ -23,11 +22,6 @@ namespace TekConf.Mobile.Droid.Views
 			ActionBar.SetBackgroundDrawable (new ColorDrawable (new Color (r: 129, g: 153, b: 77)));
 
 			SetContentView (Resource.Layout.ConferencesView);
-
-			_bindableProgress = new BindableProgress(this);
-			var set = this.CreateBindingSet<ConferencesView, ConferencesViewModel>();
-			set.Bind(_bindableProgress).For(p => p.Visible).To(vm => vm.AreConferencesLoading);
-			set.Apply();
 		}
 	}
 }

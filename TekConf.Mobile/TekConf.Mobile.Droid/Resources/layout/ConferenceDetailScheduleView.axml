@@ -9,20 +9,20 @@
         android:id="@+id/scheduleListView"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        local:MvxBind="ItemsSource Sessions"
+        local:MvxBind="ItemsSource Sessions; ItemClick ShowSessionCommand"
         local:MvxItemTemplate="@layout/item_session"
         android:background="@android:color/white"
         android:divider="@android:color/transparent"
         android:dividerHeight="10.0sp" />
-	<TekConf.Mobile.Droid.TekConfTextView
-			android:id="@+id/emptySchedule"
+    <TekConf.Mobile.Droid.TekConfTextView
+        android:id="@+id/emptySchedule"
         android:text="No schedule found.\n\nPlease log in and favorite some sessions."
-				android:textSize="18dp"
+        android:textSize="18dp"
         android:textColor="@android:color/black"
         android:layout_width="fill_parent"
         android:layout_height="120dp"
         android:gravity="center"
         android:visibility="gone"
         android:background="@android:color/white"
-			android:paddingTop="20dp"/>
+        android:paddingTop="20dp" />
 </LinearLayout>

@@ -4,11 +4,8 @@ using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
 using TekConf.Mobile.Core.ViewModels;
 using Android.Widget;
-using Android.InputMethodServices;
-using Android.Views.InputMethods;
 using System.Threading.Tasks;
 using System;
-using Cirrious.MvvmCross.Droid.Fragging;
 using Cirrious.MvvmCross.Binding.Droid.Views;
 
 namespace TekConf.Mobile.Droid.Views
@@ -17,7 +14,6 @@ namespace TekConf.Mobile.Droid.Views
 	{
 		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-
 			base.OnCreateView(inflater, container, savedInstanceState);
 			var view =  this.BindingInflate(Resource.Layout.ConferencesView, null);
 
@@ -35,7 +31,12 @@ namespace TekConf.Mobile.Droid.Views
 		{
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
-			
+
+			var conferencesViewModel = this.DataContext as ConferencesViewModel;
+			if (conferencesViewModel != null)
+			{
+				Task.Run(async () => await conferencesViewModel.LoadConferencesAsync (LoadRequest.Load));
+			}
 		}
 
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)

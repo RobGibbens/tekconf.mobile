@@ -3,11 +3,9 @@ using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System;
 using TekConf.Mobile.Core.Dtos;
 using AutoMapper;
 using Cirrious.MvvmCross.Plugins.Messenger;
-using TekConf.Mobile.Core.Messages;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -41,7 +39,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			Mapper.CreateMap<SessionDto, Session> ();
 			Mapper.CreateMap<SpeakerDto, Speaker> ();
 
-			await LoadConferencesAsync(LoadRequest.Load);
+			//await LoadConferencesAsync(LoadRequest.Load);
 		}
 
 		public async Task RefreshAsync()
@@ -108,8 +106,14 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			if (conferences == null || !conferences.Any() || loadRequest == LoadRequest.Refresh)
 			{
+				var user = await _databaseService.LoadCurrentUserAsync ();
+				string userName = "";
+				if (user != null) {
+					userName = user.UserName;
+				}
+
 				await _databaseService.DeleteAllConferencesAsync ();
-				var conferenceDtos = await _conferenceService.LoadConferencesAsync ();
+				var conferenceDtos = await _conferenceService.LoadConferencesAsync (userName);
 
 				if (conferenceDtos != null)
 				{

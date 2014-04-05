@@ -59,15 +59,29 @@ namespace TekConf.Mobile.Core.ViewModels
 
 			return session;
 		}
-
+			
+		private bool _isFavoritingSession;
+		public bool IsFavoritingSession
+		{
+			get { return _isFavoritingSession; }
+			set
+			{
+				if (_isFavoritingSession != value)
+				{
+					_isFavoritingSession = value;
+					RaisePropertyChanged(() => IsFavoritingSession);
+				}
+			}
+		}
 		public async Task ToggleFavoriteAsync()
 		{
+			this.IsFavoritingSession = true;
 			var existingConference = await _databaseService.LoadConferenceAsync (this.Session.ConferenceId);
-			var existingScheduledConference = await _databaseService.LoadScheduledConferenceAsync (existingConference.Name);
+			var existingScheduledConference = await _databaseService.LoadConferenceAsync (existingConference.Name);
 			if (existingScheduledConference == null)
 			{
-				existingScheduledConference = new ScheduledConference (existingConference);
-				await _databaseService.SaveScheduledConferenceAsync (existingScheduledConference);
+				existingScheduledConference = new Conference (existingConference);
+				await _databaseService.SaveConferenceAsync (existingScheduledConference);
 			}
 
 			var existingSessions = await _databaseService.LoadFavoriteSessionsAsync (existingScheduledConference.Id);
@@ -94,6 +108,7 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 
 			await _databaseService.SaveSessionAsync (this.Session);
+			this.IsFavoritingSession = false;
 
 
 		}

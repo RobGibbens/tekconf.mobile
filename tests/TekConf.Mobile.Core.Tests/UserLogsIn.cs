@@ -14,42 +14,42 @@ using Xunit;
 
 namespace Specs.Core
 {
-		[Trait("A user logs in", "")]
-    public class UserLogsIn
+	[Trait ("A user logs in", "")]
+	public class UserLogsIn
+	{
+		private IFixture _fixture;
+
+		public UserLogsIn ()
 		{
-			private IFixture _fixture;
-			public UserLogsIn()
-			{
-				_fixture = new Fixture();
-			}
-			[Fact(DisplayName = "Current conferences should be retrieved")]
-			public async Task Current_conferences_retrieved()
-			{
-				var conferenceService = new Mock<IRemoteConferenceService>();
-				var conferenceDtos = _fixture.CreateMany<ConferenceDto>(50).ToList();
-				var conferences = _fixture.CreateMany<Conference>(50).ToList();
-				conferenceService.Setup(x => x.LoadConferencesAsync()).Returns(Task.FromResult(conferenceDtos));
+			_fixture = new Fixture ();
+		}
+
+		[Fact (DisplayName = "Current conferences should be retrieved")]
+		public async Task Current_conferences_retrieved ()
+		{
+			var conferenceService = new Mock<IRemoteConferenceService> ();
+			var conferenceDtos = _fixture.CreateMany<ConferenceDto> (50).ToList ();
+			var conferences = _fixture.CreateMany<Conference> (50).ToList ();
+			conferenceService.Setup (x => x.LoadConferencesAsync ("")).Returns (Task.FromResult (conferenceDtos));
 				
-				var databaseService = new Mock<IDatabaseService>();
-				var pq = new Queue<List<Conference>>(new[]
-					{ 
-							null, 
-							conferences
-					});
+			var databaseService = new Mock<IDatabaseService> ();
+			var pq = new Queue<List<Conference>> (new[] { 
+				null, 
+				conferences
+			});
 
-				databaseService.Setup(x => x.LoadConferencesAsync()).Returns(Task.FromResult(pq.Dequeue()));
-				var messenger = new Mock<IMvxMessenger>();
-				var viewModel = new ConferencesViewModel(conferenceService.Object, databaseService.Object, messenger.Object);
-				viewModel.Init();
-				await viewModel.LoadConferencesAsync(LoadRequest.Load);
-				viewModel.Conferences.ShouldNotBeNull();
-			}
+			databaseService.Setup (x => x.LoadConferencesAsync ()).Returns (Task.FromResult (pq.Dequeue ()));
+			var messenger = new Mock<IMvxMessenger> ();
+			var viewModel = new ConferencesViewModel (conferenceService.Object, databaseService.Object, messenger.Object);
+			viewModel.Init ();
+			await viewModel.LoadConferencesAsync (LoadRequest.Load);
+			viewModel.Conferences.ShouldNotBeNull ();
+		}
 
-			[Fact(DisplayName = "Scheduled conferences should be retrieved")]
-			public void Scheduled_conferences_retrieved()
-			{
-				throw new NotImplementedException();
-			}
-
-    }
+		[Fact (DisplayName = "Scheduled conferences should be retrieved")]
+		public void Scheduled_conferences_retrieved ()
+		{
+			throw new NotImplementedException ();
+		}
+	}
 }

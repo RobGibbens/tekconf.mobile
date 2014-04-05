@@ -26,19 +26,21 @@ namespace TekConf.Mobile.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::TekConf.Mobile.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::TekConf.Mobile.Droid.Resource.String.Hello;
 			global::ModernHttpClient.Resource.String.library_name = global::TekConf.Mobile.Droid.Resource.String.library_name;
-			global::AndroidHUD.Resource.Attribute.barColor = global::TekConf.Mobile.Droid.Resource.Attribute.barColor;
-			global::AndroidHUD.Resource.Attribute.barLength = global::TekConf.Mobile.Droid.Resource.Attribute.barLength;
-			global::AndroidHUD.Resource.Attribute.barWidth = global::TekConf.Mobile.Droid.Resource.Attribute.barWidth;
-			global::AndroidHUD.Resource.Attribute.circleColor = global::TekConf.Mobile.Droid.Resource.Attribute.circleColor;
-			global::AndroidHUD.Resource.Attribute.delayMillis = global::TekConf.Mobile.Droid.Resource.Attribute.delayMillis;
-			global::AndroidHUD.Resource.Attribute.radius = global::TekConf.Mobile.Droid.Resource.Attribute.radius;
-			global::AndroidHUD.Resource.Attribute.rimColor = global::TekConf.Mobile.Droid.Resource.Attribute.rimColor;
-			global::AndroidHUD.Resource.Attribute.rimWidth = global::TekConf.Mobile.Droid.Resource.Attribute.rimWidth;
-			global::AndroidHUD.Resource.Attribute.spinSpeed = global::TekConf.Mobile.Droid.Resource.Attribute.spinSpeed;
-			global::AndroidHUD.Resource.Attribute.text = global::TekConf.Mobile.Droid.Resource.Attribute.text;
-			global::AndroidHUD.Resource.Attribute.textColor = global::TekConf.Mobile.Droid.Resource.Attribute.textColor;
-			global::AndroidHUD.Resource.Attribute.textSize = global::TekConf.Mobile.Droid.Resource.Attribute.textSize;
+			global::AndroidHUD.Resource.Attribute.ahBarColor = global::TekConf.Mobile.Droid.Resource.Attribute.ahBarColor;
+			global::AndroidHUD.Resource.Attribute.ahBarLength = global::TekConf.Mobile.Droid.Resource.Attribute.ahBarLength;
+			global::AndroidHUD.Resource.Attribute.ahBarWidth = global::TekConf.Mobile.Droid.Resource.Attribute.ahBarWidth;
+			global::AndroidHUD.Resource.Attribute.ahCircleColor = global::TekConf.Mobile.Droid.Resource.Attribute.ahCircleColor;
+			global::AndroidHUD.Resource.Attribute.ahDelayMillis = global::TekConf.Mobile.Droid.Resource.Attribute.ahDelayMillis;
+			global::AndroidHUD.Resource.Attribute.ahRadius = global::TekConf.Mobile.Droid.Resource.Attribute.ahRadius;
+			global::AndroidHUD.Resource.Attribute.ahRimColor = global::TekConf.Mobile.Droid.Resource.Attribute.ahRimColor;
+			global::AndroidHUD.Resource.Attribute.ahRimWidth = global::TekConf.Mobile.Droid.Resource.Attribute.ahRimWidth;
+			global::AndroidHUD.Resource.Attribute.ahSpinSpeed = global::TekConf.Mobile.Droid.Resource.Attribute.ahSpinSpeed;
+			global::AndroidHUD.Resource.Attribute.ahText = global::TekConf.Mobile.Droid.Resource.Attribute.ahText;
+			global::AndroidHUD.Resource.Attribute.ahTextColor = global::TekConf.Mobile.Droid.Resource.Attribute.ahTextColor;
+			global::AndroidHUD.Resource.Attribute.ahTextSize = global::TekConf.Mobile.Droid.Resource.Attribute.ahTextSize;
 			global::AndroidHUD.Resource.Drawable.ic_errorstatus = global::TekConf.Mobile.Droid.Resource.Drawable.ic_errorstatus;
 			global::AndroidHUD.Resource.Drawable.ic_successstatus = global::TekConf.Mobile.Droid.Resource.Drawable.ic_successstatus;
 			global::AndroidHUD.Resource.Drawable.roundedbg = global::TekConf.Mobile.Droid.Resource.Drawable.roundedbg;
@@ -52,20 +54,18 @@ namespace TekConf.Mobile.Droid
 			global::AndroidHUD.Resource.Layout.loadingprogress = global::TekConf.Mobile.Droid.Resource.Layout.loadingprogress;
 			global::AndroidHUD.Resource.String.library_name = global::TekConf.Mobile.Droid.Resource.String.library_name;
 			global::AndroidHUD.Resource.Styleable.ProgressWheel = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_barColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_barColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_barLength = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_barLength;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_barWidth = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_barWidth;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_circleColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_circleColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_delayMillis = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_delayMillis;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_radius = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_radius;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_rimColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_rimColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_rimWidth = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_rimWidth;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_spinSpeed = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_spinSpeed;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_text = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_text;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_textColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_textColor;
-			global::AndroidHUD.Resource.Styleable.ProgressWheel_textSize = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_textSize;
-			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::TekConf.Mobile.Droid.Resource.String.ApplicationName;
-			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::TekConf.Mobile.Droid.Resource.String.Hello;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarLength = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarLength;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahBarWidth = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahBarWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahCircleColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahCircleColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahDelayMillis = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahDelayMillis;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRadius = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRadius;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRimColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahRimWidth = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahRimWidth;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahSpinSpeed = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahSpinSpeed;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahText = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahText;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextColor = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextColor;
+			global::AndroidHUD.Resource.Styleable.ProgressWheel_ahTextSize = global::TekConf.Mobile.Droid.Resource.Styleable.ProgressWheel_ahTextSize;
 		}
 		
 		public partial class Animation
@@ -229,6 +229,42 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f010068
 			public const int activityChooserViewStyle = 2130772072;
 			
+			// aapt resource value: 0x7f01006d
+			public const int ahBarColor = 2130772077;
+			
+			// aapt resource value: 0x7f010075
+			public const int ahBarLength = 2130772085;
+			
+			// aapt resource value: 0x7f010074
+			public const int ahBarWidth = 2130772084;
+			
+			// aapt resource value: 0x7f010072
+			public const int ahCircleColor = 2130772082;
+			
+			// aapt resource value: 0x7f010071
+			public const int ahDelayMillis = 2130772081;
+			
+			// aapt resource value: 0x7f010073
+			public const int ahRadius = 2130772083;
+			
+			// aapt resource value: 0x7f01006e
+			public const int ahRimColor = 2130772078;
+			
+			// aapt resource value: 0x7f01006f
+			public const int ahRimWidth = 2130772079;
+			
+			// aapt resource value: 0x7f010070
+			public const int ahSpinSpeed = 2130772080;
+			
+			// aapt resource value: 0x7f01006a
+			public const int ahText = 2130772074;
+			
+			// aapt resource value: 0x7f01006b
+			public const int ahTextColor = 2130772075;
+			
+			// aapt resource value: 0x7f01006c
+			public const int ahTextSize = 2130772076;
+			
 			// aapt resource value: 0x7f01002b
 			public const int background = 2130772011;
 			
@@ -238,29 +274,14 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f01002c
 			public const int backgroundStacked = 2130772012;
 			
-			// aapt resource value: 0x7f01006d
-			public const int barColor = 2130772077;
-			
-			// aapt resource value: 0x7f010075
-			public const int barLength = 2130772085;
-			
-			// aapt resource value: 0x7f010074
-			public const int barWidth = 2130772084;
-			
 			// aapt resource value: 0x7f010014
 			public const int buttonBarButtonStyle = 2130771988;
 			
 			// aapt resource value: 0x7f010013
 			public const int buttonBarStyle = 2130771987;
 			
-			// aapt resource value: 0x7f010072
-			public const int circleColor = 2130772082;
-			
 			// aapt resource value: 0x7f01002e
 			public const int customNavigationLayout = 2130772014;
-			
-			// aapt resource value: 0x7f010071
-			public const int delayMillis = 2130772081;
 			
 			// aapt resource value: 0x7f010050
 			public const int disableChildrenWhenDisabled = 2130772048;
@@ -373,15 +394,6 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f010057
 			public const int queryHint = 2130772055;
 			
-			// aapt resource value: 0x7f010073
-			public const int radius = 2130772083;
-			
-			// aapt resource value: 0x7f01006e
-			public const int rimColor = 2130772078;
-			
-			// aapt resource value: 0x7f01006f
-			public const int rimWidth = 2130772079;
-			
 			// aapt resource value: 0x7f010058
 			public const int searchDropdownBackground = 2130772056;
 			
@@ -424,9 +436,6 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f010051
 			public const int showDividers = 2130772049;
 			
-			// aapt resource value: 0x7f010070
-			public const int spinSpeed = 2130772080;
-			
 			// aapt resource value: 0x7f010054
 			public const int spinnerDropDownItemStyle = 2130772052;
 			
@@ -441,9 +450,6 @@ namespace TekConf.Mobile.Droid
 			
 			// aapt resource value: 0x7f010027
 			public const int subtitleTextStyle = 2130772007;
-			
-			// aapt resource value: 0x7f01006a
-			public const int text = 2130772074;
 			
 			// aapt resource value: 0x7f010069
 			public const int textAllCaps = 2130772073;
@@ -466,14 +472,8 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f010011
 			public const int textAppearanceSmallPopupMenu = 2130771985;
 			
-			// aapt resource value: 0x7f01006b
-			public const int textColor = 2130772075;
-			
 			// aapt resource value: 0x7f010064
 			public const int textColorSearchUrl = 2130772068;
-			
-			// aapt resource value: 0x7f01006c
-			public const int textSize = 2130772076;
 			
 			// aapt resource value: 0x7f010021
 			public const int title = 2130772001;
@@ -1501,11 +1501,11 @@ namespace TekConf.Mobile.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0b000e
-			public const int ApplicationName = 2131427342;
+			// aapt resource value: 0x7f0b000f
+			public const int ApplicationName = 2131427343;
 			
-			// aapt resource value: 0x7f0b000d
-			public const int Hello = 2131427341;
+			// aapt resource value: 0x7f0b000e
+			public const int Hello = 2131427342;
 			
 			// aapt resource value: 0x7f0b0001
 			public const int abc_action_bar_home_description = 2131427329;
@@ -1555,8 +1555,8 @@ namespace TekConf.Mobile.Droid
 			// aapt resource value: 0x7f0b0010
 			public const int hello = 2131427344;
 			
-			// aapt resource value: 0x7f0b000f
-			public const int library_name = 2131427343;
+			// aapt resource value: 0x7f0b000d
+			public const int library_name = 2131427341;
 			
 			// aapt resource value: 0x7f0b0014
 			public const int search_hint = 2131427348;
@@ -2347,40 +2347,40 @@ namespace TekConf.Mobile.Droid
 					2130772085};
 			
 			// aapt resource value: 3
-			public const int ProgressWheel_barColor = 3;
+			public const int ProgressWheel_ahBarColor = 3;
 			
 			// aapt resource value: 11
-			public const int ProgressWheel_barLength = 11;
+			public const int ProgressWheel_ahBarLength = 11;
 			
 			// aapt resource value: 10
-			public const int ProgressWheel_barWidth = 10;
+			public const int ProgressWheel_ahBarWidth = 10;
 			
 			// aapt resource value: 8
-			public const int ProgressWheel_circleColor = 8;
+			public const int ProgressWheel_ahCircleColor = 8;
 			
 			// aapt resource value: 7
-			public const int ProgressWheel_delayMillis = 7;
+			public const int ProgressWheel_ahDelayMillis = 7;
 			
 			// aapt resource value: 9
-			public const int ProgressWheel_radius = 9;
+			public const int ProgressWheel_ahRadius = 9;
 			
 			// aapt resource value: 4
-			public const int ProgressWheel_rimColor = 4;
+			public const int ProgressWheel_ahRimColor = 4;
 			
 			// aapt resource value: 5
-			public const int ProgressWheel_rimWidth = 5;
+			public const int ProgressWheel_ahRimWidth = 5;
 			
 			// aapt resource value: 6
-			public const int ProgressWheel_spinSpeed = 6;
+			public const int ProgressWheel_ahSpinSpeed = 6;
 			
 			// aapt resource value: 0
-			public const int ProgressWheel_text = 0;
+			public const int ProgressWheel_ahText = 0;
 			
 			// aapt resource value: 1
-			public const int ProgressWheel_textColor = 1;
+			public const int ProgressWheel_ahTextColor = 1;
 			
 			// aapt resource value: 2
-			public const int ProgressWheel_textSize = 2;
+			public const int ProgressWheel_ahTextSize = 2;
 			
 			public static int[] SearchView = new int[]
 			{

@@ -1,15 +1,10 @@
-﻿using System.IO;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Linq;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
 using System.Threading.Tasks;
-using Cirrious.CrossCore.Platform;
 using System.Collections.Generic;
 using SQLite.Net.Async;
-using System;
 using Cirrious.MvvmCross.Plugins.Messenger;
-using TekConf.Mobile.Core.Messages;
 using AutoMapper;
 using TekConf.Mobile.Core.Dtos;
 
@@ -36,15 +31,15 @@ namespace TekConf.Mobile.Core.ViewModels
 		public async void Init()
 		{
 
-			Mapper.CreateMap<ConferenceDto, ScheduledConference>()
+			Mapper.CreateMap<ConferenceDto, Conference>()
 				.ForMember(x => x.StreetNumber, src => src.MapFrom(x => x.Address.StreetNumber))
 				.ForMember(x => x.StreetName, src => src.MapFrom(x => x.Address.StreetName))
 				.ForMember(x => x.City, src => src.MapFrom(x => x.Address.City))
 				.ForMember(x => x.State, src => src.MapFrom(x => x.Address.State))
 				.ForMember(x => x.PostalArea, src => src.MapFrom(x => x.Address.PostalArea))
 				.ForMember(x => x.Country, src => src.MapFrom(x => x.Address.Country))
-				.ForMember(c => c.Latitude, opt => opt.ResolveUsing<TekConf.Mobile.Core.ViewModels.ConferencesViewModel.LatitudeResolver>())
-				.ForMember(c => c.Longitude, opt => opt.ResolveUsing<TekConf.Mobile.Core.ViewModels.ConferencesViewModel.LongitudeResolver>());
+				.ForMember(c => c.Latitude, opt => opt.ResolveUsing<ConferencesViewModel.LatitudeResolver>())
+				.ForMember(c => c.Longitude, opt => opt.ResolveUsing<ConferencesViewModel.LongitudeResolver>());
 
 				await LoadConferencesAsync (LoadRequest.Load);
 		}
@@ -70,14 +65,28 @@ namespace TekConf.Mobile.Core.ViewModels
 			await TaskEx.Run(() => { this.Conferences = this.Conferences.OrderBy(x => x.Name); });
 		}
 
+		private bool _areConferencesLoading;
+		public bool AreConferencesLoading
+		{
+			get { return _areConferencesLoading; }
+			set
+			{
+				if (_areConferencesLoading != value)
+				{
+					_areConferencesLoading = value;
+					RaisePropertyChanged(() => AreConferencesLoading);
+				}
+			}
+		}
+
 		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
-			_messenger.Publish(new ConferencesLoading(this));
+			this.AreConferencesLoading = true;
 
 			_currentUser = await _databaseService.LoadCurrentUserAsync ();
 			if (_currentUser != null) {
 
-				List<ScheduledConference> scheduledConferences = await _databaseService.LoadScheduledConferencesAsync ();
+				var scheduledConferences = await _databaseService.LoadScheduledConferencesAsync ();
 
 				if (!scheduledConferences.Any () || loadRequest == LoadRequest.Refresh) {
 					await _databaseService.DeleteAllScheduledConferencesAsync ();
@@ -85,9 +94,9 @@ namespace TekConf.Mobile.Core.ViewModels
 
 					foreach (var scheduledConferenceDto in scheduledConferenceDtos) {
 						var dto = scheduledConferenceDto;
-						var scheduledConference = await TaskEx.Run (() => Mapper.Map<ScheduledConference> (dto));
+						var scheduledConference = await TaskEx.Run (() => Mapper.Map<Conference> (dto));
 						
-						await _databaseService.SaveScheduledConferenceAsync (scheduledConference);
+						await _databaseService.SaveConferenceAsync (scheduledConference);
 
 						//foreach (var sessionDto in scheduledConferenceDto.Sessions)
 						//{
@@ -104,11 +113,11 @@ namespace TekConf.Mobile.Core.ViewModels
 				this.Conferences = scheduledConferences;
 			}
 
-			_messenger.Publish(new ConferencesLoaded(this));
+			this.AreConferencesLoading = false;
 		}
 
-		private IList<ScheduledConference> _conferences;
-		public IEnumerable<ScheduledConference> Conferences
+		private IList<Conference> _conferences;
+		public IEnumerable<Conference> Conferences
 		{
 			get
 			{
@@ -128,9 +137,9 @@ namespace TekConf.Mobile.Core.ViewModels
 		{
 			get
 			{
-				return new MvxCommand<ScheduledConference>(scheduledConference =>
+				return new MvxCommand<Conference>(scheduledConference =>
 				{
-						var dbConference = TaskEx.Run(() => _databaseService.LoadScheduledConferenceAsync(scheduledConference.Name)).Result;
+						var dbConference = TaskEx.Run(() => _databaseService.LoadConferenceAsync(scheduledConference.Slug)).Result;
 
 						ShowViewModel<ConferenceDetailTabViewModel>(new { id = dbConference.Id });
 					}

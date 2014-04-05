@@ -32,6 +32,12 @@ namespace TekConf.Mobile.Droid.Views
 		{
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
+
+			var vm = this.DataContext as ConferenceDetailSessionsViewModel;
+			if (vm != null)
+			{
+				Task.Run(async () => await vm.LoadSessionsAsync (LoadRequest.Load));
+			}
 		}
 
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
@@ -76,17 +82,17 @@ namespace TekConf.Mobile.Droid.Views
 			{
 				switch (item.ToString())
 				{
-					case "Refresh":
-						//Task.Factory.StartNew(() => vm.RefreshAsync().Wait());
+				case "Refresh":
+					Task.Run (async () => await vm.RefreshAsync ());
 						break;
 					case "Settings":
 						vm.ShowSettingsCommand.Execute (null);
 						break;
 					case "Sort By Date":
-						Task.Factory.StartNew(() => vm.SortByDateAsync().Wait());
+					Task.Run(async () => await vm.SortByDateAsync());
 						break;
 					case "Sort By Name":
-						Task.Factory.StartNew(() => vm.SortByTitleAsync().Wait());
+					Task.Run(async () => await vm.SortByTitleAsync());
 						break;
 				}
 			}

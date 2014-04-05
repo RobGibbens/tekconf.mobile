@@ -11,35 +11,40 @@ namespace TekConf.Mobile.Droid.Views
 {
 	public class ConferenceDetailFragment : MvxFragment
 	{
-		public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+		public override View OnCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
 		{
-			base.OnCreateView(inflater, container, savedInstanceState);
-			return this.BindingInflate(Resource.Layout.ConferenceDetailView, null);
+			base.OnCreateView (inflater, container, savedInstanceState);
+			return this.BindingInflate (Resource.Layout.ConferenceDetailView, null);
 		}
 
 		public override void OnCreate (Bundle savedInstanceState)
 		{
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
-		}
-		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
-		{
-			inflater.Inflate(Resource.Menu.ConferenceDetailActionItems, menu);
-		}
 
-		public override bool OnOptionsItemSelected(IMenuItem item)
-		{
 			var vm = this.DataContext as ConferenceDetailViewModel;
 			if (vm != null)
 			{
-				switch (item.ToString())
-				{
-					case "Refresh":
-						//Task.Factory.StartNew(() => vm.RefreshAsync().Wait());
-						break;
-					case "Settings":
-						vm.ShowSettingsCommand.Execute (null);
-						break;
+				Task.Run(async () => await vm.LoadConferencesAsync (LoadRequest.Load));
+			}
+		}
+
+		public override void OnCreateOptionsMenu (IMenu menu, MenuInflater inflater)
+		{
+			inflater.Inflate (Resource.Menu.ConferenceDetailActionItems, menu);
+		}
+
+		public override bool OnOptionsItemSelected (IMenuItem item)
+		{
+			var vm = this.DataContext as ConferenceDetailViewModel;
+			if (vm != null) {
+				switch (item.ToString ()) {
+				case "Refresh":
+					Task.Run (async () => await vm.RefreshAsync ());
+					break;
+				case "Settings":
+					vm.ShowSettingsCommand.Execute (null);
+					break;
 				}
 			}
 

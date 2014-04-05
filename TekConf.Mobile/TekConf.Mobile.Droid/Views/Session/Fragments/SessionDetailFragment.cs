@@ -2,8 +2,6 @@
 using Android.Views;
 using Cirrious.MvvmCross.Binding.Droid.BindingContext;
 using Cirrious.MvvmCross.Droid.Fragging.Fragments;
-using Android.Widget;
-using System;
 using TekConf.Mobile.Core.ViewModels;
 using System.Threading.Tasks;
 
@@ -22,6 +20,7 @@ namespace TekConf.Mobile.Droid.Views
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
 		}
+
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 		{
 			inflater.Inflate(Resource.Menu.SessionDetailActionItems, menu);

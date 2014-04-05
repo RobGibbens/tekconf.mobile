@@ -84,37 +84,28 @@ namespace TekConf.Mobile.Core.ViewModels
 			await _databaseService.SaveCurrentUserAsync(new User { UserName = userName } );
 
 			await _databaseService.DeleteAllScheduledConferencesAsync ();
-			var scheduledConferenceDtos = await _remoteConferenceService.LoadScheduledConferencesAsync (userName);
+			var conferenceDtos = await _remoteConferenceService.LoadScheduledConferencesAsync (userName);
 
-			foreach (var scheduledConferenceDto in scheduledConferenceDtos) {
-				//Check if conference already exists
-				//
+			foreach (var conferenceDto in conferenceDtos) {
+				var dto = conferenceDto;
+				dto.IsAddedToSchedule = true;
+				var conference = await TaskEx.Run (() => Mapper.Map<Conference> (dto));
 
-				var dto = scheduledConferenceDto;
-				var scheduledConference = await TaskEx.Run (() => Mapper.Map<ScheduledConference> (dto));
-
-				await _databaseService.SaveScheduledConferenceAsync (scheduledConference);
+				await _databaseService.SaveConferenceAsync (conference);
 
 				foreach (var sessionDto in dto.Sessions)
 				{
 					SessionDto dto1 = sessionDto;
+					var session = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
+					session.ConferenceId = conference.Id;
+					await _databaseService.SaveSessionAsync(session);
 
-					var existingSession = await _databaseService.LoadSessionAsync (sessionDto.Slug);
-
-					if (existingSession == null) {
-//						existingSession = await TaskEx.Run(() => Mapper.Map<Session>(dto1));
-//						existingSession.ConferenceId = conference.Id;
-//						await _databaseService.SaveSessionAsync(existingSession);
-//						foreach (var speakerDto in sessionDto.Speakers)
-//						{
-//							SpeakerDto speakerDto1 = speakerDto;
-//							var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
-//							speaker.SessionId = session.Id;
-//							await _databaseService.SaveSpeakerAsync(speaker);
-//						}
-					} else {
-						existingSession.IsAddedToSchedule = true;
-						await _databaseService.SaveSessionAsync (existingSession);
+					foreach (var speakerDto in sessionDto.Speakers)
+					{
+						SpeakerDto speakerDto1 = speakerDto;
+						var speaker = await TaskEx.Run(() => Mapper.Map<Speaker>(speakerDto1));
+						speaker.SessionId = session.Id;
+						await _databaseService.SaveSpeakerAsync(speaker);
 					}
 				}
 			}

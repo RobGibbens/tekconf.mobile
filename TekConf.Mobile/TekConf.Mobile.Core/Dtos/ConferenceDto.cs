@@ -11,7 +11,7 @@
 		public DateTime End { get; set; }
 		public string Description { get; set; }
 		public string ImageUrl { get; set; }
-
+		public bool IsAddedToSchedule {get;set;}
 		public bool? IsOnline { get; set; }
 
 		public Address Address { get; set; }

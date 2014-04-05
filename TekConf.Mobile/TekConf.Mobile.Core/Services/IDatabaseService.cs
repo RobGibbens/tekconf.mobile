@@ -6,9 +6,9 @@ namespace TekConf.Mobile.Core
 	public interface IDatabaseService
 	{
 		Task<List<Conference>> LoadConferencesAsync();
-		Task<List<ScheduledConference>> LoadScheduledConferencesAsync();
+		Task<List<Conference>> LoadScheduledConferencesAsync();
 		Task<Conference> LoadConferenceAsync(int conferenceId);
-		Task<Conference> LoadConferenceAsync(string name);
+		Task<Conference> LoadConferenceAsync(string slug);
 		Task<Session> LoadSessionAsync(int sessionId);
 		Task<Session> LoadSessionAsync(string slug);
 		Task<List<Session>> LoadSessionsAsync(int conferenceId);
@@ -19,19 +19,16 @@ namespace TekConf.Mobile.Core
 		Task DeleteAllConferencesAsync();
 		Task DeleteAllScheduledConferencesAsync();
 
-		Task<ScheduledConference> LoadScheduledConferenceAsync(string conferenceName); 
 		Task SaveAllConferencesAsync (List<Conference> conferences);
-		Task SaveAllScheduledConferencesAsync (List<ScheduledConference> conferences);
 
 		Task SaveConferenceAsync (Conference conference);
-		Task SaveScheduledConferenceAsync (ScheduledConference conference);
 		Task SaveSessionAsync(Session session);
 		Task SaveSpeakerAsync(Speaker speaker);
 
 		Task<List<Session>> SearchScheduledSessionsAsync (int id, string query);
 		Task<List<Session>> SearchSessionsAsync (int id, string query);
 		Task<List<Conference>> SearchConferencesAsync (string query);
-		Task<List<ScheduledConference>> SearchScheduledConferences (string query);
+		Task<List<Conference>> SearchScheduledConferences (string query);
 
 		Task SaveCurrentUserAsync (User user);
 		Task<User> LoadCurrentUserAsync ();

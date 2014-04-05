@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Cirrious.MvvmCross.ViewModels;
+using System.Threading;
 
 namespace TekConf.Mobile.Core.ViewModels
 {
@@ -19,7 +20,6 @@ namespace TekConf.Mobile.Core.ViewModels
 		public async void Init(int id)
 		{
 			_conferenceId = id;
-			await LoadConferencesAsync();
 		}
 
 		private bool _isConferenceLoading;
@@ -36,11 +36,11 @@ namespace TekConf.Mobile.Core.ViewModels
 			}
 		}
 
-		public async Task LoadConferencesAsync()
+		public async Task LoadConferencesAsync(LoadRequest loadRequest)
 		{
 			this.IsConferenceLoading = true;
 
-			Conference conference = await LoadConferenceFromLocalAsync();
+			var conference = await LoadConferenceFromLocalAsync();
 
 			this.Conference = conference;
 
@@ -52,6 +52,11 @@ namespace TekConf.Mobile.Core.ViewModels
 			var conference = await _databaseService.LoadConferenceAsync (_conferenceId);
 
 			return conference;
+		}
+
+		public async Task RefreshAsync()
+		{
+			await LoadConferencesAsync(LoadRequest.Refresh);
 		}
 
 		private Conference _conference;

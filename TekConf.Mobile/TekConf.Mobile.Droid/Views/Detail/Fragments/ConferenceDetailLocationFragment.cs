@@ -20,6 +20,12 @@ namespace TekConf.Mobile.Droid.Views
 		{
 			base.OnCreate (savedInstanceState);
 			HasOptionsMenu = true;
+
+			var vm = this.DataContext as ConferenceDetailLocationViewModel;
+			if (vm != null)
+			{
+				//Task.Run(async () => await vm.Lo (LoadRequest.Load));
+			}
 		}
 	}
 }
